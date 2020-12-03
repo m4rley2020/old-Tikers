@@ -2,9 +2,9 @@
 session_start();
 
 include ("../include/config.inc.php");
-include_once ("../include/sendmail.php");
+//include_once ("../include/sendmail.php");
 include ("../include/functions.php");
-$pas;
+//$pas;
 $ADMIN_MOUSEHOUR_COLOUR="#cccccc";
 $ADMIN_MOUSEOUT_COLOUR="#FFFFFF";
 $ADMIN_TOP_BGCOLOUR="#FFFFFF";
