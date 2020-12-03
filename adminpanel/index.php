@@ -11,7 +11,7 @@
    $db=mysql_connect($DBSERVER, $USERNAME, $PASSWORD);
    mysql_select_db($DATABASENAME,$db);  
    $pas=$_GET["pas"];
-$pas="";
+   //$pas="";
 ?>
 <!DOCTYPE html>
 <html lang="en"> 
