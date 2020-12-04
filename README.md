@@ -1,2 +1,0 @@
-# Tikers
-Tikers 
