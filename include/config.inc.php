@@ -1,5 +1,5 @@
 <?php
-error_reporting("E_ALL")
+//error_reporting("E_ALL")
 
 $SITE_NAME="Welcome to AME";
 $SITE_URL="http://tikers.tech/adminpanel/";
