@@ -16,9 +16,6 @@
   $ADMIN_MOUSEOUT_COLOUR="#FFFFFF";
   $ADMIN_TOP_BGCOLOUR="#FFFFFF";
   
-//   $servername = "muetafuyjq";
-//   $username = "muetafuyjq";
-//   $password = "rj75pUm2UJ";
 
   $db=mysql_connect($servername, $username, $password);
   mysql_select_db($DATABASENAME,$db);  
