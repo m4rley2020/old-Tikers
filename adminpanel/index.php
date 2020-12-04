@@ -1,6 +1,6 @@
 <?php 
 
-     //include ("../include/config.inc.php");
+     include ("../include/config.inc.php");
 	// include_once ("../include/sendmail.php");
 	// include ("../include/functions.php");
 	$pas;
@@ -8,10 +8,10 @@
   $ADMIN_MOUSEOUT_COLOUR="#FFFFFF";
   $ADMIN_TOP_BGCOLOUR="#FFFFFF";
   
-  // $db=mysql_connect($DBSERVER, $USERNAME, $PASSWORD);
-   //mysql_select_db($DATABASENAME,$db);  
- //$pas=$_GET["pas"];
-$pas="";
+   $db=mysql_connect($DBSERVER, $USERNAME, $PASSWORD);
+   mysql_select_db($DATABASENAME,$db);  
+ $pas=$_GET["pas"];
+//$pas="";
 ?>
 <!DOCTYPE html>
 <html lang="en"> 
