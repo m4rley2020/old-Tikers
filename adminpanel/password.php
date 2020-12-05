@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 
 include ("../include/config.inc.php");
@@ -11,14 +11,13 @@ $ADMIN_TOP_BGCOLOUR="#FFFFFF";
 
 $db=mysqli_connect($DBSERVER, $USERNAME, $PASSWORD);
 mysqli_select_db($db,$DATABASENAME);  
-$pas=$_GET["pass"];
+$pas=$_GET["pas"];
 
-$username1=$_GET["name"];
 
-$query="select * from admin where username='$username1' and password='$pas'";
+$query="select * from admin where username='".$_REQUEST["name"]."' and password='".$_REQUEST["pass"]."'";
 $result=mysqli_query($db,$query);
   //echo $result;
-  $row=mysqli_fetch_assoc($result);
+  $row=mysqli_fetch_array($result);
   
 	 $ADMIN_USERNAME=$row["username"];
 
