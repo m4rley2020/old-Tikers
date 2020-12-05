@@ -1,4 +1,4 @@
-<?									
+<?php									
 include("connect.php");
 
 if(isset($_REQUEST['btnDelete']))
@@ -20,7 +20,8 @@ if(isset($_REQUEST['btnDelete']))
 }
 $LeftLinkSection = 1;
 $pagetitle="User";
-$sel= "select * from user where email like '".$_GET["order"]."%' order by email" ;$result=$prs_pageing->number_pageing($sel,20000,10,'N','Y','',$db);
+$sel= "select * from user where email like '".$_GET["order"]."%' order by email" ;
+$result=$prs_pageing->number_pageing($sel,20000,10,'N','Y','',$db);
 
 ?>
 <!DOCTYPE html>
