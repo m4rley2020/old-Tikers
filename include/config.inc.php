@@ -3,7 +3,7 @@
 error_reporting(0);
 
 $SITE_NAME="Welcome to AME";
-$SITE_URL="http://www.tikers.tech/";
+$SITE_URL="http://www.tikers.tech/adminpanel/";
 $DBSERVER = "199.247.14.102";
 $DATABASENAME = "ghadxjbzcn";
 $USERNAME = "ghadxjbzcn";
