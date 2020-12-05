@@ -13,8 +13,9 @@ $db=mysqli_connect($DBSERVER, $USERNAME, $PASSWORD);
 mysqli_select_db($db,$DATABASENAME);  
 $pas=$_GET["pass"];
 
+$username1=$_GET["name"];
 
-$query="select * from admin where username='".$_REQUEST["name"]."' and password='".$_REQUEST["pass"]."'";
+$query="select * from admin where username='$username1' and password='$pas'";
 $result=mysqli_query($db,$query);
   //echo $result;
   $row=mysqli_fetch_array($result);
