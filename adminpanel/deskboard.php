@@ -1,14 +1,18 @@
-<? include("connect.php"); 
-	$string="1";
+<?php 
+include("connect.php"); 
+	
+$string="1";
+$user_query = mysqli_query($db,"select * from user");
+$post_query = mysqli_query($db,"select * from post");
+$package_query = mysqli_query($db,"select * from package");
+$challenge_type_query = mysqli_query($db,"select * from challenge_type");
+$challenge_query = mysqli_query($db,"select * from store_challenges");
+$store_query = mysqli_query($db,"select * from store");
+$advertise_query = mysqli_query($db,"select * from advertise");
 
-	$user_query = mysqli_query($db,"select * from user");
-	$post_query = mysqli_query($db,"select * from post");
-	$package_query = mysqli_query($db,"select * from package");
-	$challenge_type_query = mysqli_query($db,"select * from challenge_type");
-	$challenge_query = mysqli_query($db,"select * from store_challenges");
-	$store_query = mysqli_query($db,"select * from store");
-	$advertise_query = mysqli_query($db,"select * from advertise");
+echo "here";
 ?>
+
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
@@ -45,11 +49,11 @@
 
 <body style="font-family:Arial, Helvetica, sans-serif;">
 
-    <? include("top.php"); ?>
+    <?php include("top.php"); ?>
 
     <div id="container">    <!-- Start : container -->
 
-        <? include("left.php"); ?>
+        <?php include("left.php"); ?>
 
         <div id="content">  <!-- Start : Inner Page Content -->
 
@@ -261,3 +265,4 @@
     </script>
 </body>
 </html>
+?>

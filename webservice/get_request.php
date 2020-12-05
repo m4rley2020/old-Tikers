@@ -6,11 +6,11 @@
 	{
 		
 		$get_query = "select * from friend where to_user='".$_REQUEST['user_id']."' and status = '1' ";
-		$get_query_res =   mysql_query($get_query)or die(mysql_error());
+		$get_query_res =   mysqli_query($db,$get_query)or die(mysqli_error($db));
 		
-		if(mysql_num_rows($get_query_res)>0)
+		if(mysqli_num_rows($get_query_res)>0)
 		{
-			while($get_query_date = mysql_fetch_array($get_query_res))
+			while($get_query_date = mysqli_fetch_array($get_query_res))
 			{
 				$user_id = $get_query_date['from_user'];
 				$add_date = $get_query_date['add_date'];

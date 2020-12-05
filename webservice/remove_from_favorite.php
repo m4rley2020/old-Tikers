@@ -6,14 +6,14 @@
 	{
 		
 		$get_query = "select * from favourite where user_id = '".$_REQUEST['user_id']."' and challange_id = '".$_REQUEST['challange_id']."'";		
-		$get_query_res =   mysql_query($get_query)or die(mysql_error());
+		$get_query_res =   mysqli_query($db,$get_query)or die(mysqli_error($db));
 		
-		if(mysql_num_rows($get_query_res)>0)
+		if(mysqli_num_rows($get_query_res)>0)
 		{
 			$challange_id = $_REQUEST['challange_id'];	
 			
 			$get_query = "delete from favourite where user_id = '".$_REQUEST['user_id']."' and challange_id = '".$_REQUEST['challange_id']."'";		
-			$get_query_res =   mysql_query($get_query)or die(mysql_error());				
+			$get_query_res =   mysqli_query($db,$get_query)or die(mysqli_error($db));				
 
 							
 			$error = "Challange removed from your favourite.";

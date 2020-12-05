@@ -6,11 +6,11 @@
 	{
 		
 		$get_query2 = "select * from store_challenges where store_id = '".$_REQUEST['store_id']."' and is_deleted = 0 and is_approved = 1 order by id desc";
-		$get_query_res2 =   mysql_query($get_query2)or die(mysql_error());
+		$get_query_res2 =   mysqli_query($db,$get_query2)or die(mysqli_error($db));
 		
-		if(mysql_num_rows($get_query_res2)>0)
+		if(mysqli_num_rows($get_query_res2)>0)
 		{
-			while($get_query_date2 = mysql_fetch_array($get_query_res2))
+			while($get_query_date2 = mysqli_fetch_array($get_query_res2))
 			{
 				$id = $get_query_date2['id'];
 				$challenge_type_id = $get_query_date2['challenge_type_id'];

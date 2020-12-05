@@ -8,15 +8,15 @@
 		$latitude = $_REQUEST['latitude'];
 		$longitude = $_REQUEST['longitude'];
 		
-		$store_query = mysql_query("select * from store where id='".$store_id."' and latitude = '".$latitude."' and longitude = '".$longitude."' ");
+		$store_query = mysqli_query($db,"select * from store where id='".$store_id."' and latitude = '".$latitude."' and longitude = '".$longitude."' ");
 		
-		if(mysql_num_rows($store_query) > 0 ){
+		if(mysqli_num_rows($store_query) > 0 ){
 
 			$user_query = "select user.*,( 3959 * acos( cos( radians($latitude) ) * cos( radians(user.latitude ) ) * cos( radians( user.longitude ) - radians($longitude) ) + sin( radians($latitude) ) * sin( radians(user.latitude ) ) ) ) AS range1 from user where user_type = 'Famous' having range1 <= '60'  ";
-			$user_query_res =   mysql_query($user_query)or die(mysql_error());
-			if(mysql_num_rows($user_query_res)>0)
+			$user_query_res =   mysqli_query($db,$user_query)or die(mysqli_error($db));
+			if(mysqli_num_rows($user_query_res)>0)
 			{
-				while($user_data = mysql_fetch_array($user_query_res)){
+				while($user_data = mysqli_fetch_array($user_query_res)){
 					$user_id = $user_data['id']; 
 					$firstname = $user_data['first_name']; 
 					$lastname = $user_data['last_name']; 

@@ -1,4 +1,4 @@
-<? 
+<?php 
 $page_arr1=array(
 array("Manage User","manage_user.php",0),
 array("Add User","add_user.php?mode=add",0),);
@@ -69,7 +69,7 @@ array("Advertise",count($section_arr6),$section_arr6),
  ?>
 <script language="javascript" type="text/javascript">	
 	
-	var NoOffFirstLineMenus=<? echo count($HeadLinksArray).";"; ?>	//Total No. Of Main Sections Specify Here Too
+	var NoOffFirstLineMenus=<?php echo count($HeadLinksArray).";"; ?>	//Total No. Of Main Sections Specify Here Too
 	var LowBgColor='#FFFFFF';		
 	var LowSubBgColor='#FFFFFF';		
 	var HighBgColor='#7B9045';		

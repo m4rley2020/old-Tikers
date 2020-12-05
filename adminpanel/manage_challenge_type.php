@@ -1,4 +1,4 @@
-<?									
+<?php									
 include("connect.php");
 
 if(isset($_REQUEST['btnDelete']))
@@ -30,7 +30,7 @@ $sel= "select * from challenge_type where name like '".$_GET["order"]."%' order 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
-    <title><? echo $pagetitle; ?> | <?=$SITE_NAME?></title>
+    <title><?php echo $pagetitle; ?> | <?=$SITE_NAME?></title>
     
     <!--[if lt IE 9]> <script src="assets/plugins/common/html5shiv.js" type="text/javascript"></script> <![endif]-->
     <script src="js/modernizr.js" type="text/javascript"></script>
@@ -61,11 +61,11 @@ $sel= "select * from challenge_type where name like '".$_GET["order"]."%' order 
 
 <body>
 
-   <? include("top.php"); ?>
+   <?php include("top.php"); ?>
 
     <div id="container">    <!-- Start : container -->
 
-    <? include("left.php"); ?>
+    <?php include("left.php"); ?>
 
         <div id="content">  <!-- Start : Inner Page Content -->
 
@@ -78,18 +78,18 @@ $sel= "select * from challenge_type where name like '".$_GET["order"]."%' order 
                             <a href="deskboard.php">Dashboard</a>
                         </li>
                         
-                        <li class="current"><? echo $pagetitle; ?></li>
+                        <li class="current"><?php echo $pagetitle; ?></li>
                     </ul>
 
                 </div>  <!-- End : Breadcrumbs -->
 
                 <div class="page-header">   <!-- Start : Page Header -->
                     <div class="page-title">
-                        <h3>Manage <? echo $pagetitle; ?></h3>
+                        <h3>Manage <?php echo $pagetitle; ?></h3>
                         
                     </div>
                 </div>  <!-- End : Page Header -->
-                <? if($_GET["msg"]) { ?>
+                <?php if($_GET["msg"]) { ?>
                 <div class="alert alert-danger show">
                         <button class="close" data-dismiss="alert"></button>
                         
@@ -110,13 +110,13 @@ $sel= "select * from challenge_type where name like '".$_GET["order"]."%' order 
                            </span>
                          
                  </div>
-                 <? } 					  
+                 <?php } 					  
                         ?> 
                 <div class="row">
                     <div class="col-md-12">
                         <div class="portlet box blue">
                             <div class="portlet-title">
-                                <div class="caption"><i class="fa fa-table"></i><? echo $pagetitle; ?></div>
+                                <div class="caption"><i class="fa fa-table"></i><?php echo $pagetitle; ?></div>
                                                                 
                                 
                             </div>
@@ -133,7 +133,7 @@ $sel= "select * from challenge_type where name like '".$_GET["order"]."%' order 
                                                 </thead>
                                         <tbody>
                                             
-						  <? $count=0; 
+						  <?php $count=0; 
 							 while($get=mysqli_fetch_object($result[0])) 
 							 {  
 								$count++;
@@ -144,18 +144,18 @@ $sel= "select * from challenge_type where name like '".$_GET["order"]."%' order 
 							  <input type="checkbox" name="chk<?=$count;?>" id="chk<?=$count;?>" value="<?=$count;?>" /></td>
 							 <td><?=$count;?>.</td>
 						 
-							  <td > <strong> <? echo stripslashes($get->name); ?></strong></td>
+							  <td > <strong> <?php echo stripslashes($get->name); ?></strong></td>
 					<td class="photo">
 					<?php if($get->challenge_image!="" && file_exists('../challenge_image/'.$get->challenge_image)) { ?>
-						<img  src="<? echo '../challenge_image/'.$get->challenge_image; ?>" width="125" border="0" hspace="8" />
+						<img  src="<?php echo '../challenge_image/'.$get->challenge_image; ?>" width="125" border="0" hspace="8" />
 						<?php } ?>&nbsp;	
 					 </td>
-					<td class="photo"><strong> <? echo stripslashes($get->is_hot); ?></strong></td><td nowrap>				 
+					<td class="photo"><strong> <?php echo stripslashes($get->is_hot); ?></strong></td><td nowrap>				 
 		<a class="btn mini blue" href="#" onClick="window.location.href='add_challenge_type.php?id=<?php echo ($get->id); ?>&mode=edit'"><i class="fa fa-pencil"></i></a> 
                 <a class="btn mini red" href="#" onClick="deleteconfirm('Are you sure you want to delete this <?=$pagetitle;?>?. \n','add_challenge_type.php?id=<?php echo($get->id); ?>&mode=delete');"><i class="fa fa-trash-o"></i></a>                  
 </td>
 			</tr>	  
-                <? } ?>	
+                <?php } ?>	
                              </tbody>
                        </table>
 			  
@@ -166,7 +166,7 @@ $sel= "select * from challenge_type where name like '".$_GET["order"]."%' order 
 				 <input style="margin-right:7px;" type="button" name="button2" id="button2" value="ADD NEW"  onclick="location.href='add_challenge_type.php?mode=add'" class="btn green pull-left" />
                                     &nbsp; 
                                  
-                                  <? // $result[1] ?> 								
+                                  <?php // $result[1] ?> 								
                                    
                                     </div></div>
                                     </form>   

@@ -5,8 +5,8 @@
 	if($_REQUEST['type'] != '' && $_REQUEST['type'] == 'email'){
 		if($_REQUEST['email'] != "" && $_REQUEST['username'] != "" && $_REQUEST['password'] != "" && $_REQUEST['longitude'] != "" && $_REQUEST['latitude'] != "")
 		{
-			$check_customer_email = mysql_query("select id,email from user where email='".$_REQUEST['email']."' and username = '".$_REQUEST['username']."' ") or die(mysql_error());	
-			if(mysql_num_rows($check_customer_email) > 0)
+			$check_customer_email = mysqli_query($db,"select id,email from user where email='".$_REQUEST['email']."' and username = '".$_REQUEST['username']."' ") or die(mysqli_error($db));	
+			if(mysqli_num_rows($check_customer_email) > 0)
 			{
 				$message = "User with the specified email or username already exists.";
 				$result=array('message'=> $message, 'result'=>'0');	
@@ -22,8 +22,8 @@
 					longitude = '".$_REQUEST['longitude']."',
 					latitude = '".$_REQUEST['latitude']."',
 					add_date=NOW()";
-					mysql_query($insert_query)or die(mysql_error());
-					$user_id = mysql_insert_id();
+					mysqli_query($db,$insert_query)or die(mysqli_error($db));
+					$user_id = mysqli_insert_id();
 					
 					$error = "Account Registered Successfully";
 					$result=array(
@@ -50,8 +50,8 @@
 	else if($_REQUEST['type'] != '' && $_REQUEST['type'] == 'phone'){
 		if($_REQUEST['phone_number'] != "" && $_REQUEST['country_code'] != '' && $_REQUEST['username'] != "" && $_REQUEST['password'] != "" && $_REQUEST['longitude'] != "" && $_REQUEST['latitude'] != "")
 		{
-			$check_customer_mobile = mysql_query("select id,email from user where email='".$_REQUEST['phone_number']."' and country_code = '".$_REQUEST['country_code']."' and username = '".$_REQUEST['username']."' ") or die(mysql_error());	
-			if(mysql_num_rows($check_customer_mobile) > 0)
+			$check_customer_mobile = mysqli_query($db,"select id,email from user where email='".$_REQUEST['phone_number']."' and country_code = '".$_REQUEST['country_code']."' and username = '".$_REQUEST['username']."' ") or die(mysqli_error($db));	
+			if(mysqli_num_rows($check_customer_mobile) > 0)
 			{
 				$message = "User with the specified phone number or username already exists.";
 				$result=array('message'=> $message, 'result'=>'0');	
@@ -68,8 +68,8 @@
 					longitude = '".$_REQUEST['longitude']."',
 					latitude = '".$_REQUEST['latitude']."',
 					add_date=NOW()";
-					mysql_query($insert_query)or die(mysql_error());
-					$user_id = mysql_insert_id();
+					mysqli_query($db,$insert_query)or die(mysqli_error($db));
+					$user_id = mysqli_insert_id();
 					
 					$error = "Account Registered Successfully";
 					$result=array(

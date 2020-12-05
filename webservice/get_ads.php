@@ -6,14 +6,14 @@
 	{
 		
 		$get_query2 = "select * from advertise order by id desc";
-		$get_query_res2 =   mysql_query($get_query2)or die(mysql_error());
+		$get_query_res2 =   mysqli_query($db,$get_query2)or die(mysqli_error($db));
 		
-		if(mysql_num_rows($get_query_res2)>0)
+		if(mysqli_num_rows($get_query_res2)>0)
 		{
 			
 			
 			
-			while($get_query_date2 = mysql_fetch_array($get_query_res2))
+			while($get_query_date2 = mysqli_fetch_array($get_query_res2))
 			{
 				$ads_id = $get_query_date2['id'];
 				$title = $get_query_date2['title'];

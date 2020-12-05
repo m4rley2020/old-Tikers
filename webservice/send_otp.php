@@ -11,10 +11,10 @@
 	if($_REQUEST['user_id'] != '' && $_REQUEST['phone_number'] != '' && $_REQUEST['country_code'] != ''  && $_REQUEST['country_code'] > 0)
 	{
 		
-			$check_customer_mobile = mysql_query("select id,phone_number from user where phone_number='".$_REQUEST['phone_number']."' && id='".$_REQUEST['user_id']."' and country_code = '".$_REQUEST['country_code']."' ") or die(mysql_error());
+			$check_customer_mobile = mysqli_query($db,"select id,phone_number from user where phone_number='".$_REQUEST['phone_number']."' && id='".$_REQUEST['user_id']."' and country_code = '".$_REQUEST['country_code']."' ") or die(mysqli_error($db));
 		
 		
-		if(mysql_num_rows($check_customer_mobile) > 0)
+		if(mysqli_num_rows($check_customer_mobile) > 0)
 		{	
 			$characters = '0123456789';
 			$random_string_length = 5;
@@ -30,7 +30,7 @@
 					otp_code='".$otp."'
 					where 
 					id = '".$_REQUEST['user_id']."'	";
-					mysql_query($insert_query)or die(mysql_error());
+					mysqli_query($db,$insert_query)or die(mysqli_error($db));
 					
 					/*$phone = "+".$_REQUEST['phone_number'];
 					$client = new Client($account_sid, $auth_token); 

@@ -4,13 +4,13 @@
 			 
 	if($_REQUEST['user_id'] != '' && $_REQUEST['is_private'] != '')
 	{
-		$check_customer_username = mysql_query("
-		SELECT * FROM `user` WHERE id = '".$_REQUEST['user_id']."' ") or die(mysql_error());	
+		$check_customer_username = mysqli_query($db,"
+		SELECT * FROM `user` WHERE id = '".$_REQUEST['user_id']."' ") or die(mysqli_error($db));	
 		 
-		if(mysql_num_rows($check_customer_username) > 0)
+		if(mysqli_num_rows($check_customer_username) > 0)
 		{
 			$update_query = "update user set is_private = '".$_REQUEST['is_private']."' where id = '".$_REQUEST['user_id']."' ";
-			mysql_query($update_query)or die(mysql_error());
+			mysqli_query($db,$update_query)or die(mysqli_error($db));
 			$user_id = $_REQUEST['user_id'];
 			
 			$error = "Profile Updated Successfully";

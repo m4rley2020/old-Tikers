@@ -1,4 +1,4 @@
-<?									
+<?php									
 include("connect.php");
 
 if(isset($_REQUEST['btnDelete']))
@@ -31,7 +31,7 @@ $result=$prs_pageing->number_pageing($sel,20000,10,'N','Y','',$db);
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
-    <title><? echo $pagetitle; ?> | <?=$SITE_NAME?></title>
+    <title><?php echo $pagetitle; ?> | <?=$SITE_NAME?></title>
     
     <!--[if lt IE 9]> <script src="assets/plugins/common/html5shiv.js" type="text/javascript"></script> <![endif]-->
     <script src="js/modernizr.js" type="text/javascript"></script>
@@ -62,11 +62,11 @@ $result=$prs_pageing->number_pageing($sel,20000,10,'N','Y','',$db);
 
 <body>
 
-   <? include("top.php"); ?>
+   <?php include("top.php"); ?>
 
     <div id="container">    <!-- Start : container -->
 
-    <? include("left.php"); ?>
+    <?php include("left.php"); ?>
 
         <div id="content">  <!-- Start : Inner Page Content -->
 
@@ -79,18 +79,18 @@ $result=$prs_pageing->number_pageing($sel,20000,10,'N','Y','',$db);
                             <a href="deskboard.php">Dashboard</a>
                         </li>
                         
-                        <li class="current"><? echo $pagetitle; ?></li>
+                        <li class="current"><?php echo $pagetitle; ?></li>
                     </ul>
 
                 </div>  <!-- End : Breadcrumbs -->
 
                 <div class="page-header">   <!-- Start : Page Header -->
                     <div class="page-title">
-                        <h3>Manage <? echo $pagetitle; ?></h3>
+                        <h3>Manage <?php echo $pagetitle; ?></h3>
                         
                     </div>
                 </div>  <!-- End : Page Header -->
-                <? if($_GET["msg"]) { ?>
+                <?php if($_GET["msg"]) { ?>
                 <div class="alert alert-danger show">
                         <button class="close" data-dismiss="alert"></button>
                         
@@ -111,13 +111,13 @@ $result=$prs_pageing->number_pageing($sel,20000,10,'N','Y','',$db);
                            </span>
                          
                  </div>
-                 <? } 					  
+                 <?php } 					  
                         ?> 
                 <div class="row">
                     <div class="col-md-12">
                         <div class="portlet box blue">
                             <div class="portlet-title">
-                                <div class="caption"><i class="fa fa-table"></i><? echo $pagetitle; ?></div>
+                                <div class="caption"><i class="fa fa-table"></i><?php echo $pagetitle; ?></div>
                                                                 
                                 
                             </div>
@@ -137,7 +137,7 @@ $result=$prs_pageing->number_pageing($sel,20000,10,'N','Y','',$db);
                                                 </thead>
                                         <tbody>
                                             
-						  <? $count=0; 
+						  <?php $count=0; 
 							 while($get=mysqli_fetch_object($result[0])) 
 							 {  
 								$count++;
@@ -150,21 +150,21 @@ $result=$prs_pageing->number_pageing($sel,20000,10,'N','Y','',$db);
 						 
 					<td class="photo">
                         <strong>
-							<? 
+							<?php 
 							
 							echo GetValue("user","first_name","id",$get->user_id,$db)." ".GetValue("user","last_name","id",$get->user_id,$db);
 							
 							?>
                         </strong>
 							</td>
-							  <td > <strong> <? echo stripslashes($get->description); ?></strong></td>
-							  <td > <strong> <? echo stripslashes($get->add_date); ?></strong></td>
+							  <td > <strong> <?php echo stripslashes($get->description); ?></strong></td>
+							  <td > <strong> <?php echo stripslashes($get->add_date); ?></strong></td>
 							  <td nowrap>				 
 		<a class="btn mini blue" href="#" onClick="window.location.href='add_post.php?id=<?php echo ($get->id); ?>&mode=edit'"><i class="fa fa-pencil"></i></a> 
                 <a class="btn mini red" href="#" onClick="deleteconfirm('Are you sure you want to delete this <?=$pagetitle;?>?. \n','add_post.php?id=<?php echo($get->id); ?>&mode=delete');"><i class="fa fa-trash-o"></i></a>                  
 </td>
 			</tr>	  
-                <? } ?>	
+                <?php } ?>	
                              </tbody>
                        </table>
 			  
@@ -175,7 +175,7 @@ $result=$prs_pageing->number_pageing($sel,20000,10,'N','Y','',$db);
 				 <input style="margin-right:7px;" type="button" name="button2" id="button2" value="ADD NEW"  onclick="location.href='add_post.php?mode=add'" class="btn green pull-left" />
                                     &nbsp; 
                                  
-                                  <? // $result[1] ?> 								
+                                  <?php // $result[1] ?> 								
                                    
                                     </div></div>
                                     </form>   

@@ -5,16 +5,16 @@
 	if($_REQUEST['user_id'] != '' && $_REQUEST['post_id'] != '')
 	{
 		$check_post_like = "select id from post_like where post_id= '".$_REQUEST['post_id']."' and user_id='".$_REQUEST['user_id']."' ";
-		$check_post_like_res = mysql_query($check_post_like) or die(mysql_error());
-		if(mysql_num_rows($check_post_like_res)>0)
+		$check_post_like_res = mysqli_query($db,$check_post_like) or die(mysqli_error($db));
+		if(mysqli_num_rows($check_post_like_res)>0)
 		{
 			$insert_query = "delete from  post_like where  					
 				user_id='".$_REQUEST['user_id']."' and post_id='".$_REQUEST['post_id']."' ";
-				mysql_query($insert_query)or die(mysql_error());
+				mysqli_query($db,$insert_query)or die(mysqli_error($db));
 				
 				
 				$update_comment_count = "update post set like_count = like_count -1 where id = '".$_REQUEST['post_id']."' ";
-				mysql_query($update_comment_count)or die(mysql_error());				
+				mysqli_query($db,$update_comment_count)or die(mysqli_error($db));				
 				
 				$error = "Unlike Success";
 				$result=array('message'=> $error, 'result'=>'1');
@@ -25,10 +25,10 @@
 				user_id='".$_REQUEST['user_id']."',
 				post_id='".$_REQUEST['post_id']."',
 				add_date=NOW()";
-				mysql_query($insert_query)or die(mysql_error());
+				mysqli_query($db,$insert_query)or die(mysqli_error($db));
 				
 				$update_comment_count = "update post set like_count = like_count +1 where id = '".$_REQUEST['post_id']."' ";
-				mysql_query($update_comment_count)or die(mysql_error());				
+				mysqli_query($db,$update_comment_count)or die(mysqli_error($db));				
 				
 				$error = "Like Success";
 				$result=array('message'=> $error, 'result'=>'1');

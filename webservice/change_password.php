@@ -6,16 +6,16 @@
 			 
 	if($_REQUEST['user_id'] != '' && $_REQUEST['old_password'] != '' && $_REQUEST['new_password'] != '')
 	{	
-		$check_customer_mobile = mysql_query("select id,password from user where id='".$_REQUEST['user_id']."' ") or die(mysql_error());		
+		$check_customer_mobile = mysqli_query($db,"select id,password from user where id='".$_REQUEST['user_id']."' ") or die(mysqli_error($db));		
 		
-		if(mysql_num_rows($check_customer_mobile) > 0)
+		if(mysqli_num_rows($check_customer_mobile) > 0)
 		{
-			$row = mysql_fetch_array($check_customer_mobile);
+			$row = mysqli_fetch_array($check_customer_mobile);
 			
 				if($row['password'] == $_REQUEST['old_password'])
 				{
 					$update_password = "update user set password= '".$_REQUEST['new_password']."' where id='".$_REQUEST['user_id']."' ";
-					mysql_query($update_password) or die(mysql_error());
+					mysqli_query($db,$update_password) or die(mysqli_error($db));
 					
 					$message="Your Password has been changed successfully";
 					$result=array('message'=> $message, 'result'=>'1');			

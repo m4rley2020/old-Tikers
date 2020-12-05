@@ -4,11 +4,11 @@
 			 
 	if($_REQUEST['user_id'] != '' && $_REQUEST['username'] != '')
 	{
-		$check_customer_username = mysql_query("
+		$check_customer_username = mysqli_query($db,"
 		SELECT * FROM `user` WHERE username = '".$_REQUEST['username']."' and id != '".$_REQUEST['user_id'] ."'
-		 ") or die(mysql_error());	
+		 ") or die(mysqli_error($db));	
 		 
-		if(mysql_num_rows($check_customer_username) > 0)
+		if(mysqli_num_rows($check_customer_username) > 0)
 		{
 			$message = "User with the specified Username already exists.";
 			$result=array('message'=> $message, 'result'=>'0');	
@@ -76,14 +76,14 @@
 					
 					
 					
-					mysql_query($update_query)or die(mysql_error());
+					mysqli_query($db,$update_query)or die(mysqli_error($db));
 					$user_id = $_REQUEST['user_id'];
 			
-					$get_user_detail_query = mysql_query("select * from user where id = '".$_REQUEST['user_id']."' ") or die(mysql_error());		
+					$get_user_detail_query = mysqli_query($db,"select * from user where id = '".$_REQUEST['user_id']."' ") or die(mysqli_error($db));		
 
-					if(mysql_num_rows($get_user_detail_query) > 0)
+					if(mysqli_num_rows($get_user_detail_query) > 0)
 					{
-						$row = mysql_fetch_array($get_user_detail_query);
+						$row = mysqli_fetch_array($get_user_detail_query);
 						
 							if($row['profile_image'] != "")
 							{

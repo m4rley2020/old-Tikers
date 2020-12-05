@@ -6,11 +6,11 @@
 	{
 		
 		$get_query = "select * from user where username like '%".$_REQUEST['searchname']."%' and id != '".$_REQUEST['user_id']."'";
-		$get_query_res =   mysql_query($get_query)or die(mysql_error());
+		$get_query_res =   mysqli_query($db,$get_query)or die(mysqli_error($db));
 		
-		if(mysql_num_rows($get_query_res)>0)
+		if(mysqli_num_rows($get_query_res)>0)
 		{
-			while($get_query_date = mysql_fetch_array($get_query_res))
+			while($get_query_date = mysqli_fetch_array($get_query_res))
 			{
 				$user_id = $get_query_date['id'];
 				$username = $get_query_date['username'];
@@ -32,11 +32,11 @@
 				// 1 = requested
 				// 2 = following
 				$is_follow = "0";
-				$check_follow = mysql_query("select status from friend where from_user = '".$_REQUEST['user_id']."' and to_user = '".$user_id."' ") or die(mysql_error()) ;
+				$check_follow = mysqli_query($db,"select status from friend where from_user = '".$_REQUEST['user_id']."' and to_user = '".$user_id."' ") or die(mysqli_error($db)) ;
 				
-				if(mysql_num_rows($check_follow)>0)
+				if(mysqli_num_rows($check_follow)>0)
 				{
-					$follow_data = mysql_fetch_array($check_follow);
+					$follow_data = mysqli_fetch_array($check_follow);
 					$is_follow = $follow_data['status'];
 				}
 				

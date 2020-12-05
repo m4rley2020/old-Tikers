@@ -8,20 +8,20 @@
 		$postid = $_REQUEST['post_id'];
 		
 		$get_post_query = "select * from post where id='".$postid."' and user_id='".$userid."' ";
-		$get_post_res =   mysql_query($get_post_query)or die(mysql_error());
+		$get_post_res =   mysqli_query($db,$get_post_query)or die(mysqli_error($db));
 		
-		if(mysql_num_rows($get_post_res)>0)
+		if(mysqli_num_rows($get_post_res)>0)
 		{
 			$delete_post_query = "delete from post where id='".$postid."' and user_id='".$userid."' ";
 			
-			if(mysql_query($delete_post_query)){
+			if(mysqli_query($db,$delete_post_query)){
 				
-				$delete_post_comment_query = mysql_query("delete from post_comment where post_id='".$postid."' ");
-				$delete_post_like_query = mysql_query("delete from post_like where post_id='".$postid."' ");
+				$delete_post_comment_query = mysqli_query($db,"delete from post_comment where post_id='".$postid."' ");
+				$delete_post_like_query = mysqli_query($db,"delete from post_like where post_id='".$postid."' ");
 				
-				$get_post_media_query = mysql_query("select * from post_media where post_id='".$postid."' ");
-				if(mysql_num_rows($get_post_media_query) > 0){
-					while($post_media = mysql_fetch_array($get_post_media_query)){
+				$get_post_media_query = mysqli_query($db,"select * from post_media where post_id='".$postid."' ");
+				if(mysqli_num_rows($get_post_media_query) > 0){
+					while($post_media = mysqli_fetch_array($get_post_media_query)){
 						$media_file = $post_media['file_name'];
 						if($media_file != "")
 						{
@@ -31,7 +31,7 @@
 							}
 						}
 					}
-					$delete_post_media_query = mysql_query("delete from post_media where post_id='".$postid."' ");     
+					$delete_post_media_query = mysqli_query($db,"delete from post_media where post_id='".$postid."' ");     
 				}
 				
 				$error = "Post deleted successfully.";

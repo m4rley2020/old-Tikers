@@ -36,8 +36,8 @@
 				bill_image='".$bill_image."',
 				challenge_image='".$challenge_image."',				
 				add_date = NOW()";
-				mysql_query($insert_query)or die(mysql_error());
-				$post_id = mysql_insert_id();
+				mysqli_query($db,$insert_query)or die(mysqli_error($db));
+				$post_id = mysqli_insert_id();
 				
 				$error = "Challenge Completed Successfully";
 				$result=array('message'=> $error, 'result'=>'1');

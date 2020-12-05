@@ -11,12 +11,12 @@
 	if($_REQUEST['user_id'] != '' && $_REQUEST['otp_code'] != '')
 	{
 		
-		$check_customer = mysql_query("select id,otp_code from user where id='".$_REQUEST['user_id']."' ") or die(mysql_error());
+		$check_customer = mysqli_query($db,"select id,otp_code from user where id='".$_REQUEST['user_id']."' ") or die(mysqli_error($db));
 		
 		
-		if(mysql_num_rows($check_customer) > 0)
+		if(mysqli_num_rows($check_customer) > 0)
 		{	
-			$check_customer_date = mysql_fetch_array($check_customer);
+			$check_customer_date = mysqli_fetch_array($check_customer);
 			
 			if($check_customer_date['otp_code'] == $_REQUEST['otp_code'])
 			{
@@ -24,7 +24,7 @@
 					is_verified='1'
 					where 
 					id = '".$_REQUEST['user_id']."'	";
-					mysql_query($insert_query)or die(mysql_error());
+					mysqli_query($db,$insert_query)or die(mysqli_error($db));
 					
 					
 					

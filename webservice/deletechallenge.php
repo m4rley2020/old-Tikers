@@ -7,12 +7,12 @@
 		$store_id 	= intval($_REQUEST['userid']);
 		$challengeid = intval($_REQUEST['challengeid']);
 		
-		$sel_challenge = mysql_query("select * from store_challenges where id='".$challengeid."' and store_id='".$store_id."'");
-		$sel_challenge_rows = mysql_num_rows($sel_challenge);
+		$sel_challenge = mysqli_query($db,"select * from store_challenges where id='".$challengeid."' and store_id='".$store_id."'");
+		$sel_challenge_rows = mysqli_num_rows($sel_challenge);
 		
 		if($sel_challenge_rows>0)
 		{
-			$delete_challenge = mysql_query("update store_challenges set is_deleted =1 where id='".$challengeid."' and store_id='".$store_id."' ");
+			$delete_challenge = mysqli_query($db,"update store_challenges set is_deleted =1 where id='".$challengeid."' and store_id='".$store_id."' ");
 			$result["status"]="1";
 			$error = "Challenge deleted successfully";
 			$result["message"]=$error;

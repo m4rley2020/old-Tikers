@@ -1,4 +1,4 @@
-<? 
+<?php 
   include("connect.php") ;
   $LeftLinkSection = 1;
   $Error=0;
@@ -13,13 +13,14 @@
      
 	$Message = "Password Changed Successfully"; 
  }
+  
 
 $query = "select * from admin where id=".$_SESSION["ADMIN_SESS_USERID"];
 $result = mysqli_query($db,$query);
 $row = mysqli_fetch_array($result);
-$name= $row["password"];
+$name= $row["password"];?>
 
-?>
+
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
@@ -64,11 +65,11 @@ function valid()
 </head>
 <body>
 
-   <? include("top.php"); ?>
+   <?php include("top.php"); ?>
 
     <div id="container">    <!-- Start : container -->
 
-       <? include("left.php"); ?>
+       <?php include("left.php"); ?>
 
         <div id="content">  <!-- Start : Inner Page Content -->
 
@@ -91,12 +92,12 @@ function valid()
                         <h3>My Account</h3>                        
                     </div>
                 </div>  <!-- End : Page Header -->
-                <? if($Message) { ?>
+                <?php if($Message) { ?>
                     <div class="alert alert-danger show">
                         <button class="close" data-dismiss="alert"></button>
-                        <? echo $Message; ?>
+                        <?php echo $Message; ?>
                     </div>
-                <?  } ?>
+                <?php  } ?>
                 <div class="row">
                     <div class="col-md-6 col-sm-6">
                         <div class="portlet box blue">

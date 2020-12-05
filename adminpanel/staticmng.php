@@ -23,11 +23,11 @@ $pgdes=$arr["content"];
 <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
   <TBODY>
   <TR>
-    <TD height=60  colspan="2" bgColor=#333333><? include("top.php") ?></td>
+    <TD height=60  colspan="2" bgColor=#333333><?php include("top.php") ?></td>
   </TR>
   <tr>
    <td width="20%" valign="top" class="th-b" >
-   	<? include("left.php"); ?>	</td>		
+   	<?php include("left.php"); ?>	</td>		
 	<td width="80%" valign="top">
 
 <table width="80%" align="center" cellpadding="0" cellspacing=0 class="t-a2">

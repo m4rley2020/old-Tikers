@@ -33,8 +33,8 @@
 				{
 					$insert_query.=" , challeng_image='$challeng_image'";
 				} 
-				mysql_query($insert_query)or die(mysql_error());
-				$challenge_id = mysql_insert_id();
+				mysqli_query($db,$insert_query)or die(mysqli_error($db));
+				$challenge_id = mysqli_insert_id();
 				
 				$error = "Challenge Created Successfully";
 				$result=array('message'=> $error, 'result'=>'1','store_id'=>$_REQUEST['store_id'],'challenge_id'=>$challenge_id);

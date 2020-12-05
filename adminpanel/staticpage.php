@@ -140,10 +140,10 @@ function valid()
    
 
     <div id="container">    <!-- Start : container -->
-        <? include("top.php"); ?>
+        <?php include("top.php"); ?>
         
         <div id="content">  <!-- Start : Inner Page Content -->
-            <? include("left.php"); ?>
+            <?php include("left.php"); ?>
             
             <div class="container"> <!-- Start : Inner Page container -->
                 
@@ -163,13 +163,13 @@ function valid()
                         <h3>Static Page Management</h3>                        
                     </div>
                 </div>  <!-- End : Page Header -->
-                <? $msg = $_REQUEST['msg'];
+                <?php $msg = $_REQUEST['msg'];
 		   if($msg == 1) { ?>
                     <div class="alert alert-danger show">
                         <button class="close" data-dismiss="alert"></button>
                         Page Updated Successfully
                     </div>
-                <?  } ?>
+                <?php  } ?>
                 <div class="row">
                     <div class="col-md-6 col-sm-6">
                         <div class="portlet box blue">
@@ -225,7 +225,7 @@ function valid()
                                           Manage Primary Image / Flash <span class="required">*</span>
                                         </label>
                                         <div class="col-md-9">
-                                            <? 
+                                            <?php 
                                                     if($image_path!="" && file_exists("../staticpage_images/".$image_path))
                                                     {
                                                       if(substr($image_path,-4)==".swf")

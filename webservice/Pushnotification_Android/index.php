@@ -97,7 +97,7 @@
         $db = new DB_Functions();
         $users = $db->getAllUsers();
         if ($users != false)
-            $no_of_users = mysql_num_rows($users);
+            $no_of_users = mysqli_num_rows($users);
         else
             $no_of_users = 0;
         ?>
@@ -109,7 +109,7 @@
                 if ($no_of_users > 0) {
                     ?>
                     <?php
-                    while ($row = mysql_fetch_array($users)) {
+                    while ($row = mysqli_fetch_array($users)) {
                     		
                     		
                     	

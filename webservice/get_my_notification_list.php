@@ -6,19 +6,19 @@
 	{
 		$userid = $_REQUEST['user_id'];
 		$get_noti_query = "select * from notification where receiver_id = '".$userid."'  ";
-		$get_noti_res =   mysql_query($get_noti_query)or die(mysql_error());
+		$get_noti_res =   mysqli_query($db,$get_noti_query)or die(mysqli_error($db));
 		
-		if(mysql_num_rows($get_noti_res)>0)
+		if(mysqli_num_rows($get_noti_res)>0)
 		{
-			while($get_noti_data = mysql_fetch_array($get_noti_res))
+			while($get_noti_data = mysqli_fetch_array($get_noti_res))
 			{
 				$sender_user_id = $get_noti_data['sender_id'];
 				$noti_message = $get_noti_data['message'];
 				$noti_date = $get_noti_data['created_date'];
 				
-				$get_sender_user = mysql_query("select * from user where id = '".$sender_user_id."' ") or die(mysql_error());
+				$get_sender_user = mysqli_query($db,"select * from user where id = '".$sender_user_id."' ") or die(mysqli_error($db));
 				
-				$sender_user_data = mysql_fetch_array($get_sender_user);
+				$sender_user_data = mysqli_fetch_array($get_sender_user);
 				
 				$sender_username = $sender_user_data['username'];	
 				$sender_profile_image = $sender_user_data['profile_image'];

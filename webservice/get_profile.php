@@ -6,14 +6,14 @@
 	{
 		
 		$get_query2 = "select * from user where id = '".$_REQUEST['user_id']."' ";
-		$get_query_res2 =   mysql_query($get_query2)or die(mysql_error());
+		$get_query_res2 =   mysqli_query($db,$get_query2)or die(mysqli_error($db));
 		
-		if(mysql_num_rows($get_query_res2)>0)
+		if(mysqli_num_rows($get_query_res2)>0)
 		{
 			
 			
 			
-			while($get_query_date2 = mysql_fetch_array($get_query_res2))
+			while($get_query_date2 = mysqli_fetch_array($get_query_res2))
 			{
 				$user_id = $get_query_date2['id'];
 				$email = $get_query_date2['email'];
@@ -46,9 +46,9 @@
 				
 				$challengestot = 0;
 				
-				$follow_total = mysql_num_rows(mysql_query("select id from friend where from_user = '".$user_id."' "));				
-				$following_total = mysql_num_rows(mysql_query("select id from friend where to_user = '".$user_id."' "));	
-				$challengestot = mysql_num_rows(mysql_query("select id from store_challenge_complete_by_user where user_id = '".$user_id."' "));	
+				$follow_total = mysqli_num_rows(mysqli_query($db,"select id from friend where from_user = '".$user_id."' "));				
+				$following_total = mysqli_num_rows(mysqli_query($db,"select id from friend where to_user = '".$user_id."' "));	
+				$challengestot = mysqli_num_rows(mysqli_query($db,"select id from store_challenge_complete_by_user where user_id = '".$user_id."' "));	
 				
 									
 				

@@ -2,22 +2,19 @@
 	header("Content-type: application/json");
 	include("connect.php");
 			 
-	if($_REQUEST['packageid'] != '' && $_REQUEST['user_id'] != '')
+	if($_REQUEST['packageid'] != '')
 	{
 		$packageid = $_REQUEST['packageid'];
-		$userid = $_REQUEST['user_id'];
+		$get_query2 = "select * from store_challenges where package like '%$packageid%' and is_deleted = 0 and is_approved = 1 order by id desc";
+		$get_query_res2 = mysqli_query($db,$get_query2)or die(mysqli_error($db));
 		
-		$get_query2 = "select SC.*, CT.name as chanllenge_type, S.name as store_name, S.rating, SCC.user_id as completed_by_user from store_challenges SC left join challenge_type CT on SC.challenge_type_id = CT.id left join store S on SC.store_id = S.id left join store_challenge_complete_by_user SCC on SC.id = SCC.challenge_id where SC.package like '%$packageid%' and SC.is_deleted = 0 and SC.is_approved = 1 order by SC.id desc";
-		
-		$get_query_res2 = mysql_query($get_query2)or die(mysql_error());
-		
-		if(mysql_num_rows($get_query_res2)>0)
+		if(mysqli_num_rows($get_query_res2)>0)
 		{
-			while($get_query_date2 = mysql_fetch_array($get_query_res2))
+			while($get_query_date2 = mysqli_fetch_array($get_query_res2))
 			{
 				$id = $get_query_date2['id'];
 				$challenge_type_id = $get_query_date2['challenge_type_id'];
-				$challenge_type_name = $get_query_date2['chanllenge_type'];
+				$challenge_type_name = GetValue("challenge_type","name","id",$challenge_type_id);
 				$challenge_name = $get_query_date2['name'];
 				$challeng_image = $get_query_date2['challeng_image'];
 				$description = $get_query_date2['description'];
@@ -29,9 +26,9 @@
 				$challenge_creatd_by = '';
 				$store_name = '';
 				
-				$rating =  number_format($get_query_date2['rating']);
+				$rating = number_format(GetValue("store","rating","id",$store_id),2) ;
 				if($store_id > 0){
-					$store_name = $get_query_date2['store_name'];
+					$store_name = GetValue("store","name","id",$store_id) ;
 					$challenge_creatd_by = "Store";
 				}
 				else{
@@ -47,11 +44,6 @@
 					$challeng_image = "";
 				}						
 				
-				$is_challenge_completed = "no";
-				if($get_query_date2['completed_by_user'] > 0){
-					$is_challenge_completed = "yes";
-				}
-				
 				$data[]=array(
 				"challenge_id"=>$id,
 				"challenge_type_id"=>$challenge_type_id,
@@ -66,8 +58,7 @@
 				"created_by"=>$challenge_creatd_by,
 				"store_id"=>$store_id,
 				"store_name"=>$store_name,
-				"rating"=>$rating,
-				"is_challenge_completed"=>$is_challenge_completed
+				"rating"=>$rating				
 				);
 				
 			}	

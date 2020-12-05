@@ -18,8 +18,8 @@
 				where 
 				id='".$_REQUEST['story_id']."' and 
 				store_id='".$_REQUEST['store_id']."' ";
-				mysql_query($insert_query)or die(mysql_error());
-				$post_id = mysql_insert_id();
+				mysqli_query($db,$insert_query)or die(mysqli_error($db));
+				$post_id = mysqli_insert_id();
 				
 				$error = "Story Status Updated Successfully";
 				$result=array('message'=> $error, 'result'=>'1');

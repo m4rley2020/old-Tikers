@@ -6,8 +6,8 @@
 	include ("../include/functions.php");
 	
 	  
-	$db=mysql_connect($DBSERVER, $USERNAME, $PASSWORD);
-	mysql_select_db($DATABASENAME,$db);
+	$db=mysqli_connect($DBSERVER, $USERNAME, $PASSWORD);
+	mysqli_select_db($db,$DATABASENAME);
     
     
 ?>

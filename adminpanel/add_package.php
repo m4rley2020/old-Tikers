@@ -1,4 +1,4 @@
-<?									
+<?php									
 include("connect.php");
 include("FCKeditor/fckeditor.php") ;
 $LeftLinkSection = 1;
@@ -136,7 +136,7 @@ $query = "delete from package where id=".$_REQUEST['id'];
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
-    <title><? echo $pagetitle; ?> | </title>
+    <title><?php echo $pagetitle; ?> | </title>
     
     <!--[if lt IE 9]> <script src="assets/plugins/common/html5shiv.js" type="text/javascript"></script> <![endif]-->
     <script src="js/modernizr.js" type="text/javascript"></script>
@@ -210,11 +210,11 @@ return chosen
 
     <div id="container">    <!-- Start : container -->
 
-       <? include("top.php"); ?>
+       <?php include("top.php"); ?>
 
         <div id="content">  <!-- Start : Inner Page Content -->
 
-            <? include("left.php"); ?>
+            <?php include("left.php"); ?>
 
             <div class="container"> <!-- Start : Inner Page container -->
 
@@ -232,7 +232,7 @@ return chosen
 
                 <div class="page-header">   <!-- Start : Page Header -->
                     <div class="page-title">
-                        <h3><? echo ($_GET["id"]>0)?"Edit ":"Add "; ?>Package</h3>
+                        <h3><?php echo ($_GET["id"]>0)?"Edit ":"Add "; ?>Package</h3>
                         <span style="color:#CC6600;">
                         <?php 
                                         $msg = $_REQUEST['msg'];
@@ -256,7 +256,7 @@ return chosen
                     <div class="col-md-6 col-sm-6">
                         <div class="portlet box blue">
                             <div class="portlet-title">
-                                <div class="caption"><i class="fa fa-bars"></i><? echo ($_GET["id"]>0)?"Edit ":"Add "; ?>Package</div>
+                                <div class="caption"><i class="fa fa-bars"></i><?php echo ($_GET["id"]>0)?"Edit ":"Add "; ?>Package</div>
                                 
                             </div>
                             <div class="portlet-body">
@@ -278,7 +278,7 @@ return chosen
                              </label>     
                              <div class="col-md-9">
                             <input class="form-control" type="file" name="package_image" id="package_image" />
-                                                            <? 
+                                                            <?php 
                                             if($package_image!="" && file_exists("../package_image/".$package_image))
                                             {
                                                     ?>

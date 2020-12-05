@@ -9,12 +9,12 @@ include "connect.php";
 		$from_user_id 	= intval($_REQUEST['user_id']);
 		$to_user_id 	= intval($_REQUEST['following_user_id']);
 		
-		$sel_user_request = mysql_query("select * from friend where from_user='".$from_user_id."' and to_user='".$to_user_id."'");
-		$sel_user_request_rows = mysql_num_rows($sel_user_request);
+		$sel_user_request = mysqli_query($db,"select * from friend where from_user='".$from_user_id."' and to_user='".$to_user_id."'");
+		$sel_user_request_rows = mysqli_num_rows($sel_user_request);
 		
 		if($sel_user_request_rows>0)
 		{
-			$insert_review = mysql_query("delete from friend where from_user='".$from_user_id."' and to_user='".$to_user_id."'");
+			$insert_review = mysqli_query($db,"delete from friend where from_user='".$from_user_id."' and to_user='".$to_user_id."'");
 			$result["status"]="1";
 			$error = "Unfollow successfully";
 			$result["message"]=$error;

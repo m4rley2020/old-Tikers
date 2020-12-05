@@ -5,10 +5,10 @@
 	if($_REQUEST['store_id'] != '')
 	{ 
 		$get_query1 = "select * from store_challenge_complete_by_user where store_id = '".$_REQUEST['store_id']."' and status = 0 order by add_date desc";
-		$get_query_res1 =   mysql_query($get_query1)or die(mysql_error());
-		if(mysql_num_rows($get_query_res1)>0)
+		$get_query_res1 =   mysqli_query($db,$get_query1)or die(mysqli_error($db));
+		if(mysqli_num_rows($get_query_res1)>0)
 		{
-			while($get_query_date1 = mysql_fetch_array($get_query_res1))
+			while($get_query_date1 = mysqli_fetch_array($get_query_res1))
 			{
 				$challenge_image = $row['challeng_image'];
 				if(file_exists("../complete_challenge_image/".$challenge_image) && $challenge_image!="")
@@ -31,8 +31,8 @@
 				}
 				
 				$get_user = "select username,profile_image,first_name,last_name from user where id = '".$get_query_date1['user_id']."' ";
-				$get_user_res = mysql_query($get_user) or die(mysql_error());
-				$get_user_row = mysql_fetch_array($get_user_res);
+				$get_user_res = mysqli_query($db,$get_user) or die(mysqli_error($db));
+				$get_user_row = mysqli_fetch_array($get_user_res);
 				
 				$profile_image = $get_user_row['profile_image'];
 				if(file_exists("../User_image/".$profile_image) && $profile_image!="")

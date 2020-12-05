@@ -6,9 +6,9 @@
 	{
 		
 		$get_query = "select * from favourite where user_id = '".$_REQUEST['user_id']."' and challange_id = '".$_REQUEST['challange_id']."'";		
-		$get_query_res =   mysql_query($get_query)or die(mysql_error());
+		$get_query_res =   mysqli_query($db,$get_query)or die(mysqli_error($db));
 		
-		if(mysql_num_rows($get_query_res)>0)
+		if(mysqli_num_rows($get_query_res)>0)
 		{
 			$error = "Challange is alredy added.";
 			$result=array('message'=> $error, 'result'=>'0');
@@ -25,8 +25,8 @@
 				challange_id='".$_REQUEST['challange_id']."',
 				add_date=NOW(),				
 				store_id = '".$store_id."'";
-				mysql_query($insert_query)or die(mysql_error());
-				$inserted_id = mysql_insert_id();
+				mysqli_query($db,$insert_query)or die(mysqli_error($db));
+				$inserted_id = mysqli_insert_id();
 				$add_date = GetValue("favourite","add_date","id",$inserted_id);				
 					
 				$error = "Post Added Successfully";

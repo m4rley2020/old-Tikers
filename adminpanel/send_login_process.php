@@ -1,4 +1,4 @@
-<?
+<?php
     session_start();
 	include ("../include/config.inc.php");
 	include_once ("../include/sendmail.php");

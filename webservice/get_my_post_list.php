@@ -8,10 +8,10 @@
 			
 		$user_query = "select U.username, U.profile_image, U.bio, count(F.from_user) as following_counter from user U left join friend F on U.id = F.from_user where U.id = '".$user_id."' and F.status = 2 ";
 
-		$user_query_res =   mysql_query($user_query)or die(mysql_error());
-		if(mysql_num_rows($user_query_res)>0)
+		$user_query_res =   mysqli_query($db,$user_query)or die(mysqli_error($db));
+		if(mysqli_num_rows($user_query_res)>0)
 		{
-			$user_data = mysql_fetch_array($user_query_res);
+			$user_data = mysqli_fetch_array($user_query_res);
 			$username = $user_data['username'];
 			$profile_image = $user_data['profile_image'];
 			$total_following = $user_data['following_counter'];
@@ -27,7 +27,7 @@
 				$profile_imagel = "";
 			}
 			$challengestot = 0;
-			$challengestot = mysql_num_rows(mysql_query("select id from store_challenge_complete_by_user where user_id = '".$user_id."' "));
+			$challengestot = mysqli_num_rows(mysqli_query($db,"select id from store_challenge_complete_by_user where user_id = '".$user_id."' "));
 			$userdata[]=array(
 				"user_id"=>$user_id,
 				"username"=>$username, 
@@ -40,12 +40,12 @@
 		}
 		
 		$get_query = "select * from post where user_id='".$_REQUEST['user_id']."'";
-		$get_query_res =   mysql_query($get_query)or die(mysql_error());
+		$get_query_res =   mysqli_query($db,$get_query)or die(mysqli_error($db));
 		
-		if(mysql_num_rows($get_query_res)>0)
+		if(mysqli_num_rows($get_query_res)>0)
 		{			
 			$postdata=array();
-			while($get_query_date = mysql_fetch_array($get_query_res))
+			while($get_query_date = mysqli_fetch_array($get_query_res))
 			{
 				$post_id = $get_query_date['id'];
 				$description = $get_query_date['description'];				
@@ -57,12 +57,12 @@
 				$add_date = $get_query_date['add_date'];				
 				
 				$get_query1 = "select * from post_media where post_id='".$post_id."'";
-				$get_query_res1 =   mysql_query($get_query1)or die(mysql_error());
+				$get_query_res1 =   mysqli_query($db,$get_query1)or die(mysqli_error($db));
 				
-				if(mysql_num_rows($get_query_res1)>0)
+				if(mysqli_num_rows($get_query_res1)>0)
 				{
 					$post_media_array = array();
-					while($get_query_date1 = mysql_fetch_array($get_query_res1))
+					while($get_query_date1 = mysqli_fetch_array($get_query_res1))
 					{
 						$media_id = $get_query_date1['id'];
 						$file_name = $get_query_date1['file_name'];
@@ -90,12 +90,12 @@
 				}
 				
 				$get_query2 = "select * from post_comment where post_id='".$post_id."' order by id desc limit 2";
-				$get_query_res2 =   mysql_query($get_query2)or die(mysql_error());
+				$get_query_res2 =   mysqli_query($db,$get_query2)or die(mysqli_error($db));
 				
-				if(mysql_num_rows($get_query_res2)>0)
+				if(mysqli_num_rows($get_query_res2)>0)
 				{
 					$post_comment_array = array();
-					while($get_query_date2 = mysql_fetch_array($get_query_res2))
+					while($get_query_date2 = mysqli_fetch_array($get_query_res2))
 					{
 						$comment_id = $get_query_date2['id'];
 						$user_id1 = $get_query_date2['user_id'];
@@ -130,8 +130,8 @@
 				
 				$is_like = 0;
 				$check_like = "select id from post_like where post_id= '".$post_id."' and user_id = '".$_REQUEST['user_id']."' ";
-				$check_like_res = mysql_query($check_like) or die(mysql_error());
-				if(mysql_num_rows($check_like_res)>0)
+				$check_like_res = mysqli_query($db,$check_like) or die(mysqli_error($db));
+				if(mysqli_num_rows($check_like_res)>0)
 				{
 					$is_like = 1;
 				}

@@ -1,4 +1,4 @@
-<?									
+<?php									
 include("connect.php");
 include("FCKeditor/fckeditor.php") ;
 $LeftLinkSection = 1;
@@ -167,7 +167,7 @@ $query = "delete from user where id=".$_REQUEST['id'];
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
-    <title><? echo $pagetitle; ?> | </title>
+    <title><?php echo $pagetitle; ?> | </title>
     
     <!--[if lt IE 9]> <script src="assets/plugins/common/html5shiv.js" type="text/javascript"></script> <![endif]-->
     <script src="js/modernizr.js" type="text/javascript"></script>
@@ -241,11 +241,11 @@ return chosen
 
     <div id="container">    <!-- Start : container -->
 
-       <? include("top.php"); ?>
+       <?php include("top.php"); ?>
 
         <div id="content">  <!-- Start : Inner Page Content -->
 
-            <? include("left.php"); ?>
+            <?php include("left.php"); ?>
 
             <div class="container"> <!-- Start : Inner Page container -->
 
@@ -263,7 +263,7 @@ return chosen
 
                 <div class="page-header">   <!-- Start : Page Header -->
                     <div class="page-title">
-                        <h3><? echo ($_GET["id"]>0)?"Edit ":"Add "; ?>User</h3>
+                        <h3><?php echo ($_GET["id"]>0)?"Edit ":"Add "; ?>User</h3>
                         <span style="color:#CC6600;">
                         <?php 
                                         $msg = $_REQUEST['msg'];
@@ -287,7 +287,7 @@ return chosen
                     <div class="col-md-6 col-sm-6">
                         <div class="portlet box blue">
                             <div class="portlet-title">
-                                <div class="caption"><i class="fa fa-bars"></i><? echo ($_GET["id"]>0)?"Edit ":"Add "; ?>User</div>
+                                <div class="caption"><i class="fa fa-bars"></i><?php echo ($_GET["id"]>0)?"Edit ":"Add "; ?>User</div>
                                 
                             </div>
                             <div class="portlet-body">
@@ -300,11 +300,11 @@ return chosen
                              </label>     
                              <div class="col-md-9">
                              <select class="form-control required" name="user_type" id="user_type">
-                             <option value="-" <? if($user_type == '-'){ ?>selected="selected"<? } ?>>Please Select</option>
-                             <? $tmp_cmb_array1 = explode(",",$user_type); ?>
-                             <option value="User" <? if($user_type!="" && in_array("User",$tmp_cmb_array1)){ echo 'selected="selected"'; } ?>>User</option>
-                             <option value="Store" <? if($user_type!="" && in_array("Store",$tmp_cmb_array1)){ echo 'selected="selected"'; } ?>>Store</option>
-                             <option value="Famous" <? if($user_type!="" && in_array("Famous",$tmp_cmb_array1)){ echo 'selected="selected"'; } ?>>Famous</option> </select>
+                             <option value="-" <?php if($user_type == '-'){ ?>selected="selected"<?php } ?>>Please Select</option>
+                             <?php $tmp_cmb_array1 = explode(",",$user_type); ?>
+                             <option value="User" <?php if($user_type!="" && in_array("User",$tmp_cmb_array1)){ echo 'selected="selected"'; } ?>>User</option>
+                             <option value="Store" <?php if($user_type!="" && in_array("Store",$tmp_cmb_array1)){ echo 'selected="selected"'; } ?>>Store</option>
+                             <option value="Famous" <?php if($user_type!="" && in_array("Famous",$tmp_cmb_array1)){ echo 'selected="selected"'; } ?>>Famous</option> </select>
                             </div>
                         </div>
 			 
@@ -377,7 +377,7 @@ return chosen
                              </label>     
                              <div class="col-md-9">
                             <input class="form-control <?php if($_REQUEST['mode'] == 'add'){?> required <?php } ?>" type="file" name="profile_image" id="profile_image" />
-                                                            <? 
+                                                            <?php 
                                             if($profile_image!="" && file_exists("../User_image/".$profile_image))
                                             {
                                                     ?>
@@ -402,8 +402,8 @@ return chosen
                             <label class="col-md-3 control-label">
                               Is Verified
                              </label>     
-                             <div class="col-md-9"><? $tmp_cmb_array10 = explode(",",$is_verified); ?>
-                             <input class="" <? if($is_verified!="" && in_array("1",$tmp_cmb_array10)){ echo 'checked="checked"'; } ?> name="is_verified[]" type="checkbox" id="is_verified[]" value="1">
+                             <div class="col-md-9"><?php $tmp_cmb_array10 = explode(",",$is_verified); ?>
+                             <input class="" <?php if($is_verified!="" && in_array("1",$tmp_cmb_array10)){ echo 'checked="checked"'; } ?> name="is_verified[]" type="checkbox" id="is_verified[]" value="1">
                                 </div>
                             </div>
 			 

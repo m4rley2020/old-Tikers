@@ -12,8 +12,8 @@
 				address	= '".$_REQUEST['address']."',
 				latitude = '".$_REQUEST['latitude']."',
 				longitude = '".$_REQUEST['longitude']."'";
-				mysql_query($insert_query)or die(mysql_error());
-				$post_id = mysql_insert_id();
+				mysqli_query($db,$insert_query)or die(mysqli_error($db));
+				$post_id = mysqli_insert_id();
 				
 				
 				$image_count = $_REQUEST['image_count'];		
@@ -27,7 +27,7 @@
 							move_uploaded_file($_FILES["image_".$i]["tmp_name"],"../post_media/".$image_file_name);
 		                 
 							$query1 = "insert into post_media set post_id='".$post_id."', file_type = 'image', file_name='".$image_file_name."'";
-							mysql_query($query1) or die(mysql_error());
+							mysqli_query($db,$query1) or die(mysqli_error($db));
 						}
 					}
 				}
@@ -43,7 +43,7 @@
 							move_uploaded_file($_FILES["video_".$i]["tmp_name"],"../post_media/".$video_file_name);
 		                 
 							$query1 = "insert into post_media set post_id='".$post_id."', file_type = 'video', file_name='".$video_file_name."'";
-							mysql_query($query1) or die(mysql_error());
+							mysqli_query($db,$query1) or die(mysqli_error($db));
 						}
 					}
 				}

@@ -1,4 +1,4 @@
-<? 
+<?php 
 	include("connect.php");
 	$emp_id=$_REQUEST["emp_id"];
 	$result=mysqli_query($db,"select * from employee where id=".$emp_id);
@@ -25,7 +25,7 @@
 	
 ?>
     <table cellpadding="2" cellspacing="2">
-		<? /*<tr>
+		<?php /*<tr>
 			<td><strong>Join Date :</strong></td> 
 			<td><?=$join_date?></td>
 		</tr>

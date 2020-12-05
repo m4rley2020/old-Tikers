@@ -1,4 +1,4 @@
-<?									
+<?php									
 include("connect.php");
 include("FCKeditor/fckeditor.php") ;
 $LeftLinkSection = 1;
@@ -86,7 +86,7 @@ $query = "delete from post where id=".$_REQUEST['id'];
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
-    <title><? echo $pagetitle; ?> | </title>
+    <title><?php echo $pagetitle; ?> | </title>
     
     <!--[if lt IE 9]> <script src="assets/plugins/common/html5shiv.js" type="text/javascript"></script> <![endif]-->
     <script src="js/modernizr.js" type="text/javascript"></script>
@@ -160,11 +160,11 @@ return chosen
 
     <div id="container">    <!-- Start : container -->
 
-       <? include("top.php"); ?>
+       <?php include("top.php"); ?>
 
         <div id="content">  <!-- Start : Inner Page Content -->
 
-            <? include("left.php"); ?>
+            <?php include("left.php"); ?>
 
             <div class="container"> <!-- Start : Inner Page container -->
 
@@ -182,7 +182,7 @@ return chosen
 
                 <div class="page-header">   <!-- Start : Page Header -->
                     <div class="page-title">
-                        <h3><? echo ($_GET["id"]>0)?"Edit ":"Add "; ?>Post</h3>
+                        <h3><?php echo ($_GET["id"]>0)?"Edit ":"Add "; ?>Post</h3>
                         <span style="color:#CC6600;">
                         <?php 
                                         $msg = $_REQUEST['msg'];
@@ -206,7 +206,7 @@ return chosen
                     <div class="col-md-6 col-sm-6">
                         <div class="portlet box blue">
                             <div class="portlet-title">
-                                <div class="caption"><i class="fa fa-bars"></i><? echo ($_GET["id"]>0)?"Edit ":"Add "; ?>Post</div>
+                                <div class="caption"><i class="fa fa-bars"></i><?php echo ($_GET["id"]>0)?"Edit ":"Add "; ?>Post</div>
                                 
                             </div>
                             <div class="portlet-body">
@@ -219,14 +219,14 @@ return chosen
                              </label>     
                              <div class="col-md-9">
 		                        <select class="form-control required" name="user_id" id="user_id" >
-		                        <option value="-" <? if($user_id == '-'){ ?>selected="selected"<? } ?>>Please Select</option>
-		                        	<? $tmp_cmb_array1 = explode(",",$user_id); ?>
+		                        <option value="-" <?php if($user_id == '-'){ ?>selected="selected"<?php } ?>>Please Select</option>
+		                        	<?php $tmp_cmb_array1 = explode(",",$user_id); ?>
 		                        	<?										
 									$add_result1 = mysqli_query($db,"select * from user") or die(mysqli_error($db));			
 									while($add_row1 = mysqli_fetch_array($add_result1))
 									{	
 									?>
-									<option value="<?=$add_row1['id']?>" <? if($user_id!="" && in_array($add_row1['id'],$tmp_cmb_array1)){ echo 'selected="selected"'; } ?>><?=$add_row1['first_name']."".$add_row1['last_name'];?></option>
+									<option value="<?=$add_row1['id']?>" <?php if($user_id!="" && in_array($add_row1['id'],$tmp_cmb_array1)){ echo 'selected="selected"'; } ?>><?=$add_row1['first_name']."".$add_row1['last_name'];?></option>
 									<?
 									}										
 									?> 

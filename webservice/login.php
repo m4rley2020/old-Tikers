@@ -6,15 +6,15 @@
 			 
 	if($_REQUEST['user_login'] != '' && $_REQUEST['password'] != '')
 	{	
-		$check_customer_mobile = mysql_query("select * from user where 
+		$check_customer_mobile = mysqli_query($db,"select * from user where 
 		(email='".$_REQUEST['user_login']."' or
 		phone_number='".$_REQUEST['user_login']."' or
 		username='".$_REQUEST['user_login']."')
-		and password='".$_REQUEST['password']."' ") or die(mysql_error());		
+		and password='".$_REQUEST['password']."' ") or die(mysqli_error($db));		
 		
-		if(mysql_num_rows($check_customer_mobile) > 0)
+		if(mysqli_num_rows($check_customer_mobile) > 0)
 		{
-			$row = mysql_fetch_array($check_customer_mobile);
+			$row = mysqli_fetch_array($check_customer_mobile);
 			
 				if($row['profile_image'] != "")
 				{

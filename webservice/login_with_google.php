@@ -67,7 +67,7 @@ $username = $_REQUEST['username'];
 			
 			
 			
-			$update_result	= mysql_query($update_query) or die(mysql_error());
+			$update_result	= mysqli_query($db,$update_query) or die(mysqli_error($db));
 			
 			// $client = new Client($account_sid, $auth_token); 
 			// $text = 'Your Mobile Number Verification Code is: '.$otp.'.';
@@ -77,9 +77,9 @@ $username = $_REQUEST['username'];
 			// ));
 			
 			$select_user="select * from user where id=$iid";
-			$result_user=mysql_query($select_user) or die(mysql_error());
-			$total_user=mysql_num_rows($result_user);
-			$row_user=mysql_fetch_assoc($result_user);
+			$result_user=mysqli_query($db,$select_user) or die(mysqli_error($db));
+			$total_user=mysqli_num_rows($result_user);
+			$row_user=mysqli_fetch_assoc($result_user);
 			if($total_user>0)
 			{
 				
@@ -139,8 +139,8 @@ $username = $_REQUEST['username'];
 								username = '".$username."',
 								add_date=now()";
 							
-								$insert_result = mysql_query($insert_query) or die(mysql_error());
-								$last_inserted_id =	mysql_insert_id();
+								$insert_result = mysqli_query($db,$insert_query) or die(mysqli_error($db));
+								$last_inserted_id =	mysqli_insert_id();
 								if($last_inserted_id > 0)
 								{	
 									// $client = new Client($account_sid, $auth_token); 
@@ -151,9 +151,9 @@ $username = $_REQUEST['username'];
 									// ));
 									
 									$select_user="select * from user where id=$last_inserted_id";
-									$result_user=mysql_query($select_user) or die(mysql_error());
-									$total_user=mysql_num_rows($result_user);
-									$row_user=mysql_fetch_assoc($result_user);
+									$result_user=mysqli_query($db,$select_user) or die(mysqli_error($db));
+									$total_user=mysqli_num_rows($result_user);
+									$row_user=mysqli_fetch_assoc($result_user);
 									
 									$row['user_id']=$row_user['id'];
 									$row['first_name']=$fname;

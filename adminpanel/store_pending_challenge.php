@@ -1,4 +1,4 @@
-<?									
+<?php								
 include("connect.php");
 
 if(isset($_REQUEST['chid']) && isset($_REQUEST['mode']))
@@ -42,7 +42,7 @@ $result=$prs_pageing->number_pageing($sel,20000,10,'N','Y');
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
-    <title><? echo $pagetitle; ?> | <?=$SITE_NAME?></title>
+    <title><?php echo $pagetitle; ?> | <?=$SITE_NAME?></title>
     
     <!--[if lt IE 9]> <script src="assets/plugins/common/html5shiv.js" type="text/javascript"></script> <![endif]-->
     <script src="js/modernizr.js" type="text/javascript"></script>
@@ -73,11 +73,11 @@ $result=$prs_pageing->number_pageing($sel,20000,10,'N','Y');
 
 <body>
 
-   <? include("top.php"); ?>
+   <?php include("top.php"); ?>
 
     <div id="container">    <!-- Start : container -->
 
-    <? include("left.php"); ?>
+    <?php include("left.php"); ?>
 
         <div id="content">  <!-- Start : Inner Page Content -->
 
@@ -90,18 +90,18 @@ $result=$prs_pageing->number_pageing($sel,20000,10,'N','Y');
                             <a href="deskboard.php">Dashboard</a>
                         </li>
                         
-                        <li class="current"><? echo $pagetitle; ?></li>
+                        <li class="current"><?php echo $pagetitle; ?></li>
                     </ul>
 
                 </div>  <!-- End : Breadcrumbs -->
 
                 <div class="page-header">   <!-- Start : Page Header -->
                     <div class="page-title">
-                        <h3>Manage <? echo $pagetitle; ?></h3>
+                        <h3>Manage <?php echo $pagetitle; ?></h3>
                         
                     </div>
                 </div>  <!-- End : Page Header -->
-                <? if($_GET["msg"]) { ?>
+                <?php if($_GET["msg"]) { ?>
                 <div class="alert alert-danger show">
                         <button class="close" data-dismiss="alert"></button>
                         
@@ -122,13 +122,13 @@ $result=$prs_pageing->number_pageing($sel,20000,10,'N','Y');
                            </span>
                          
                  </div>
-                 <? } 					  
+                 <?php } 					  
                         ?> 
                 <div class="row">
                     <div class="col-md-12">
                         <div class="portlet box blue">
                             <div class="portlet-title">
-                                <div class="caption"><i class="fa fa-table"></i><? echo $pagetitle; ?></div>
+                                <div class="caption"><i class="fa fa-table"></i><?php echo $pagetitle; ?></div>
                                                                 
                                 
                             </div>
@@ -153,7 +153,7 @@ $result=$prs_pageing->number_pageing($sel,20000,10,'N','Y');
                                         </thead>
                                         <tbody>
                                             
-						  <? $count=0; 
+						  <?php $count=0; 
 							 while($get=mysqli_fetch_object($result[0])) 
 							 {  
 								$count++;
@@ -165,19 +165,19 @@ $result=$prs_pageing->number_pageing($sel,20000,10,'N','Y');
 							 <td><?=$count;?>.</td>
 						 		<td class="photo">
 								<?php if($get->challeng_image!="" && file_exists('../challenge_image/'.$get->challeng_image)) { ?>
-									<img  src="<? echo '../challenge_image/'.$get->challeng_image; ?>" width="125" border="0" hspace="8" />
+									<img  src="<?php echo '../challenge_image/'.$get->challeng_image; ?>" width="125" border="0" hspace="8" />
 									<?php } ?>&nbsp;	
 								 </td>
-							  <td > <strong> <? echo stripslashes(GetValue('challenge_type','name','id',$get->challenge_type_id)); ?></strong></td>
-								<td > <strong> <? echo stripslashes($get->name); ?></strong></td>
+							  <td > <strong> <?php echo stripslashes(GetValue('challenge_type','name','id',$get->challenge_type_id)); ?></strong></td>
+								<td > <strong> <?php echo stripslashes($get->name); ?></strong></td>
 							
-							<td class="photo"><strong> <? echo stripslashes($get->created_date); ?></strong></td>
+							<td class="photo"><strong> <?php echo stripslashes($get->created_date); ?></strong></td>
 								 <td nowrap>				 
 		<a class="btn mini green" href="javascript:void(0);" onClick="window.location.href='store_pending_challenge.php?chid=<?php echo ($get->id); ?>&mode=1'"><i class="fa fa-check"></i>Approve</a> 
                 <a class="btn mini red" href="javascript:void(0);" onClick="window.location.href='store_pending_challenge.php?chid=<?php echo ($get->id); ?>&mode=0'"><i class="fa fa-times"></i>Reject</a>                  
 </td>
 			</tr>	  
-                <? } ?>	
+                <?php } ?>	
                              </tbody>
                        </table>
 			  
@@ -189,7 +189,7 @@ $result=$prs_pageing->number_pageing($sel,20000,10,'N','Y');
 					-->
                                     &nbsp; 
                                  
-                                  <? // $result[1] ?> 								
+                                  <?php // $result[1] ?> 								
                                    
                                     </div></div>
                                     </form>   

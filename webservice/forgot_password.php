@@ -18,15 +18,15 @@
 	
 	if($_REQUEST['email'] != '')
 	{
-		$check_customer_mobile = mysql_query("select * from user where email='".$_REQUEST['email']."' ") or die(mysql_error());		
+		$check_customer_mobile = mysqli_query($db,"select * from user where email='".$_REQUEST['email']."' ") or die(mysqli_error($db));		
 		
-		if(mysql_num_rows($check_customer_mobile) > 0)
+		if(mysqli_num_rows($check_customer_mobile) > 0)
 		{
-			$check_customer_row = mysql_fetch_array($check_customer_mobile);
+			$check_customer_row = mysqli_fetch_array($check_customer_mobile);
 			$new_pass = randomPassword();
 			
 			
-			$update_customer = mysql_query("update user set password = '".$new_pass."' where email='".$_REQUEST['email']."' ") or die(mysql_error());	
+			$update_customer = mysqli_query($db,"update user set password = '".$new_pass."' where email='".$_REQUEST['email']."' ") or die(mysqli_error($db));	
 			
 			$subject = "AME - Forgot Password";
 			

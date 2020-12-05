@@ -68,12 +68,12 @@
 			
 			
 			
-			$update_result	= mysql_query($update_query);
+			$update_result	= mysqli_query($update_query);
 						
 			$select_user = "select * from user where id=$iid";
-			$result_user = mysql_query($select_user) or die(mysql_error());
-			$total_user = mysql_num_rows($result_user);
-			$row = mysql_fetch_assoc($result_user);
+			$result_user = mysqli_query($db,$select_user) or die(mysqli_error($db));
+			$total_user = mysqli_num_rows($result_user);
+			$row = mysqli_fetch_assoc($result_user);
 			
 			$result['result']="1";
 			$Message="Login Successfull";
@@ -105,16 +105,16 @@
 
 			$insert_query	= "insert into user set email='".$email."', fb_id='".$facebook_id."', fb_token='".$facebook_access_token."',username='".$username."',first_name = '".$first_name."', last_name = '".$last_name."', phone_number='".$phone_number."', profile_image='".$profile_image."', is_verified='0', user_type = 'User', register_type = '".$register_type."', add_date=now()";
 								
-			$insert_result = mysql_query($insert_query) or die(mysql_error());
-			$last_inserted_id =	mysql_insert_id();
+			$insert_result = mysqli_query($db,$insert_query) or die(mysqli_error($db));
+			$last_inserted_id =	mysqli_insert_id();
 			
 			if($last_inserted_id > 0)
 			{
 				
 				$select_user = "select * from user where id=$last_inserted_id";
-				$result_user = mysql_query($select_user) or die(mysql_error());
-				$total_user = mysql_num_rows($result_user);
-				$row = mysql_fetch_assoc($result_user);
+				$result_user = mysqli_query($db,$select_user) or die(mysqli_error($db));
+				$total_user = mysqli_num_rows($result_user);
+				$row = mysqli_fetch_assoc($result_user);
 				
 				$result['result']="1";
 				$Message = "User Registered Successfully";

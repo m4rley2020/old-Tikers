@@ -25,7 +25,7 @@ $result=mysqli_query($db,$query);
 
  $name=$_REQUEST["name"];
  $pass=$_REQUEST["pass"];
-
+ 
   if($_REQUEST["name"]==$ADMIN_USERNAME && $_REQUEST["pass"]==$ADMIN_PASSWORD)
   {
   

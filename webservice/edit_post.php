@@ -9,13 +9,13 @@
 		$post_description = $_REQUEST['post_description'];
 		
 		$get_post_query = "select * from post where id='".$postid."' and user_id='".$userid."' ";
-		$get_post_res =   mysql_query($get_post_query)or die(mysql_error());
+		$get_post_res =   mysqli_query($db,$get_post_query)or die(mysqli_error($db));
 		
-		if(mysql_num_rows($get_post_res)>0)
+		if(mysqli_num_rows($get_post_res)>0)
 		{
 			$updt_post_query = "update post set description = '".$post_description."' where id='".$postid."' and user_id='".$userid."' ";
 			
-			if(mysql_query($updt_post_query)){
+			if(mysqli_query($db,$updt_post_query)){
 				$error = "Post updated successfully.";
 				$result=array('message'=> $error, 'result'=>'1');
 			}

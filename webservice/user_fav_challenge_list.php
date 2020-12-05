@@ -5,17 +5,17 @@
 	if($_REQUEST['user_id'] != '')
 	{
 		$get_query1 = "select * from favourite where user_id = '".$_REQUEST['user_id']."' order by id desc";
-		$get_query_res1 =   mysql_query($get_query1)or die(mysql_error());
-		if(mysql_num_rows($get_query_res1)>0)
+		$get_query_res1 =   mysqli_query($db,$get_query1)or die(mysqli_error($db));
+		if(mysqli_num_rows($get_query_res1)>0)
 		{
-			while($get_query_date1 = mysql_fetch_array($get_query_res1))
+			while($get_query_date1 = mysqli_fetch_array($get_query_res1))
 			{
 				$get_query2 = "select * from store_challenges where id = '".$get_query_date1['challange_id']."' order by id desc";
-				$get_query_res2 =   mysql_query($get_query2)or die(mysql_error());
+				$get_query_res2 =   mysqli_query($db,$get_query2)or die(mysqli_error($db));
 				
-				if(mysql_num_rows($get_query_res2)>0)
+				if(mysqli_num_rows($get_query_res2)>0)
 				{
-					while($get_query_date2 = mysql_fetch_array($get_query_res2))
+					while($get_query_date2 = mysqli_fetch_array($get_query_res2))
 					{
 						$id = $get_query_date2['id'];
 						$challenge_type_id = $get_query_date2['challenge_type_id'];

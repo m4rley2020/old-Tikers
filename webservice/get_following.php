@@ -6,18 +6,18 @@
 	{
 		
 		$get_query = "select to_user, status from friend where from_user = '".$_REQUEST['user_id']."' and status = 2 ";
-		$get_query_res =   mysql_query($get_query)or die(mysql_error());
+		$get_query_res =   mysqli_query($db,$get_query)or die(mysqli_error($db));
 		
-		if(mysql_num_rows($get_query_res)>0)
+		if(mysqli_num_rows($get_query_res)>0)
 		{
-			while($get_query_date = mysql_fetch_array($get_query_res))
+			while($get_query_date = mysqli_fetch_array($get_query_res))
 			{
 				$user_id = $get_query_date['to_user'];
 				$is_follow = $get_query_date['status'];
 				
-				$get_user = mysql_query("select * from user where id = '".$user_id."' ") or die(mysql_error());
+				$get_user = mysqli_query($db,"select * from user where id = '".$user_id."' ") or die(mysqli_error($db));
 				
-				$get_user_data = mysql_fetch_array($get_user);
+				$get_user_data = mysqli_fetch_array($get_user);
 				
 				$username = $get_user_data['username'];
 				$first_name = $get_user_data['first_name'];
@@ -38,11 +38,11 @@
 				// 1 = requested
 				// 2 = following
 				/*$is_follow = "0";
-				$check_follow = mysql_query("select status from friend where to_user = '".$_REQUEST['user_id']."' and from_user = '".$user_id."' ") or die(mysql_error()) ;
+				$check_follow = mysqli_query("select status from friend where to_user = '".$_REQUEST['user_id']."' and from_user = '".$user_id."' ") or die(mysqli_error()) ;
 				
-				if(mysql_num_rows($check_follow)>0)
+				if(mysqli_num_rows($check_follow)>0)
 				{
-					$follow_data = mysql_fetch_array($check_follow);
+					$follow_data = mysqli_fetch_array($check_follow);
 					$is_follow = $follow_data['status'];
 				}
 				*/

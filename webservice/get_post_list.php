@@ -9,11 +9,11 @@
 		$post_start_limit = $_REQUEST['start'];
 		$ad_start_limit = $_REQUEST['ad'];
 			
-		$get_follow = mysql_query("select to_user from friend where from_user = '".$_REQUEST['user_id']."' and status = '2' ") or die(mysql_error()) ;
+		$get_follow = mysqli_query($db,"select to_user from friend where from_user = '".$_REQUEST['user_id']."' and status = '2' ") or die(mysqli_error($db)) ;
 				
-		if(mysql_num_rows($get_follow)>0)
+		if(mysqli_num_rows($get_follow)>0)
 		{
-			while($get_follow_data = mysql_fetch_array($get_follow))
+			while($get_follow_data = mysqli_fetch_array($get_follow))
 			{
 				$follow_uid = $follow_uid.",".$get_follow_data['to_user'];
 			}
@@ -25,12 +25,12 @@
 		
 		
 		$get_query = "select * from post where user_id in (".$follow_uid.") order by add_date desc limit $post_start_limit,10";
-		$get_query_res =   mysql_query($get_query) or die(mysql_error());
+		$get_query_res =   mysqli_query($db,$get_query) or die(mysqli_error($db));
 		//$get_query_res = $prs_pageing->number_pageing($get_query,10,200000,'N','Y');
 		
-		if(mysql_num_rows($get_query_res) > 0)
+		if(mysqli_num_rows($get_query_res) > 0)
 		{ 
-			while($get_query_date = mysql_fetch_array($get_query_res))
+			while($get_query_date = mysqli_fetch_array($get_query_res))
 			{
 				$post_id = $get_query_date['id'];
 				$description = $get_query_date['description'];				
@@ -55,20 +55,20 @@
 				}
 				
 				$check_like = "select id from post_like where post_id = $post_id and user_id = '".$_REQUEST['user_id']."' ";
-				$check_like_res = mysql_query($check_like) or die(mysql_error());
+				$check_like_res = mysqli_query($db,$check_like) or die(mysqli_error($db));
 				$is_like = 0;
-				if(mysql_num_rows($check_like_res)>0)
+				if(mysqli_num_rows($check_like_res)>0)
 				{
 					$is_like = 1;
 				}
 				
 				$get_query1 = "select * from post_media where post_id='".$post_id."'";
-				$get_query_res1 = mysql_query($get_query1)or die(mysql_error());
+				$get_query_res1 = mysqli_query($db,$get_query1)or die(mysqli_error($db));
 				
-				if(mysql_num_rows($get_query_res1)>0)
+				if(mysqli_num_rows($get_query_res1)>0)
 				{
 					$post_media_array = array();
-					while($get_query_date1 = mysql_fetch_array($get_query_res1))
+					while($get_query_date1 = mysqli_fetch_array($get_query_res1))
 					{
 						$media_id = $get_query_date1['id'];
 						$file_name = $get_query_date1['file_name'];
@@ -92,12 +92,12 @@
 				}
 				
 				$get_query2 = "select * from post_comment where post_id='".$post_id."' order by id desc limit 2";
-				$get_query_res2 =   mysql_query($get_query2)or die(mysql_error());
+				$get_query_res2 =   mysqli_query($db,$get_query2)or die(mysqli_error($db));
 				
-				if(mysql_num_rows($get_query_res2)>0)
+				if(mysqli_num_rows($get_query_res2)>0)
 				{
 					$post_comment_array = array();
-					while($get_query_date2 = mysql_fetch_array($get_query_res2))
+					while($get_query_date2 = mysqli_fetch_array($get_query_res2))
 					{
 						$comment_id = $get_query_date2['id'];
 						$user_id1 = $get_query_date2['user_id'];
@@ -149,11 +149,11 @@
 			}
 			
 			$get_advertise = "select * from advertise order by id desc limit $ad_start_limit,1";
-			$get_advertise_result =  mysql_query($get_advertise)or die(mysql_error());
+			$get_advertise_result =  mysqli_query($db,$get_advertise)or die(mysqli_error($db));
 
-			if(mysql_num_rows($get_advertise_result)>0)
+			if(mysqli_num_rows($get_advertise_result)>0)
 			{
-				$advertise_data = mysql_fetch_array($get_advertise_result);
+				$advertise_data = mysqli_fetch_array($get_advertise_result);
 
 				$ads_id = $advertise_data['id'];
 				$title = $advertise_data['title'];

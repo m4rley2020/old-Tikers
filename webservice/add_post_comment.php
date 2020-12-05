@@ -10,13 +10,13 @@
 				post_id='".$_REQUEST['post_id']."',
 				add_date=NOW(),				
 				comment	= '".$_REQUEST['comment']."'";
-				mysql_query($insert_query)or die(mysql_error());
-				$post_id = mysql_insert_id();
+				mysqli_query($db,$insert_query)or die(mysqli_error($db));
+				$post_id = mysqli_insert_id();
 				
 				$add_date = GetValue("post_comment","add_date","id",$post_id);
 				
 				$update_comment_count = "update post set comment_count = comment_count +1 where id = '".$_REQUEST['post_id']."' ";
-				mysql_query($update_comment_count)or die(mysql_error());				
+				mysqli_query($db,$update_comment_count)or die(mysqli_error($db));				
 				
 				
 				

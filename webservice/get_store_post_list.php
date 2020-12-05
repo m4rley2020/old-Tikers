@@ -6,11 +6,11 @@
 	{
 		
 		$get_query = "select * from post where store_id='".$_REQUEST['store_id']."'";
-		$get_query_res =   mysql_query($get_query)or die(mysql_error());
+		$get_query_res =   mysqli_query($db,$get_query)or die(mysqli_error($db));
 		
-		if(mysql_num_rows($get_query_res)>0)
+		if(mysqli_num_rows($get_query_res)>0)
 		{
-			while($get_query_date = mysql_fetch_array($get_query_res))
+			while($get_query_date = mysqli_fetch_array($get_query_res))
 			{
 				$store_name = GetValue("store","name","id",$get_query_date['store_id']);
 				$store_image = GetValue("store","name","id",$get_query_date['store_image']);
@@ -34,20 +34,20 @@
 				$add_date = $get_query_date['add_date'];
 				
 				$check_like = "select id from post_like where post_id = $post_id ";
-				$check_like_res = mysql_query($check_like) or die(mysql_error());
+				$check_like_res = mysqli_query($db,$check_like) or die(mysqli_error($db));
 				$is_like = 0;
-				if(mysql_num_rows($check_like_res)>0)
+				if(mysqli_num_rows($check_like_res)>0)
 				{
 					$is_like = 1;
 				}
 				
 				$get_query1 = "select * from post_media where post_id='".$post_id."'";
-				$get_query_res1 =   mysql_query($get_query1)or die(mysql_error());
+				$get_query_res1 =   mysqli_query($db,$get_query1)or die(mysqli_error($db));
 				
-				if(mysql_num_rows($get_query_res1)>0)
+				if(mysqli_num_rows($get_query_res1)>0)
 				{
 					$post_media_array = array();
-					while($get_query_date1 = mysql_fetch_array($get_query_res1))
+					while($get_query_date1 = mysqli_fetch_array($get_query_res1))
 					{
 						$media_id = $get_query_date1['id'];
 						$file_name = $get_query_date1['file_name'];
@@ -75,12 +75,12 @@
 				}
 				
 				$get_query2 = "select * from post_comment where post_id='".$post_id."' order by id desc limit 2";
-				$get_query_res2 =   mysql_query($get_query2)or die(mysql_error());
+				$get_query_res2 =   mysqli_query($db,$get_query2)or die(mysqli_error($db));
 				
-				if(mysql_num_rows($get_query_res2)>0)
+				if(mysqli_num_rows($get_query_res2)>0)
 				{
 					$post_comment_array = array();
-					while($get_query_date2 = mysql_fetch_array($get_query_res2))
+					while($get_query_date2 = mysqli_fetch_array($get_query_res2))
 					{
 						$comment_id = $get_query_date2['id'];
 						$user_id1 = $get_query_date2['user_id'];

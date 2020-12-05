@@ -25,11 +25,11 @@
 		{
 			$storename = $_REQUEST['storename'].',';				
 			$select_query = "select id from store where name like '%".$storename."%'";	
-			$run_query = mysql_query($select_query) or die(mysql_error(	));
+			$run_query = mysqli_query($db,$select_query) or die(mysqli_error($db));
 
-			if(mysql_num_rows($run_query) > 0)
+			if(mysqli_num_rows($run_query) > 0)
 			{
-				while($fetch_data = mysql_fetch_array($run_query))
+				while($fetch_data = mysqli_fetch_array($run_query))
 				{
 					$store_id .= $fetch_data['id'].",";
 				}
@@ -49,22 +49,22 @@
 		
 		
 		
-		$result = mysql_query($get_query);
+		$result = mysqli_query($db,$get_query);
 
-		if(mysql_num_rows($result) > 0)
+		if(mysqli_num_rows($result) > 0)
 		{
-			while($row = mysql_fetch_array($result))
+			while($row = mysqli_fetch_array($result))
 			{
 				$challenge_image = $row['challeng_image'];
 				
 				
 
 				$get_query3 = "select name,rating from store where id = '".$row['store_id']."'";		
-					$get_query_res3 =   mysql_query($get_query3)or die(mysql_error());
+					$get_query_res3 =   mysqli_query($db,$get_query3)or die(mysqli_error($db));
 					
-					if(mysql_num_rows($get_query_res3)>0)
+					if(mysqli_num_rows($get_query_res3)>0)
 					{							
-						while($get_query_data3 = mysql_fetch_array($get_query_res3))
+						while($get_query_data3 = mysqli_fetch_array($get_query_res3))
 						{
 							$store_name = $get_query_data3['name'];
 							$store_rating = number_format($get_query_data3['rating'],2);

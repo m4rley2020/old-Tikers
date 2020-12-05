@@ -4,21 +4,21 @@ function send_notification($sender_id,$reciver_id,$type,$message)
 	$apns_query="select devicetoken,user_id from apns_devices where push_notification_status=1";
 	$apns_query.=" and user_id='".$reciver_id."'";
 	
-	$apns_result=mysql_query($apns_query) or die(mysql_query());
-	$apns_total=mysql_num_rows($apns_result);
+	$apns_result=mysqli_query($db,$apns_query) or die(mysqli_query($db));
+	$apns_total=mysqli_num_rows($apns_result);
 	
 	if($apns_total>0)
 	{
-		while($apns_row=mysql_fetch_assoc($apns_result))
+		while($apns_row=mysqli_fetch_assoc($apns_result))
 		{	
 			$apns_user_id = $apns_row['user_id'];			
 			$update_push_counter = "update push_counter set push_counter= push_counter + 1 where user_id='".$apns_user_id."'";
 			
-			mysql_query($update_push_counter) or die (mysql_error());
+			mysqli_query($db,$update_push_counter) or die (mysqli_error($db));
 			
-			$get_push_counter = mysql_query("select push_counter from push_counter where user_id = '".$apns_user_id."'");
+			$get_push_counter = mysqli_query($db,"select push_counter from push_counter where user_id = '".$apns_user_id."'");
 			
-			$fetch_push_counter = mysql_fetch_array($get_push_counter);
+			$fetch_push_counter = mysqli_fetch_array($get_push_counter);
 		
 			$counter = intval($fetch_push_counter['push_counter']);
 			
@@ -66,13 +66,13 @@ function send_notification($sender_id,$reciver_id,$type,$message)
 	
 	$sel_reg_ids.=" and user_id='".$reciver_id."' ";
 	
-	$res_reg_ids=mysql_query($sel_reg_ids);
-	$res_reg_ids_total=mysql_num_rows($res_reg_ids);
+	$res_reg_ids=mysqli_query($db,$sel_reg_ids);
+	$res_reg_ids_total=mysqli_num_rows($res_reg_ids);
 
 	if($res_reg_ids_total > 0)
 	{
 		$count=0;
-		while($row_reg_ids=mysql_fetch_array($res_reg_ids))
+		while($row_reg_ids=mysqli_fetch_array($res_reg_ids))
 		{
 			$count++;
 			$gcm_regid=$row_reg_ids['fcm_regid'];
@@ -82,7 +82,7 @@ function send_notification($sender_id,$reciver_id,$type,$message)
 		$add_noti = "insert into notification set sender_id = '".$sender_id."', receiver_id = '".$reciver_id."', type = '".$type."', 
 						message = '".$message."', is_read = 0, created_date = now() ";
 		
-		if(mysql_query($add_noti)){
+		if(mysqli_query($db,$add_noti)){
 			$message = array('message' => $message,
 						 'type'=>$type,
 						 'from_id'=>$sender_id,

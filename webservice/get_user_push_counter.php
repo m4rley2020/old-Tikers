@@ -6,11 +6,11 @@
 	
 	if($user_id != "")
 	{
-		$search = mysql_query("select * from push_counter where user_id='".$user_id."'");
-		$count = mysql_num_rows($search);
+		$search = mysqli_query($db,"select * from push_counter where user_id='".$user_id."'");
+		$count = mysqli_num_rows($search);
 		if($count > 0)
 		{
-			$fetch = mysql_fetch_array($search);
+			$fetch = mysqli_fetch_array($search);
 			$error="Data found successfully.";
 			$result["responseData"]=array('result'=>'success',
 			'message'=>$error,

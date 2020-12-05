@@ -6,17 +6,17 @@
 	{
 		
 		$get_query = "select * from post_like where post_id = '".$_REQUEST['post_id']."' ";
-		$get_query_res = mysql_query($get_query)or die(mysql_error());
+		$get_query_res = mysqli_query($db,$get_query)or die(mysqli_error($db));
 		
-		if(mysql_num_rows($get_query_res)>0)
+		if(mysqli_num_rows($get_query_res)>0)
 		{
-			while($get_query_date = mysql_fetch_array($get_query_res))
+			while($get_query_date = mysqli_fetch_array($get_query_res))
 			{
 				$user_id = $get_query_date['user_id'];
 				
 				$get_user = "select id,username,profile_image from user where id = '".$user_id."' ";
-				$get_user_res = mysql_query($get_user) or die(mysql_error());
-				$get_user_row = mysql_fetch_array($get_user_res);
+				$get_user_res = mysqli_query($db,$get_user) or die(mysqli_error($db));
+				$get_user_row = mysqli_fetch_array($get_user_res);
 				
 				$username = $get_user_row['username'];				
 				$profile_image = $get_user_row['profile_image'];

@@ -24,21 +24,21 @@ if (isset($_REQUEST["regId"])) {
 	if($device_id!='')
 	{
 		$select_device="SELECT * from fcm_users WHERE device_id='$device_id'";
-		$res_device=mysql_query($select_device) or die(mysql_error());
-		$total_device=mysql_num_rows($res_device);
+		$res_device=mysqli_query($db,$select_device) or die(mysqli_error($db));
+		$total_device=mysqli_num_rows($res_device);
 		if($total_device > 0)
 		{
 			$del_device="DELETE FROM fcm_users WHERE device_id='$device_id'";
-			$res_device1=mysql_query($del_device) or die(mysql_error());
+			$res_device1=mysqli_query($db,$del_device) or die(mysql_error($db));
 		}	
 	}
  	$select_user="SELECT * from fcm_users WHERE  fcm_regid='$oldregid'";
- 	$res_user=mysql_query($select_user) or die(mysql_error());
-	$total=mysql_num_rows($res_user);
+ 	$res_user=mysqli_query($db,$select_user) or die(mysqli_error($db));
+	$total=mysqli_num_rows($res_user);
 	if($total > 0)
 	{
 		$del_user="DELETE FROM fcm_users WHERE fcm_regid='$oldregid'";
-		$res_user1=mysql_query($del_user) or die(mysql_error());
+		$res_user1=mysqli_query($db,$del_user) or die(mysqli_error($db));
 	}
 	if($device_id=='')
 	{

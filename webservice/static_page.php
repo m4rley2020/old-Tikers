@@ -12,20 +12,20 @@
 			$id=2;
 		}
 
-		$get_static_res = mysql_query("select * from staticpage where id=$id");
-		$get_static_row=mysql_num_rows($get_static_res);
+		$get_static_res = mysqli_query($db,"select * from staticpage where id=$id");
+		$get_static_row=mysqli_num_rows($get_static_res);
 		if($get_static_row>0)
 		{
 			if($id==1){
 				
-				$get_static_data=mysql_fetch_array($get_static_res);
+				$get_static_data=mysqli_fetch_array($get_static_res);
 
 				$content=stripslashes(trim($get_static_data['content']));
 				$static_array=array("page_header"=>stripslashes($get_static_data['page_header']), "content_text"=>$content);
 
 			}else if($id==2){
 				
-				$get_static_data=mysql_fetch_array($get_static_res);
+				$get_static_data=mysqli_fetch_array($get_static_res);
 
 				$content=stripslashes(trim($get_static_data['content']));
 				$static_array=array("page_header"=>stripslashes($get_static_data['page_header']), "content_text"=>$content);

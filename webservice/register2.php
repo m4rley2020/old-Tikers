@@ -8,7 +8,7 @@
 			$update_query = "update user set 					
 					password='".$_REQUEST['password']."'
 					where id = '".$_REQUEST['user_id']."' ";
-					mysql_query($update_query)or die(mysql_error());
+					mysqli_query($db,$update_query)or die(mysqli_error($db));
 					$user_id = $_REQUEST['user_id'];
 					
 					$error = "Account Password Updated Successfully";

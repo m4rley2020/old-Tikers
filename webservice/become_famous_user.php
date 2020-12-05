@@ -4,11 +4,11 @@
 			 
 	if($_REQUEST['user_id'] != '' && $_REQUEST['is_famous'] != '')
 	{
-		$check_customer_username = mysql_query("SELECT * FROM `user` WHERE id = '".$_REQUEST['user_id']."' ") or die(mysql_error());	
-		if(mysql_num_rows($check_customer_username) > 0)
+		$check_customer_username = mysqli_query($db,"SELECT * FROM `user` WHERE id = '".$_REQUEST['user_id']."' ") or die(mysqli_error($db));	
+		if(mysqli_num_rows($check_customer_username) > 0)
 		{
 			$update_query = "update user set user_type = 'Famous' where id = '".$_REQUEST['user_id']."' ";
-			mysql_query($update_query)or die(mysql_error());
+			mysqli_query($db,$update_query)or die(mysqli_error($db));
 			$user_id = $_REQUEST['user_id'];
 			
 			$error = "User Updated Successfully";
