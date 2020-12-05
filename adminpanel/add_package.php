@@ -17,10 +17,10 @@ if(isset($_REQUEST["id"]) && $_REQUEST["id"] > 0)
 {
 	$id = $_REQUEST["id"];											
 	$fetchquery = "select * from package where id=".$id;
-	$result = mysql_query($fetchquery);
-	if(mysql_num_rows($result) > 0)
+	$result = mysqli_query($db,$fetchquery);
+	if(mysqli_num_rows($result) > 0)
 	{
-		while($row = mysql_fetch_array($result))
+		while($row = mysqli_fetch_array($result))
 		{
 				$name= stripslashes($row['name']);
 				$package_image= stripslashes($row['package_image']);
@@ -70,7 +70,7 @@ if(isset($_REQUEST['Submit']))
 					
 					$query = "insert into package 
 					set display_order='$display_order',name='$name',package_image='$package_image',description='$description',bonus_percentage='$bonus'"; 
-					mysql_query($query) or die(mysql_error());
+					mysqli_query($db,$query) or die(mysqli_error($db));
 					location("manage_package.php?msg=1");
 				break;
 				
@@ -89,7 +89,7 @@ if(isset($_REQUEST['Submit']))
 							$query.=" , package_image='$package_image'";
 						} 
 					$query.=" where id=".$_REQUEST['id'];
-					mysql_query($query) or die(mysql_error());
+					mysqli_query($db,$query) or die(mysqli_error($db));
 					location("manage_package.php?msg=2");
 				break;
 				
@@ -104,7 +104,7 @@ if(isset($_REQUEST['mode']))
 		case 'delete' :
 			deletefull1($_REQUEST['id']);
 $query = "delete from package where id=".$_REQUEST['id'];     
-			mysql_query($query) or die(mysql_error());
+			mysqli_query($db,$query) or die(mysqli_error($db));
 			location("manage_package.php?msg=3");
 		break;
 	}	
@@ -113,8 +113,8 @@ $query = "delete from package where id=".$_REQUEST['id'];
 	function deletefull1($iid)
 	{
 		$dquery = "select package_image from package where id=".$iid;
-		$dresult = mysql_query($dquery);
-		while($drow = mysql_fetch_array($dresult))
+		$dresult = mysqli_query($db,$dquery);
+		while($drow = mysqli_fetch_array($dresult))
 		{
 			$dfile = $drow['package_image'];
 			if($dfile != "")
@@ -125,7 +125,7 @@ $query = "delete from package where id=".$_REQUEST['id'];
 				}
 			}
 		}
-		mysql_free_result($dresult);
+		mysqli_free_result($dresult);
 	}
 
 ?>

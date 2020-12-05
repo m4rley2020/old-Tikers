@@ -20,10 +20,10 @@ $pagetitle="Static Page Management";
 		if($id > 0)
 		{
 			$fetchquery = "select * from staticpage where id=".$id;
-			$result = mysql_query($fetchquery);
-			if(mysql_num_rows($result) > 0)
+			$result = mysqli_query($db,$fetchquery);
+			if(mysqli_num_rows($result) > 0)
 			{
-				while($row = mysql_fetch_array($result))
+				while($row = mysqli_fetch_array($result))
 				{
 					$content1 = stripslashes($row['content']); 
 					$title = stripslashes($row['title']); 
@@ -72,15 +72,15 @@ $pagetitle="Static Page Management";
 		}
 		$query.=" where id=".$id;
 		$redirect = "<script language='javascript'>location.href='staticpage.php?id=".$id."&msg=1'</script>";
-		mysql_query($query) or die(mysql_error());
+		mysqli_query($db,$query) or die(mysqli_error($db));
 		print $redirect;
 			
 	}	
 function deletefull($iid)
 {
 	$dquery = "select image_path from staticpage where id=".$iid;
-	$dresult = mysql_query($dquery);
-	while($drow = mysql_fetch_array($dresult))
+	$dresult = mysqli_query($db,$dquery);
+	while($drow = mysqli_fetch_array($dresult))
 	{
 		$dfile = $drow['image_path'];
 		if($dfile != "")
@@ -91,7 +91,7 @@ function deletefull($iid)
 			}
 		}
 	}
-	mysql_free_result($dresult);
+	mysqli_free_result($dresult);
 }
 ?>
 <!DOCTYPE html>

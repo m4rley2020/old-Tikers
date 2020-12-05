@@ -1,8 +1,8 @@
 <? 
 	include("connect.php");
 	$emp_id=$_REQUEST["emp_id"];
-	$result=mysql_query("select * from employee where id=".$emp_id);
-	$row=mysql_fetch_array($result);
+	$result=mysqli_query($db,"select * from employee where id=".$emp_id);
+	$row=mysqli_fetch_array($result);
 	$join_date=stripslashes($row["joining_date1"]);
 	$join_date_arr=split("-",$join_date);
 	$leave_renew_date=date("Y-m-d",mktime(0,0,0,$join_date_arr[1],$join_date_arr[2],date("Y")));
@@ -14,14 +14,14 @@
 	}
 
 	
-	$taken_leave_result=mysql_query("select * from employee_leave where eid=".$emp_id." and leave_type=0 and date1 <='".$leave_renew_date."' and date1 >= '".$last_renew_date."'");
-	$total_full_leave_taken=mysql_num_rows($taken_leave_result);
+	$taken_leave_result=mysqli_query($db,"select * from employee_leave where eid=".$emp_id." and leave_type=0 and date1 <='".$leave_renew_date."' and date1 >= '".$last_renew_date."'");
+	$total_full_leave_taken=mysqli_num_rows($taken_leave_result);
 	
-	$taken_leave_result1=mysql_query("select * from employee_leave where eid=".$emp_id." and leave_type=1 and date1 <='".$leave_renew_date."' and date1 >= '".$last_renew_date."'");
-	$total_half_leave_taken=mysql_num_rows($taken_leave_result1);
+	$taken_leave_result1=mysqli_query($db,"select * from employee_leave where eid=".$emp_id." and leave_type=1 and date1 <='".$leave_renew_date."' and date1 >= '".$last_renew_date."'");
+	$total_half_leave_taken=mysqli_num_rows($taken_leave_result1);
 	
-	$taken_leave_result2=mysql_query("select * from employee_leave where eid=".$emp_id." and leave_type=2 and date1 <='".$leave_renew_date."' and date1 >= '".$last_renew_date."'");
-	$total_partial_leave_taken=mysql_num_rows($taken_leave_result2);
+	$taken_leave_result2=mysqli_query($db,"select * from employee_leave where eid=".$emp_id." and leave_type=2 and date1 <='".$leave_renew_date."' and date1 >= '".$last_renew_date."'");
+	$total_partial_leave_taken=mysqli_num_rows($taken_leave_result2);
 	
 ?>
     <table cellpadding="2" cellspacing="2">

@@ -13,14 +13,14 @@ if(isset($_REQUEST['btnDelete']))
 		{
 			$query = "DELETE FROM  package where id=".$_REQUEST[$pid];
 		}
-		mysql_query($query);
+		mysqli_query($db,$query);
 		
 	}
 	location("manage_package.php?msg=3");
 }
 $LeftLinkSection = 1;
 $pagetitle="Package";
-$sel= "select * from package where name like '".$_GET["order"]."%' order by name" ;$result=$prs_pageing->number_pageing($sel,20000,10,'N','Y');
+$sel= "select * from package where name like '".$_GET["order"]."%' order by name" ;$result=$prs_pageing->number_pageing($sel,20000,10,'N','Y','',$db);
 
 ?>
 <!DOCTYPE html>
@@ -139,7 +139,7 @@ $sel= "select * from package where name like '".$_GET["order"]."%' order by name
                                         <tbody>
                                             
 						  <? $count=0; 
-							 while($get=mysql_fetch_object($result[0])) 
+							 while($get=mysqli_fetch_object($result[0])) 
 							 {  
 								$count++;
 						 ?>	 

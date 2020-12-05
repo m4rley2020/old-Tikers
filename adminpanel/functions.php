@@ -17,20 +17,20 @@
 	
 	function checkNum($id)
 	{
-		return mysql_escape_string(intval($id));
+		return mysqli_escape_string(intval($id));
 	} 
 	
 	function GTG_security($val)
     {
-	 return mysql_real_escape_string($val);
+	 return mysqli_real_escape_string($val);
     }
 
 	## 1 ##
 	function GTG_is_dup_add($table,$field,$value)
 	{
 		$q = "select ".$field." from ".$table." where ".$field." = '".ads($value)."'"; 
-		$r = mysql_query($q);
-		if(mysql_num_rows($r) > 0)
+		$r = mysqli_query($db,$q);
+		if(mysqli_num_rows($r) > 0)
 			return true;
 		else
 			return false;
@@ -40,8 +40,8 @@
 	function GTG_is_dup_add_id($table,$field,$value)
 	{
 		$q = "select ".$field." from ".$table." where ".$field." = ".ads($value).""; 
-		$r = mysql_query($q);
-		if(mysql_num_rows($r) > 0)
+		$r = mysqli_query($db,$q);
+		if(mysqli_num_rows($r) > 0)
 			return true;
 		else
 			return false;
@@ -51,8 +51,8 @@
 	function GTG_is_dup_edit($table,$field,$value,$id)
 	{
 		$q = "select ".$field." from ".$table." where ".$field." = '".$value."' and id != ".$id; 
-		$r = mysql_query($q);
-		if(mysql_num_rows($r) > 0)
+		$r = mysqli_query($db,$q);
+		if(mysqli_num_rows($r) > 0)
 			return true;
 		else
 			return false;
@@ -62,8 +62,8 @@
 	function GTG_is_dup_edit_id($table,$field,$value,$id)
 	{
 		$q = "select ".$field." from ".$table." where ".$field." = ".$value." and id != ".$id; 
-		$r = mysql_query($q);
-		if(mysql_num_rows($r) > 0)
+		$r = mysqli_query($db,$q);
+		if(mysqli_num_rows($r) > 0)
 			return true;
 		else
 			return false;
@@ -73,10 +73,10 @@
 	function GTG_maxid($table)
 	{
 		$q = "select max(id) as mid from ".$table; 
-		$r = mysql_query($q);
-		if(mysql_num_rows($r) > 0)
+		$r = mysqli_query($db,$q);
+		if(mysqli_num_rows($r) > 0)
 		{
-			while($r1 = mysql_num_rows($r))
+			while($r1 = mysqli_num_rows($r))
 			{
 				print $r1['mid']; exit;
 				return $r1['mid'];
@@ -92,8 +92,8 @@
 	function GTG_checkfordelete($targettable,$targetfield,$searchvalue)
 	{
 		$q = "select ".$targetfield." from ".$targettable." where ".$targetfield." = ".$searchvalue; 
-		$r = mysql_query($q);
-		if(mysql_num_rows($r) > 0)
+		$r = mysqli_query($db,$q);
+		if(mysqli_num_rows($r) > 0)
 			return true;
 		else
 			return false;
@@ -103,8 +103,8 @@
 	function GTG_check_category_for_delete($searchvalue)
 	{
 		$q = "SELECT categoryid FROM product WHERE categoryid LIKE '%".$searchvalue."%'";
-		$r = mysql_query($q);
-		if(mysql_num_rows($r) > 0)
+		$r = mysqli_query($db,$q);
+		if(mysqli_num_rows($r) > 0)
 			return true;
 		else
 			return false;
@@ -112,8 +112,8 @@
 	function GTG_check_subcategory_for_delete($searchvalue)
 	{
 		$q = "SELECT subcategory_id FROM product WHERE subcategory_id LIKE '%".$searchvalue."%'";
-		$r = mysql_query($q);
-		if(mysql_num_rows($r) > 0)
+		$r = mysqli_query($db,$q);
+		if(mysqli_num_rows($r) > 0)
 			return true;
 		else
 			return false;
@@ -348,7 +348,7 @@ var $tbl,$file_names,$order,$query;
 
 	function runquery($query)
 	{
-		return	mysql_query($query);
+		return	mysqli_query($db,$query);
 	}
 	
 	
@@ -365,7 +365,7 @@ function number_pageing($query,$record_per_page='',$pages='',$detail='',$bottom=
 			$this->pages=$pages;
 
 		$result=$this->runquery($this->query);
-		$totalrows= mysql_affected_rows();										
+		$totalrows= mysqli_affected_rows();										
 		
 		$start=$this->start();
 
@@ -378,7 +378,7 @@ function number_pageing($query,$record_per_page='',$pages='',$detail='',$bottom=
 		$this->query.=" limit $start,".$this->record_per_page;  
 		
 		$result=$this->runquery($this->query);
-		$total= mysql_affected_rows();
+		$total= mysqli_affected_rows();
 		
 		$total_pages=ceil($totalrows/$this->record_per_page);
 		$current_page=($start+$this->record_per_page)/$this->record_per_page;
@@ -492,7 +492,7 @@ function number_pageing222($query,$record_per_page='',$pages='',$detail='',$bott
 			$this->pages=$pages;
 
 		$result=$this->runquery($this->query);
-		$totalrows= mysql_affected_rows();										
+		$totalrows= mysqli_affected_rows();										
 		
 		$start=$this->start();
 
@@ -629,12 +629,12 @@ function number_pageing222($query,$record_per_page='',$pages='',$detail='',$bott
 		if($value=="")
 			$value=$fill_value;
 		$run=$this->runquery($query);
-		$totlist=mysql_affected_rows();
+		$totlist=mysqli_affected_rows();
 		$Combo="<select name='$comboname'>";
 		$Combo.="<option value=''>-----Select-----</option>";
 		for($i=0;$i<$totlist;$i++)
 		{
-			$get=mysql_fetch_object($run);
+			$get=mysqli_fetch_object($run);
 			$Combo.="<option value='".$get->$value."'";
 			if($selected==$get->$value)
 			{
@@ -731,12 +731,12 @@ function rms($str)
 
 function checkSecurityImage($referenceid, $enteredvalue)
 {
-	$referenceid = mysql_escape_string($referenceid);
-	$enteredvalue = mysql_escape_string($enteredvalue);
-	$tempQuery = mysql_query("SELECT ID FROM security_images WHERE
+	$referenceid = mysqli_escape_string($referenceid);
+	$enteredvalue = mysqli_escape_string($enteredvalue);
+	$tempQuery = mysqli_query("SELECT ID FROM security_images WHERE
 	referenceid='".$referenceid."' AND hiddentext='".$enteredvalue."'");
 	
-	if (mysql_num_rows($tempQuery)!=0)
+	if (mysqli_num_rows($tempQuery)!=0)
 	{
 		return true;
 	}
@@ -755,10 +755,10 @@ function location($path)
 	function GTG_get_pagenm($id)
 	{
 		$q = "select `page_header` from `staticpage` WHERE `id`='".$id."'";
-		$r = mysql_query($q);
-		if(mysql_num_rows($r) > 0)
+		$r = mysqli_query($db,$q);
+		if(mysqli_num_rows($r) > 0)
 		{
-			while($r1 = mysql_fetch_array($r))
+			while($r1 = mysqli_fetch_array($r))
 			{
 				return stripslashes(trim($r1['page_header']));
 			}
@@ -768,10 +768,10 @@ function location($path)
 	function GTG_get_pagecontent($id)
 	{
 		$q = "select `content` from `staticpage` WHERE `id`='".$id."'";
-		$r = mysql_query($q);
-		if(mysql_num_rows($r) > 0)
+		$r = mysqli_query($db,$q);
+		if(mysqli_num_rows($r) > 0)
 		{
-			while($r1 = mysql_fetch_array($r))
+			while($r1 = mysqli_fetch_array($r))
 			{
 				return stripslashes(trim($r1['content']));
 			}
@@ -780,10 +780,10 @@ function location($path)
 	function GTG_get_pagecontent1($id)
 	{
 		$q = "select `lcontent` from `staticpage` WHERE `id`='".$id."'";
-		$r = mysql_query($q);
-		if(mysql_num_rows($r) > 0)
+		$r = mysqli_query($db,$q);
+		if(mysqli_num_rows($r) > 0)
 		{
-			while($r1 = mysql_fetch_array($r))
+			while($r1 = mysqli_fetch_array($r))
 			{
 				return stripslashes(trim($r1['lcontent']));
 			}
@@ -792,10 +792,10 @@ function location($path)
 	function GTG_get_url($id)
 	{
 		$q = "select `url` from `staticpage` WHERE `id`='".$id."'";
-		$r = mysql_query($q);
-		if(mysql_num_rows($r) > 0)
+		$r = mysqli_query($db,$q);
+		if(mysqli_num_rows($r) > 0)
 		{
-			while($r1 = mysql_fetch_array($r))
+			while($r1 = mysqli_fetch_array($r))
 			{
 				return stripslashes(trim($r1['url']));
 			}
@@ -804,10 +804,10 @@ function location($path)
 	function GTG_get_target($id)
 	{
 		$q = "select `target` from `staticpage` WHERE `id`='".$id."'";
-		$r = mysql_query($q);
-		if(mysql_num_rows($r) > 0)
+		$r = mysqli_query($db,$q);
+		if(mysqli_num_rows($r) > 0)
 		{
-			while($r1 = mysql_fetch_array($r))
+			while($r1 = mysqli_fetch_array($r))
 			{
 				return stripslashes(trim($r1['target']));
 			}
@@ -816,10 +816,10 @@ function location($path)
 	function GTG_get_pagecontent2($id)
 	{
 		$q = "select `rcontent` from `staticpage` WHERE `id`='".$id."'";
-		$r = mysql_query($q);
-		if(mysql_num_rows($r) > 0)
+		$r = mysqli_query($db,$q);
+		if(mysqli_num_rows($r) > 0)
 		{
-			while($r1 = mysql_fetch_array($r))
+			while($r1 = mysqli_fetch_array($r))
 			{
 				return stripslashes(trim($r1['rcontent']));
 			}
@@ -828,10 +828,10 @@ function location($path)
 	function GTG_get_cat_name($id)
 	{
 		$q = "select `name` from `category` WHERE `id`='".$id."'";
-		$r = mysql_query($q);
-		if(mysql_num_rows($r) > 0)
+		$r = mysqli_query($db,$q);
+		if(mysqli_num_rows($r) > 0)
 		{
-			while($r1 = mysql_fetch_array($r))
+			while($r1 = mysqli_fetch_array($r))
 			{
 				return stripslashes(trim($r1['name']));
 			}
@@ -841,10 +841,10 @@ function location($path)
 	function GTG_get_videocat_name($id)
 	{
 		$q = "select `name` from `videocategory` WHERE `id`='".$id."'";
-		$r = mysql_query($q);
-		if(mysql_num_rows($r) > 0)
+		$r = mysqli_query($q);
+		if(mysqli_num_rows($r) > 0)
 		{
-			while($r1 = mysql_fetch_array($r))
+			while($r1 = mysqli_fetch_array($r))
 			{
 				return stripslashes(trim($r1['name']));
 			}
@@ -855,7 +855,7 @@ function location($path)
 	function GTG_get_distributor_cat_name($id)
 	{
 		$q = "select `name` from `dcategory` WHERE `id`='".$id."'";
-		$r = mysql_query($q);
+		$r = mysql_query($db,$q);
 		if(mysql_num_rows($r) > 0)
 		{
 			while($r1 = mysql_fetch_array($r))
@@ -868,10 +868,10 @@ function location($path)
 	function GTG_get_cat_meta($id)
 	{
 		$q = "select `meta_tag` from `category` WHERE `id`='".$id."'";
-		$r = mysql_query($q);
-		if(mysql_num_rows($r) > 0)
+		$r = mysqli_query($db,$q);
+		if(mysqli_num_rows($r) > 0)
 		{
-			while($r1 = mysql_fetch_array($r))
+			while($r1 = mysqli_fetch_array($r))
 			{
 				return stripslashes(trim($r1['meta_tag']));
 			}
@@ -880,10 +880,10 @@ function location($path)
 	function GTG_get_cat_content($id)
 	{
 		$q = "select `desc1` from `category` WHERE `id`='".$id."'";
-		$r = mysql_query($q);
-		if(mysql_num_rows($r) > 0)
+		$r = mysqli_query($db,$q);
+		if(mysqli_num_rows($r) > 0)
 		{
-			while($r1 = mysql_fetch_array($r))
+			while($r1 = mysqli_fetch_array($r))
 			{
 				return stripslashes(trim($r1['desc1']));
 			}
@@ -892,10 +892,10 @@ function location($path)
 	function GTG_get_subcat_name($id)
 	{
 		$q = "select `name` from `subcategory` WHERE `id`='".$id."'";
-		$r = mysql_query($q);
-		if(mysql_num_rows($r) > 0)
+		$r = mysqli_query($db,$q);
+		if(mysqli_num_rows($r) > 0)
 		{
-			while($r1 = mysql_fetch_array($r))
+			while($r1 = mysqli_fetch_array($r))
 			{
 				return stripslashes(trim($r1['name']));
 			}
@@ -904,10 +904,10 @@ function location($path)
 	function GTG_get_subcat_meta($id)
 	{
 		$q = "select `meta_tag` from `subcategory` WHERE `id`='".$id."'";
-		$r = mysql_query($q);
-		if(mysql_num_rows($r) > 0)
+		$r = mysqli_query($db,$q);
+		if(mysqli_num_rows($r) > 0)
 		{
-			while($r1 = mysql_fetch_array($r))
+			while($r1 = mysqli_fetch_array($r))
 			{
 				return stripslashes(trim($r1['meta_tag']));
 			}
@@ -916,10 +916,10 @@ function location($path)
 	function GTG_get_subcat_content($id)
 	{
 		$q = "select `desc1` from `subcategory` WHERE `id`='".$id."'";
-		$r = mysql_query($q);
-		if(mysql_num_rows($r) > 0)
+		$r = mysqli_query($db,$q);
+		if(mysqli_num_rows($r) > 0)
 		{
-			while($r1 = mysql_fetch_array($r))
+			while($r1 = mysqli_fetch_array($r))
 			{
 				return stripslashes(trim($r1['desc1']));
 			}
@@ -928,10 +928,10 @@ function location($path)
 	function GTG_get_subsubcat_meta($id)
 	{
 		$q = "select `meta_tag` from `subsubcategory` WHERE `id`='".$id."'";
-		$r = mysql_query($q);
-		if(mysql_num_rows($r) > 0)
+		$r = mysqli_query($db,$q);
+		if(mysqli_num_rows($r) > 0)
 		{
-			while($r1 = mysql_fetch_array($r))
+			while($r1 = mysqli_fetch_array($r))
 			{
 				return stripslashes(trim($r1['meta_tag']));
 			}
@@ -941,10 +941,10 @@ function location($path)
   function GTG_get_images($id)
 	{
 		$q = "select `image_path` from `staticpage` WHERE `id`='".$id."'";
-		$rs = mysql_query($q);
-		if(mysql_num_rows($rs) > 0)
+		$rs = mysqli_query($db,$q);
+		if(mysqli_num_rows($rs) > 0)
 		{
-			while($row = mysql_fetch_array($rs))
+			while($row = mysqli_fetch_array($rs))
 			{  
 			    
 				if($row["image_path"]!="" && file_exists("product_images/".stripslashes($row["image_path"])))
@@ -971,8 +971,8 @@ function location($path)
 		if($pname != "")
 		{
 			$q = "select * from pagedata where name like '".$pname."'";
-			$r = mysql_query($q);
-			while($r1 = mysql_fetch_array($r))
+			$r = mysqli_query($db,$q);
+			while($r1 = mysqli_fetch_array($r))
 			{
 				if($case == 1)
 				{
@@ -997,10 +997,10 @@ function location($path)
 	function jbj_get_images($id)
 	{
 		$q = "select `image_path` from `staticpage` WHERE `id`='".$id."'";
-		$rs = mysql_query($q);
-		if(mysql_num_rows($rs) > 0)
+		$rs = mysqli_query($db,$q);
+		if(mysqli_num_rows($rs) > 0)
 		{
-			while($row = mysql_fetch_array($rs))
+			while($row = mysqli_fetch_array($rs))
 			{  
 			    
 				if($row["image_path"]!="" && file_exists("product_images/".stripslashes($row["image_path"])))
@@ -1011,13 +1011,13 @@ function location($path)
 			}
 		}
 	}	
-	function GetValue($table,$field,$where,$condition)
+	function GetValue($table,$field,$where,$condition,$db='')
 	{
-		$qry="SELECT $field from $table where $where='".mysql_escape_string($condition)."'";
-		$res=mysql_query($qry);
-		if(mysql_affected_rows()>0)
+		$qry="SELECT $field from $table where $where='".mysqli_escape_string($condition)."'";
+		$res=mysqli_query($db,$qry);
+		if(mysqli_affected_rows()>0)
 		{
-			$row=mysql_fetch_array($res);
+			$row=mysqli_fetch_array($res);
 			return $row[$field];
 		}
 		else
@@ -1032,10 +1032,10 @@ function Image_Folder($name)
 function h_get_metakey($id)
 	{
 		$q = "select * from `staticpage` WHERE `id`='".$id."'";
-		$r = mysql_query($q);
-		if(mysql_num_rows($r) > 0)
+		$r = mysqli_query($db,$q);
+		if(mysqli_num_rows($r) > 0)
 		{
-			while($r1 = mysql_fetch_array($r))
+			while($r1 = mysqli_fetch_array($r))
 			{
 			  
 				return '

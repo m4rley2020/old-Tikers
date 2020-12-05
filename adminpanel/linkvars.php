@@ -29,15 +29,6 @@ $page_arr7=array(
 array("Manage Challenge","manage_challenge.php",0),
 array("Add Challenge","add_challenge.php?mode=add",0),);
 
-$page_arr7=array(
-array("Manage Challenge","manage_challenge.php",0),
-array("Add Challenge","add_challenge.php?mode=add",0),);
-
-$page_arr8=array(
-array("Manage Completed Challenge","manage_completed_challenge.php",0),
-);
-
-
 $section_arr1=array (
 array ("Manage User","manage_user.php",count($page_arr1),$page_arr1,"category.png"),
 );
@@ -65,10 +56,6 @@ array ("Manage Advertise","manage_advertise.php",count($page_arr6),$page_arr6,"c
 $section_arr7=array (
 array ("Manage Challenge","manage_challenge.php",count($page_arr7),$page_arr7,"category.png"),
 );
-
-$section_arr8=array (
-array ("Manage Completed Challenge","manage_completed_challenge.php",count($page_arr8),$page_arr8,"category.png"),
-);
 	
 $HeadLinksArray = array (
 array("User",count($section_arr1),$section_arr1),
@@ -78,7 +65,6 @@ array("Challenge Type",count($section_arr4),$section_arr4),
 array("Challenge",count($section_arr7),$section_arr7),
 array("Store",count($section_arr5),$section_arr5),
 array("Advertise",count($section_arr6),$section_arr6),
-array("Challenge Completed",count($section_arr8),$section_arr8),
 );
  ?>
 <script language="javascript" type="text/javascript">	

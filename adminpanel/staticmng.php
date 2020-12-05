@@ -14,8 +14,8 @@ $LeftLinkSection =3;
 <?php 
 $id=$_GET['id'];
 $qry="select * from staticpage where id=$id";
-$rs=mysql_query($qry);
-$arr=mysql_fetch_array($rs);
+$rs=mysqli_query($db,$qry);
+$arr=mysqli_fetch_array($rs);
 $pgnm=$arr["name"];
 $pgdes=$arr["content"];
 ?>

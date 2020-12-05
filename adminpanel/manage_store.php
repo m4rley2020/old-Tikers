@@ -13,14 +13,14 @@ if(isset($_REQUEST['btnDelete']))
 		{
 			$query = "DELETE FROM  store where id=".$_REQUEST[$pid];
 		}
-		mysql_query($query);
+		mysqli_query($db,$query);
 		
 	}
 	location("manage_store.php?msg=3");
 }
 $LeftLinkSection = 1;
 $pagetitle="Store";
-$sel= "select * from store where name like '".$_GET["order"]."%' order by name" ;$result=$prs_pageing->number_pageing($sel,20000,10,'N','Y');
+$sel= "select * from store where name like '".$_GET["order"]."%' order by name" ;$result=$prs_pageing->number_pageing($sel,20000,10,'N','Y','',$db);
 
 ?>
 <!DOCTYPE html>
@@ -138,7 +138,7 @@ $sel= "select * from store where name like '".$_GET["order"]."%' order by name" 
                                         <tbody>
                                             
 						  <? $count=0; 
-							 while($get=mysql_fetch_object($result[0])) 
+							 while($get=mysqli_fetch_object($result[0])) 
 							 {  
 								$count++;
 						 ?>	 

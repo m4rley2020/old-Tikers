@@ -13,7 +13,7 @@ if(isset($_REQUEST['btnDelete']))
 		{
 			$query = "DELETE FROM  store_challenges where id=".$_REQUEST[$pid];
 		}
-		mysql_query($query);
+		mysqli_query($db,$query);
 		
 	}
 	location("manage_challenge.php?msg=3");
@@ -21,7 +21,7 @@ if(isset($_REQUEST['btnDelete']))
 $LeftLinkSection = 1;
 $pagetitle="Challenge";
 $sel= "select * from store_challenges where name like '".$_GET["order"]."%' order by name" ;
-$result=$prs_pageing->number_pageing($sel,20000,10,'N','Y');
+$result=$prs_pageing->number_pageing($sel,20000,10,'N','Y','',$db);
 
 ?>
 <!DOCTYPE html>
@@ -142,7 +142,7 @@ $result=$prs_pageing->number_pageing($sel,20000,10,'N','Y');
                                         <tbody>
                                             
 						  <? $count=0; 
-							 while($get=mysql_fetch_object($result[0])) 
+							 while($get=mysqli_fetch_object($result[0])) 
 							 {  
 								$count++;
 						 ?>	 
@@ -156,7 +156,7 @@ $result=$prs_pageing->number_pageing($sel,20000,10,'N','Y');
 									<img  src="<? echo '../challenge_image/'.$get->challeng_image; ?>" width="125" border="0" hspace="8" />
 									<?php } ?>&nbsp;	
 								 </td>
-							  <td > <strong> <? echo stripslashes(GetValue('challenge_type','name','id',$get->challenge_type_id)); ?></strong></td>
+                              <td > <strong> <? echo stripslashes(GetValue('challenge_type','name','id',$get->challenge_type_id,$db)); ?></strong></td>
 								<td > <strong> <? echo stripslashes($get->name); ?></strong></td>
 							<td class="photo"><strong> <? echo stripslashes($get->points); ?></strong></td>
 							<td class="photo"><strong> <? echo stripslashes($get->created_date); ?></strong></td>

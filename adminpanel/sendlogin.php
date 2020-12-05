@@ -3,8 +3,8 @@
 	include_once ("../include/sendmail.php");
 	include ("../include/functions.php");
 	
-  $db=mysql_connect($DBSERVER, $USERNAME, $PASSWORD);
-  mysql_select_db($DATABASENAME,$db);
+  $db=mysqli_connect($DBSERVER, $USERNAME, $PASSWORD);
+  mysqli_select_db($DATABASENAME,$db);
  if(isset($_REQUEST['id']))
 	{
 		$id = $_REQUEST['id'];
@@ -12,10 +12,10 @@
 		{
 			$id = $_REQUEST['id'];
 			$fetchquery = "select username,password from user where id=".$id;
-			$result = mysql_query($fetchquery);
-			if(mysql_num_rows($result) > 0)
+			$result = mysqli_query($db,$fetchquery);
+			if(mysqli_num_rows($result) > 0)
 			{
-				while($row = mysql_fetch_array($result))
+				while($row = mysqli_fetch_array($result))
 				{
 					$username = stripslashes($row['username']); 
 					$password = stripslashes($row['password']);
@@ -31,16 +31,16 @@ if($_REQUEST["Submit"])
 	$username=addslashes($_REQUEST["username"]);
 	$password=addslashes($_REQUEST["password"]);
 	$query = "update user set username='"."',username='".$username."',password='".$password."' where id=".$_REQUEST['id']; 
-	mysql_query($query) or die(mysql_error());
+	mysqli_query($db,$query) or die(mysqli_error($db));
 	
-	//$result=mysql_query("select * from user where username='".$username."' and username='".$password."' where id=".$_REQUEST['id']."");	
+	//$result=mysqli_query("select * from user where username='".$username."' and username='".$password."' where id=".$_REQUEST['id']."");	
 	  $que_mail="select * from user where id=".$_REQUEST['id'];
 	
 	
-	$rs=mysql_query($que_mail);
-	if(mysql_num_rows($rs) > 0)
+	$rs=mysqli_query($db,$que_mail);
+	if(mysqli_num_rows($rs) > 0)
 	{	
-		$row1=mysql_fetch_array($rs);
+		$row1=mysqli_fetch_array($rs);
 		//$to=$_REQUEST["email"];
 		$to=$row1["emailcontact"];
 		

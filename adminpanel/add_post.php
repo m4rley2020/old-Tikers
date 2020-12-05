@@ -17,10 +17,10 @@ if(isset($_REQUEST["id"]) && $_REQUEST["id"] > 0)
 {
 	$id = $_REQUEST["id"];											
 	$fetchquery = "select * from post where id=".$id;
-	$result = mysql_query($fetchquery);
-	if(mysql_num_rows($result) > 0)
+	$result = mysqli_query($db,$fetchquery);
+	if(mysqli_num_rows($result) > 0)
 	{
-		while($row = mysql_fetch_array($result))
+		while($row = mysqli_fetch_array($result))
 		{
 				$user_id= stripslashes($row['user_id']);
 				$description= stripslashes($row['description']);
@@ -50,7 +50,7 @@ if(isset($_REQUEST['Submit']))
 					
 					$query = "insert into post 
 					set display_order='$display_order',user_id='$user_id',description='$description',add_date='$add_date'"; 
-					mysql_query($query) or die(mysql_error());
+					mysqli_query($db,$query) or die(mysqli_error($db));
 					location("manage_post.php?msg=1");
 				break;
 				
@@ -58,7 +58,7 @@ if(isset($_REQUEST['Submit']))
 					
 					$query = "update post set user_id='$user_id',description='$description',add_date='$add_date'"; 
 					$query.=" where id=".$_REQUEST['id'];
-					mysql_query($query) or die(mysql_error());
+					mysqli_query($db,$query) or die(mysqli_error());
 					location("manage_post.php?msg=2");
 				break;
 				
@@ -72,7 +72,7 @@ if(isset($_REQUEST['mode']))
 	{
 		case 'delete' :
 $query = "delete from post where id=".$_REQUEST['id'];     
-			mysql_query($query) or die(mysql_error());
+			mysqli_query($db,$query) or die(mysqli_error($db));
 			location("manage_post.php?msg=3");
 		break;
 	}	
@@ -222,8 +222,8 @@ return chosen
 		                        <option value="-" <? if($user_id == '-'){ ?>selected="selected"<? } ?>>Please Select</option>
 		                        	<? $tmp_cmb_array1 = explode(",",$user_id); ?>
 		                        	<?										
-									$add_result1 = mysql_query("select * from user") or die(mysql_error());			
-									while($add_row1 = mysql_fetch_array($add_result1))
+									$add_result1 = mysqli_query($db,"select * from user") or die(mysqli_error($db));			
+									while($add_row1 = mysqli_fetch_array($add_result1))
 									{	
 									?>
 									<option value="<?=$add_row1['id']?>" <? if($user_id!="" && in_array($add_row1['id'],$tmp_cmb_array1)){ echo 'selected="selected"'; } ?>><?=$add_row1['first_name']."".$add_row1['last_name'];?></option>

@@ -1,20 +1,22 @@
 <?php 
 
-     include ("../include/config.inc.php");
-	// include_once ("../include/sendmail.php");
-	 include ("../include/functions.php");
+    include ("../include/config.inc.php");
+	include_once ("../include/sendmail.php");
+	include ("../include/functions.php");
 	$pas;
   $ADMIN_MOUSEHOUR_COLOUR="#cccccc";
   $ADMIN_MOUSEOUT_COLOUR="#FFFFFF";
   $ADMIN_TOP_BGCOLOUR="#FFFFFF";
   
-   $db=mysql_connect($DBSERVER, $USERNAME, $PASSWORD);
-   mysql_select_db($DATABASENAME,$db);  
- $pas=$_GET["pas"];
-//$pas="";
+  $db=mysqli_connect($DBSERVER, $USERNAME, $PASSWORD);
+  mysqli_select_db($DATABASENAME,$db);  
+$pas=$_GET["pas"];
+
 ?>
 <!DOCTYPE html>
-<html lang="en"> 
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
@@ -74,7 +76,7 @@
                 <button class="close" data-dismiss="alert"></button>
                 <span>Login details has been mailed to email address.</span>
             </div>
-            <?php
+            <? 
                 }
             ?>
             <?php
@@ -85,7 +87,7 @@
                 <button class="close" data-dismiss="alert"></button>
                 <span>Please enter Registered Email address.</span>
             </div>
-            <?php
+            <? 
                 }
             ?>
             <div class="control-group">

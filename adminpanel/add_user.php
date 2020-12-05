@@ -24,10 +24,10 @@ if(isset($_REQUEST["id"]) && $_REQUEST["id"] > 0)
 {
 	$id = $_REQUEST["id"];											
 	$fetchquery = "select * from user where id=".$id;
-	$result = mysql_query($fetchquery);
-	if(mysql_num_rows($result) > 0)
+	$result = mysqli_query($db,$fetchquery);
+	if(mysqli_num_rows($result) > 0)
 	{
-		while($row = mysql_fetch_array($result))
+		while($row = mysqli_fetch_array($result))
 		{
 				$user_type= stripslashes($row['user_type']);
 				$first_name= stripslashes($row['first_name']);
@@ -65,7 +65,7 @@ if(isset($_REQUEST['Submit']))
 		
 		if($_REQUEST["is_verified"]!="")
 		{		
-			$is_verified = mysql_real_escape_string(implode(",",$_REQUEST["is_verified"])); 			
+			$is_verified = mysqli_real_escape_string(implode(",",$_REQUEST["is_verified"])); 			
 		}
 		$profile_image="";
 
@@ -93,12 +93,12 @@ if(isset($_REQUEST['Submit']))
 						return;
 					}
 					
-					$display_order=sam_get_display_order("user","");
-					
-					$query = "insert into user set  display_order='$display_order', user_type='$user_type', first_name='$first_name', last_name='$last_name',
+					$display_order=sam_get_display_order("user","",$db);
+					//echo $display_order;
+					$query = "insert into user set user_type='$user_type', first_name='$first_name', last_name='$last_name',
 								username='$username',  email='$email', password='$password', phone_number='$phone_number', profile_image='$profile_image',
 								add_date='$add_date', is_verified='$is_verified', country_code = '$country_code'"; 
-					mysql_query($query) or die(mysql_error());
+					mysqli_query($db,$query) or die(mysqli_error($db));
 					location("manage_user.php?msg=1");
 				break;
 				
@@ -120,7 +120,7 @@ if(isset($_REQUEST['Submit']))
 							$query.=" , profile_image='$profile_image'";
 						} 
 					$query.=" where id=".$_REQUEST['id'];
-					mysql_query($query) or die(mysql_error());
+					mysqli_query($db,$query) or die(mysqli_error($db));
 					location("manage_user.php?msg=2");
 				break;
 				
@@ -135,7 +135,7 @@ if(isset($_REQUEST['mode']))
 		case 'delete' :
 			deletefull1($_REQUEST['id']);
 $query = "delete from user where id=".$_REQUEST['id'];     
-			mysql_query($query) or die(mysql_error());
+			mysqli_query($db,$query) or die(mysqli_error($db));
 			location("manage_user.php?msg=3");
 		break;
 	}	
@@ -144,8 +144,8 @@ $query = "delete from user where id=".$_REQUEST['id'];
 	function deletefull1($iid)
 	{
 		$dquery = "select profile_image from user where id=".$iid;
-		$dresult = mysql_query($dquery);
-		while($drow = mysql_fetch_array($dresult))
+		$dresult = mysqli_query($db,$dquery);
+		while($drow = mysqli_fetch_array($dresult))
 		{
 			$dfile = $drow['profile_image'];
 			if($dfile != "")
@@ -156,7 +156,7 @@ $query = "delete from user where id=".$_REQUEST['id'];
 				}
 			}
 		}
-		mysql_free_result($dresult);
+		mysqli_free_result($dresult);
 	}
 
 ?>

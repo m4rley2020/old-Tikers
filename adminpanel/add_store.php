@@ -21,14 +21,14 @@ if(isset($_REQUEST["id"]) && $_REQUEST["id"] > 0)
 {
 	$id = $_REQUEST["id"];											
 	$fetchquery = "select * from store where id=".$id;
-	$result = mysql_query($fetchquery);
-	if(mysql_num_rows($result) > 0)
+	$result = mysqli_query($db,$fetchquery);
+	if(mysqli_num_rows($result) > 0)
 	{
-		while($row = mysql_fetch_array($result))
+		while($row = mysqli_fetch_array($result))
 		{
 				$user_id= stripslashes($row['user_id']);
 				$name= stripslashes($row['name']);
-				$store_type= stripslashes($row['store_type']);
+				$store_type= stripslashes($row['store_type_id']);
 				$location= stripslashes($row['location']);
 				$latitude= stripslashes($row['latitude']);
 				$longitude= stripslashes($row['longitude']);
@@ -73,18 +73,18 @@ if(isset($_REQUEST['Submit']))
 				case 'add' :
 					
 					$query = "insert into store 
-					set display_order='$display_order',user_id='$user_id',name='$name',store_type='$store_type',location='$location',latitude='$latitude',longitude='$longitude',phone_number='$phone_number',store_image='$store_image'"; 
-					mysql_query($query) or die(mysql_error());
+					set store_type_id=$store_type,display_order='$display_order',user_id='$user_id',name='$name',location='$location',latitude='$latitude',longitude='$longitude',phone_number='$phone_number',store_image='$store_image'"; 
+					mysqli_query($db,$query) or die(mysqli_error($db));
 					
 					$query2 = "update user set user_type = 'Store' where id=".$user_id;
-					mysql_query($query2) or die(mysql_error());
+					mysqli_query($db,$query2) or die(mysqli_error($db));
 					
 					location("manage_store.php?msg=1");
 				break;
 				
 				case 'edit' :
 					
-					$query = "update store set user_id='$user_id',name='$name',store_type='$store_type',location='$location',latitude='$latitude',longitude='$longitude',phone_number='$phone_number'";
+					$query = "update store set store_type_id=$store_type,user_id='$user_id',name='$name',location='$location',latitude='$latitude',longitude='$longitude',phone_number='$phone_number'";
 						
 						if($store_image!="")
 						{
@@ -92,7 +92,7 @@ if(isset($_REQUEST['Submit']))
 							$query.=" , store_image='$store_image'";
 						} 
 					$query.=" where id=".$_REQUEST['id'];
-					mysql_query($query) or die(mysql_error());
+					mysqli_query($db,$query) or die(mysqli_error($db));
 					location("manage_store.php?msg=2");
 				break;
 				
@@ -107,7 +107,7 @@ if(isset($_REQUEST['mode']))
 		case 'delete' :
 			deletefull1($_REQUEST['id']);
 $query = "delete from store where id=".$_REQUEST['id'];     
-			mysql_query($query) or die(mysql_error());
+			mysqli_query($db,$query) or die(mysqli_error($db));
 			location("manage_store.php?msg=3");
 		break;
 	}	
@@ -116,8 +116,8 @@ $query = "delete from store where id=".$_REQUEST['id'];
 	function deletefull1($iid)
 	{
 		$dquery = "select store_image from store where id=".$iid;
-		$dresult = mysql_query($dquery);
-		while($drow = mysql_fetch_array($dresult))
+		$dresult = mysqli_query($db,$dquery);
+		while($drow = mysqli_fetch_array($dresult))
 		{
 			$dfile = $drow['store_image'];
 			if($dfile != "")
@@ -128,7 +128,7 @@ $query = "delete from store where id=".$_REQUEST['id'];
 				}
 			}
 		}
-		mysql_free_result($dresult);
+		mysqli_free_result($dresult);
 	}
 
 ?>
@@ -272,8 +272,8 @@ return chosen
                              </label>     
                              <div class="col-md-9">
                         <select class="form-control required" name="user_id" id="user_id" ><option value="-" <? if($user_id == '-'){ ?>selected="selected"<? } ?>>Please Select</option><? $tmp_cmb_array1 = explode(",",$user_id); ?><?										
-											$add_result1 = mysql_query("select * from user") or die(mysql_error());			
-											while($add_row1 = mysql_fetch_array($add_result1))
+											$add_result1 = mysqli_query($db,"select * from user") or die(mysqli_error($db));			
+											while($add_row1 = mysqli_fetch_array($add_result1))
 											{	
 											?>
 											<option value="<?=$add_row1['id']?>" <? if($user_id!="" && in_array($add_row1['id'],$tmp_cmb_array1)){ echo 'selected="selected"'; } ?>><?=$add_row1['first_name']." ".$add_row1['last_name']." (".$add_row1['username'].")";?></option>
@@ -298,7 +298,16 @@ return chosen
                       <span class="required">*</span>Type
                      </label>     
                      <div class="col-md-9">
-                     <input class="form-control required" name="store_type" type="text" id="store_type" value="<?=$store_type; ?>" />
+                    <select class="form-control required" name="store_type" id="store_type" ><option value="-" <? if($store_type == '-'){ ?>selected="selected"<? } ?>>Please Select</option><? $tmp_cmb_array1 = explode(",",$store_type); ?><?                                        
+                                            $add_result1 = mysqli_query($db,"select * from store_type") or die(mysqli_error($db));            
+                                            while($add_row1 = mysqli_fetch_array($add_result1))
+                                            {   
+                                            ?>
+                                            <option value="<?=$add_row1['id']?>" <? if($store_type!="" && in_array($add_row1['id'],$tmp_cmb_array1)){ echo 'selected="selected"'; } ?>><?=$add_row1['store_type'];?></option>
+                                            <?
+                                            }                                       
+                                            ?> </select>
+                     <!-- <input class="form-control required" name="store_type" type="text" id="store_type" value="<?=$store_type; ?>" /> -->
                      </div>
                      </div>
 				
@@ -343,7 +352,7 @@ return chosen
                               <span class="required">*</span>image
                              </label>     
                              <div class="col-md-9">
-                            <input class="form-control required" type="file" name="store_image" id="store_image" />
+                            <input class="form-control  <?php if($store_type=="") { echo 'required'; }?>" type="file" name="store_image" id="store_image" />
                                                             <? 
                                             if($store_image!="" && file_exists("../store_image/".$store_image))
                                             {
@@ -473,15 +482,13 @@ function keshav_check()
 				return false;
 			}
 			
-			
 			/* -------------- image Validation --------------------- */
 			if(document.frm.mode.value =="add" && document.frm.store_image.value.split(" ").join("")=="")										{
 				alert("Please Select image.");
 				document.frm.store_image.focus();
 				return false
 			}
-			
-			
+            
 }
 </script>                             
 </body>

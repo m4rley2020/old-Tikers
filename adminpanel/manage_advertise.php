@@ -13,14 +13,15 @@ if(isset($_REQUEST['btnDelete']))
 		{
 			$query = "DELETE FROM  advertise where id=".$_REQUEST[$pid];
 		}
-		mysql_query($query);
+		mysqli_query($db,$query);
 		
 	}
 	location("manage_advertise.php?msg=3");
 }
 $LeftLinkSection = 1;
 $pagetitle="Advertise";
-$sel= "select * from advertise where title like '".$_GET["order"]."%' order by title" ;$result=$prs_pageing->number_pageing($sel,20000,10,'N','Y');
+$sel= "select * from advertise where title like '".$_GET["order"]."%' order by title" ;
+$result=$prs_pageing->number_pageing($sel,20000,10,'N','Y','',$db);
 
 ?>
 <!DOCTYPE html>
@@ -134,7 +135,7 @@ $sel= "select * from advertise where title like '".$_GET["order"]."%' order by t
                                         <tbody>
                                             
 						  <? $count=0; 
-							 while($get=mysql_fetch_object($result[0])) 
+							 while($get=mysqli_fetch_object($result[0])) 
 							 {  
 								$count++;
 						 ?>	 

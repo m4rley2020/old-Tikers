@@ -9,14 +9,14 @@
 	 {	$name=$_POST['name'];
         $query = "update admin set password='$name' where id=".$_SESSION["ADMIN_SESS_USERID"];
 	 }
-     $result = mysql_query($query);
+     $result = mysqli_query($db,$query);
      
 	$Message = "Password Changed Successfully"; 
  }
 
 $query = "select * from admin where id=".$_SESSION["ADMIN_SESS_USERID"];
-$result = mysql_query($query,$db);
-$row = mysql_fetch_array($result);
+$result = mysqli_query($db,$query);
+$row = mysqli_fetch_array($result);
 $name= $row["password"];
 
 ?>

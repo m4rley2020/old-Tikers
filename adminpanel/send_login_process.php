@@ -4,18 +4,18 @@
 	include_once ("../include/sendmail.php");
 	include ("../include/functions.php");
 	
-  $db=mysql_connect($DBSERVER, $USERNAME, $PASSWORD);
-  mysql_select_db($DATABASENAME,$db);    
+  $db=mysqli_connect($DBSERVER, $USERNAME, $PASSWORD);
+  mysqli_select_db($DATABASENAME,$db);    
 if($_REQUEST["Submit"])
 {	
 	$query = "update user set username='".addslashes($_REQUEST["username"])."',password='".addslashes($_REQUEST["password"])."' where id=".$_REQUEST['id']; 
-	mysql_query($query) or die(mysql_error());
+	mysqli_query($db,$query) or die(mysqli_error($db));
 	
-	$result=mysql_query("select * from user where password='".addslashes($_REQUEST["password"])."' and username='".addslashes($_REQUEST["username"])."'");	
+	$result=mysqli_query($db,"select * from user where password='".addslashes($_REQUEST["password"])."' and username='".addslashes($_REQUEST["username"])."'");	
 	
-	if(mysql_num_rows($result) > 0)
+	if(mysqli_num_rows($result) > 0)
 	{	
-		$row=mysql_fetch_array($result);
+		$row=mysqli_fetch_array($result);
 		//$to=$_REQUEST["email"];
 		$to=$_REQUEST["email"];
 		$from=$_REQUEST["email"];

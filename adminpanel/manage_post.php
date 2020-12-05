@@ -13,7 +13,7 @@ if(isset($_REQUEST['btnDelete']))
 		{
 			$query = "DELETE FROM  post where id=".$_REQUEST[$pid];
 		}
-		mysql_query($query);
+		mysqli_query($db,$query);
 		
 	}
 	location("manage_post.php?msg=3");
@@ -21,7 +21,7 @@ if(isset($_REQUEST['btnDelete']))
 $LeftLinkSection = 1;
 $pagetitle="Post";
 $sel= "select * from post where user_id like '".$_GET["order"]."%' order by id desc" ;
-$result=$prs_pageing->number_pageing($sel,20000,10,'N','Y');
+$result=$prs_pageing->number_pageing($sel,20000,10,'N','Y','',$db);
 
 ?>
 <!DOCTYPE html>
@@ -138,7 +138,7 @@ $result=$prs_pageing->number_pageing($sel,20000,10,'N','Y');
                                         <tbody>
                                             
 						  <? $count=0; 
-							 while($get=mysql_fetch_object($result[0])) 
+							 while($get=mysqli_fetch_object($result[0])) 
 							 {  
 								$count++;
 						 ?>	 
@@ -149,11 +149,13 @@ $result=$prs_pageing->number_pageing($sel,20000,10,'N','Y');
 							 <td><?=$count;?>.</td>
 						 
 					<td class="photo">
+                        <strong>
 							<? 
 							
-							echo GetValue("user","first_name","id",$get->user_id)." ".GetValue("user","last_name","id",$get->user_id);
+							echo GetValue("user","first_name","id",$get->user_id,$db)." ".GetValue("user","last_name","id",$get->user_id,$db);
 							
 							?>
+                        </strong>
 							</td>
 							  <td > <strong> <? echo stripslashes($get->description); ?></strong></td>
 							  <td > <strong> <? echo stripslashes($get->add_date); ?></strong></td>

@@ -16,10 +16,10 @@ if(isset($_REQUEST["id"]) && $_REQUEST["id"] > 0)
 {
 	$id = $_REQUEST["id"];											
 	$fetchquery = "select * from challenge_type where id=".$id;
-	$result = mysql_query($fetchquery);
-	if(mysql_num_rows($result) > 0)
+	$result = mysqli_query($db,$fetchquery);
+	if(mysqli_num_rows($result) > 0)
 	{
-		while($row = mysql_fetch_array($result))
+		while($row = mysqli_fetch_array($result))
 		{
 				$name= stripslashes($row['name']);
 				$challenge_image= stripslashes($row['challenge_image']);
@@ -69,7 +69,7 @@ if(isset($_REQUEST['Submit']))
 					
 					$query = "insert into challenge_type 
 					set display_order='$display_order',name='$name',challenge_image='$challenge_image',is_hot='$is_hot'"; 
-					mysql_query($query) or die(mysql_error());
+					mysqli_query($db,$query) or die(mysqli_error());
 					location("manage_challenge_type.php?msg=1");
 				break;
 				
@@ -89,7 +89,7 @@ if(isset($_REQUEST['Submit']))
 						} 
 					$query.=" where id=".$_REQUEST['id'];
 					
-					mysql_query($query) or die(mysql_error());
+					mysqli_query($db,$query) or die(mysqli_error($db));
 					location("manage_challenge_type.php?msg=2");
 				break;
 				
@@ -104,7 +104,7 @@ if(isset($_REQUEST['mode']))
 		case 'delete' :
 			deletefull1($_REQUEST['id']);
 $query = "delete from challenge_type where id=".$_REQUEST['id'];     
-			mysql_query($query) or die(mysql_error());
+			mysqli_query($db,$query) or die(mysqli_error($db));
 			location("manage_challenge_type.php?msg=3");
 		break;
 	}	
@@ -113,8 +113,8 @@ $query = "delete from challenge_type where id=".$_REQUEST['id'];
 	function deletefull1($iid)
 	{
 		$dquery = "select challenge_image from challenge_type where id=".$iid;
-		$dresult = mysql_query($dquery);
-		while($drow = mysql_fetch_array($dresult))
+		$dresult = mysqli_query($db,$dquery);
+		while($drow = mysqli_fetch_array($dresult))
 		{
 			$dfile = $drow['challenge_image'];
 			if($dfile != "")
@@ -125,7 +125,7 @@ $query = "delete from challenge_type where id=".$_REQUEST['id'];
 				}
 			}
 		}
-		mysql_free_result($dresult);
+		mysqli_free_result($dresult);
 	}
 
 ?>

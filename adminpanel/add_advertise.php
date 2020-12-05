@@ -17,10 +17,10 @@ if(isset($_REQUEST["id"]) && $_REQUEST["id"] > 0)
 {
 	$id = $_REQUEST["id"];											
 	$fetchquery = "select * from advertise where id=".$id;
-	$result = mysql_query($fetchquery);
-	if(mysql_num_rows($result) > 0)
+	$result = mysqli_query($db,$fetchquery);
+	if(mysqli_num_rows($result) > 0)
 	{
-		while($row = mysql_fetch_array($result))
+		while($row = mysqli_fetch_array($result))
 		{
 				$title= stripslashes($row['title']);
 				$ads_image= stripslashes($row['ads_image']);
@@ -82,7 +82,7 @@ if(isset($_REQUEST['Submit']))
 					
 					$query = "insert into advertise 
 					set display_order='$display_order',title='$title',ads_image='$ads_image',ads_video='$ads_video',message='$message'"; 
-					mysql_query($query) or die(mysql_error());
+					mysqli_query($db,$query) or die(mysqli_error($db));
 					location("manage_advertise.php?msg=1");
 				break;
 				
@@ -107,7 +107,7 @@ if(isset($_REQUEST['Submit']))
 							$query.=" , ads_video='$ads_video'";
 						} 
 					$query.=" where id=".$_REQUEST['id'];
-					mysql_query($query) or die(mysql_error());
+					mysqli_query($db,$query) or die(mysqli_error($db));
 					location("manage_advertise.php?msg=2");
 				break;
 				
@@ -123,7 +123,7 @@ if(isset($_REQUEST['mode']))
 			deletefull1($_REQUEST['id']);
 			deletefull2($_REQUEST['id']);
 $query = "delete from advertise where id=".$_REQUEST['id'];     
-			mysql_query($query) or die(mysql_error());
+			mysqli_query($db,$query) or die(mysqli_error($db));
 			location("manage_advertise.php?msg=3");
 		break;
 	}	
@@ -132,8 +132,8 @@ $query = "delete from advertise where id=".$_REQUEST['id'];
 	function deletefull1($iid)
 	{
 		$dquery = "select ads_image from advertise where id=".$iid;
-		$dresult = mysql_query($dquery);
-		while($drow = mysql_fetch_array($dresult))
+		$dresult = mysqli_query($db,$dquery);
+		while($drow = mysqli_fetch_array($dresult))
 		{
 			$dfile = $drow['ads_image'];
 			if($dfile != "")
@@ -144,14 +144,14 @@ $query = "delete from advertise where id=".$_REQUEST['id'];
 				}
 			}
 		}
-		mysql_free_result($dresult);
+		mysqli_free_result($dresult);
 	}
 	
 	function deletefull2($iid)
 	{
 		$dquery = "select ads_video from advertise where id=".$iid;
-		$dresult = mysql_query($dquery);
-		while($drow = mysql_fetch_array($dresult))
+		$dresult = mysqli_query($db,$dquery);
+		while($drow = mysqli_fetch_array($dresult))
 		{
 			$dfile = $drow['ads_video'];
 			if($dfile != "")
@@ -162,7 +162,7 @@ $query = "delete from advertise where id=".$_REQUEST['id'];
 				}
 			}
 		}
-		mysql_free_result($dresult);
+		mysqli_free_result($dresult);
 	}
 
 ?>
@@ -320,44 +320,47 @@ return chosen
 						<input type="hidden" name="upload_type" id="upload_type" value ="" />
                      </div>
 				
-                        <div class="form-group" id="image_type" style="display:none;">
+					<? 
+						if($ads_image!="" && file_exists("../ads_images/".$ads_image))
+						{?>
+                        <div class="form-group" id="image_type">
                             <label class="col-md-3 control-label">
                               <span class="required">*</span>Image
                              </label>     
                              <div class="col-md-9">
                             <input class="form-control required" type="file" name="ads_image" id="ads_image" />
-                                                            <? 
-                                            if($ads_image!="" && file_exists("../ads_images/".$ads_image))
-                                            {
-                                                    ?>
+                                                            
+                                                   
                                                     <br />
                                                     <img alt="Image" src="../include/sample.php?nm=../ads_images/<?=$ads_image;?>&mwidth=88&mheight=88" border="0" />
 
-                                                    <?											
-                                            }
-                                            ?>		
+                                                   
                                    </div>
                             </div>
-			   
-                        <div class="form-group" id="video_type" style="display:none;">
+			   			 <?											
+							}
+							?>	
+											
+						<? 
+						if($ads_video!="" && file_exists("../ads_video/".$ads_video))
+						{
+								?>
+                        <div class="form-group" id="video_type" >
                             <label class="col-md-3 control-label">
                               <span class="required">*</span>Video
                              </label>     
                              <div class="col-md-9">
                             <input class="form-control required" type="file" name="ads_video" id="ads_video" />
-                                                            <? 
-                                            if($ads_video!="" && file_exists("../ads_video/".$ads_video))
-                                            {
-                                                    ?>
+                                                            
                                                     <br />
                                                     <img alt="Video" src="../include/sample.php?nm=../ads_video/<?=$ads_video;?>&mwidth=88&mheight=88" border="0" />
 
-                                                    <?											
-                                            }
-                                            ?>		
+                                                    
                                    </div>
                             </div>
-			   
+			   			<?											
+						}
+						?>		
                         <div class="form-group">
                             <label class="col-md-3 control-label">
                               <span class="required">*</span>Message
