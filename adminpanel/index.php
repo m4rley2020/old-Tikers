@@ -9,7 +9,7 @@
   $ADMIN_TOP_BGCOLOUR="#FFFFFF";
   
   $db=mysqli_connect($DBSERVER, $USERNAME, $PASSWORD);
-  mysqli_select_db($DATABASENAME,$db);  
+  mysqli_select_db($db,$DATABASENAME);  
 $pas=$_GET["pas"];
 
 ?>

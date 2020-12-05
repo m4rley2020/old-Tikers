@@ -11,7 +11,7 @@ $ADMIN_TOP_BGCOLOUR="#FFFFFF";
 
 $db=mysqli_connect($DBSERVER, $USERNAME, $PASSWORD);
 mysqli_select_db($db,$DATABASENAME);  
-$pas=$_GET["pas"];
+$pas=$_GET["pass"];
 
 
 $query="select * from admin where username='".$_REQUEST["name"]."' and password='".$_REQUEST["pass"]."'";
