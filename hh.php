@@ -1,4 +1,3 @@
-<?php include('server.php') ?>
 <html lang="en">
 <head>
  <meta charset="utf-8">
@@ -74,5 +73,5 @@ $_SESSION['username'] = $username;
 $_SESSION['success'] = "You are now logged in";
 header('location: adminpanel\index.php');
 }
-}
+
 ?>
