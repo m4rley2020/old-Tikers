@@ -3,11 +3,11 @@
 error_reporting(0);
 
 $SITE_NAME="Welcome to AME";
-$SITE_URL="localhost";
-$DBSERVER = "localhost";
-$DATABASENAME = "db530831774";
-$USERNAME = "root";
-$PASSWORD = "";
+$SITE_URL="http://www.tikers.tech/";
+$DBSERVER = "199.247.14.102";
+$DATABASENAME = "ghadxjbzcn";
+$USERNAME = "ghadxjbzcn";
+$PASSWORD = "EywGxuNez4";
 $ADMIN_MAIL="admin@gmail.com";
 $SITE_TITLE="AME";
 $KFCK = "../../";
