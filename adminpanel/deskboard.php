@@ -80,7 +80,7 @@
                                 </div>
                                 <div class="details">
                                     <div class="number">
-                                        <? echo mysqli_num_rows($user_query);?>
+                                        <?php echo mysqli_num_rows($user_query);?>
                                     </div>
                                     <div class="desc">									
                                         Users
@@ -99,7 +99,7 @@
                                 </div>
                                 <div class="details">
                                     <div class="number">
-                                        <? echo mysqli_num_rows($post_query);?>
+                                        <?php echo mysqli_num_rows($post_query);?>
                                     </div>
                                     <div class="desc">									
                                         Post
@@ -118,7 +118,7 @@
                                 </div>
                                 <div class="details">
                                     <div class="number">
-                                        <? echo mysqli_num_rows($package_query);?>
+                                        <?php echo mysqli_num_rows($package_query);?>
                                     </div>
                                     <div class="desc">									
                                         Package
@@ -137,7 +137,7 @@
                                 </div>
                                 <div class="details">
                                     <div class="number">
-                                        <? echo mysqli_num_rows($challenge_type_query);?>
+                                        <?php echo mysqli_num_rows($challenge_type_query);?>
                                     </div>
                                     <div class="desc">									
                                         Challange Type
@@ -155,7 +155,7 @@
                                 </div>
                                 <div class="details">
                                     <div class="number">
-                                        <? echo mysqli_num_rows($challenge_query);?>
+                                        <?php echo mysqli_num_rows($challenge_query);?>
                                     </div>
                                     <div class="desc">									
                                         Challenges
@@ -174,7 +174,7 @@
                                 </div>
                                 <div class="details">
                                     <div class="number">
-                                        <? echo mysqli_num_rows($store_query);?>
+                                        <?php echo mysqli_num_rows($store_query);?>
                                     </div>
                                     <div class="desc">									
                                         Store
@@ -193,7 +193,7 @@
                                 </div>
                                 <div class="details">
                                     <div class="number">
-                                        <? echo mysqli_num_rows($advertise_query);?>
+                                        <?php echo mysqli_num_rows($advertise_query);?>
                                     </div>
                                     <div class="desc">									
                                         Advertise
@@ -261,4 +261,3 @@
     </script>
 </body>
 </html>
-?>
