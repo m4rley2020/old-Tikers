@@ -2,10 +2,10 @@
 /**
  * Database config variables
  */
-define("DB_HOST", "db530831774.db.1and1.com");
-define("DB_USER", "dbo530831774");
-define("DB_PASSWORD", "Keshav_777");
-define("DB_DATABASE", "db530831774");
+define("DB_HOST", "199.247.14.102");
+define("DB_USER", "ghadxjbzcn");
+define("DB_PASSWORD", "EywGxuNez4");
+define("DB_DATABASE", "ghadxjbzcn");
 
 /*
  * Google API Key
