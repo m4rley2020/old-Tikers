@@ -21,7 +21,7 @@
 				$profile_image = GetValue("user","profile_image","id",$user_id);
 				if(file_exists("../User_image/".$profile_image) && $profile_image!="")
 				{
-					$profile_imagel = $SITE_URL."/User_image/".$profile_image;
+					$profile_imagel = $SITE_URL."../User_image/".$profile_image;
 				}
 				else
 				{
