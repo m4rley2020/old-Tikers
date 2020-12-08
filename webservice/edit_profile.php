@@ -68,10 +68,7 @@
 					{
 						$update_query.=" , profile_image='$profile_image'";
 					} 
-					if($_REQUEST['country_code'] != "" && $_REQUEST['country_code'] > 0)
-					{
-						$update_query.=" , country_code='".$_REQUEST['country_code']."' ";
-					} 
+					 
 					$update_query .= "where id = '".$_REQUEST['user_id']."' ";
 					
 					
@@ -87,7 +84,7 @@
 						
 							if($row['profile_image'] != "")
 							{
-								$profile_image = $SITE_URL."/User_image/".$row['profile_image'];
+								$profile_image = $SITE_URL."../User_image/".$row['profile_image'];
 							}
 							else
 							{
@@ -115,7 +112,6 @@
 								'is_verified' => $row['is_verified'],
 								'user_type' => $row['user_type'],
 								'store_id' => $store_id,
-								'country_code' => $row['country_code'],
 								'register_type' => $row['register_type'],
 								'is_private' => $row['is_private'],
 								'add_date' => $row['add_date'],
