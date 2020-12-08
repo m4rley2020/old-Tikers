@@ -32,7 +32,7 @@
 			}
 			
 			
-			$insert_review = mysqli_query($db"insert into friend set from_user='".$from_user_id."', to_user='".$to_user_id."', status='".$status."', add_date = NOW() ");
+			$insert_review = mysqli_query($db,"insert into friend set from_user='".$from_user_id."', to_user='".$to_user_id."', status='".$status."', add_date = NOW() ");
 			$last_requested_id = mysqli_insert_id();
 			
 			if($last_requested_id>0)
