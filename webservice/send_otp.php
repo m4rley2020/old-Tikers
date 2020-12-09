@@ -32,7 +32,7 @@
 					id = '".$_REQUEST['user_id']."'	";
 					mysqli_query($db,$insert_query)or die(mysqli_error($db));
 					
-					$phone = "+961".$_REQUEST['phone_number'];
+					$phone = "+".$_REQUEST['phone_number'];
 					$client = new Client($account_sid, $auth_token); 
 					$text = 'Your Tikers Account Verification Code is: '.$otp.'.';
 					$messages = $client->messages->create($phone, array( 
