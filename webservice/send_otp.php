@@ -8,10 +8,10 @@
 	//$account_sid = 'ACabd012958cf094f9290513f0e953004b'; 
 	//$auth_token = 'b84c6bae4f6d228973962984a3b199e6';
 			 
-	if($_REQUEST['user_id'] != '' && $_REQUEST['phone_number'] != '' && $_REQUEST['country_code'] != ''  && $_REQUEST['country_code'] > 0)
+	if($_REQUEST['user_id'] != '' && $_REQUEST['phone_number'] != '')
 	{
 		
-			$check_customer_mobile = mysqli_query($db,"select id,phone_number from user where phone_number='".$_REQUEST['phone_number']."' && id='".$_REQUEST['user_id']."' and country_code = '".$_REQUEST['country_code']."' ") or die(mysqli_error($db));
+			$check_customer_mobile = mysqli_query($db,"select id,phone_number from user where phone_number='".$_REQUEST['phone_number']."' && id='".$_REQUEST['user_id']."' ") or die(mysqli_error($db));
 		
 		
 		if(mysqli_num_rows($check_customer_mobile) > 0)
