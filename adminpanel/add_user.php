@@ -384,7 +384,7 @@ return chosen
                                                     <br />
                                                     <img alt="Profile Image" src="../User_image/<?=$profile_image;?>" width="125" border="0" />
 
-                                                    <?											
+                                                    <?php											
                                             }
                                             ?>		
                                    </div>
