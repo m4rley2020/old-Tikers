@@ -5,8 +5,8 @@
 	require_once 'Twilio/autoload.php';
 	use Twilio\Rest\Client;
 
-	//$account_sid = 'ACabd012958cf094f9290513f0e953004b'; 
-	//$auth_token = 'b84c6bae4f6d228973962984a3b199e6';
+	$account_sid = 'AC22804b80866745cf56e1c7cc469da300'; 
+	$auth_token = '40f104749b1268308496dd9065bd3300';
 			 
 	if($_REQUEST['user_id'] != '' && $_REQUEST['phone_number'] != '')
 	{
@@ -32,13 +32,13 @@
 					id = '".$_REQUEST['user_id']."'	";
 					mysqli_query($db,$insert_query)or die(mysqli_error($db));
 					
-					/*$phone = "+".$_REQUEST['phone_number'];
+					$phone = "+961".$_REQUEST['phone_number'];
 					$client = new Client($account_sid, $auth_token); 
-					$text = 'Your DrinksCoupons Account Verification Code is: '.$otp.'.';
+					$text = 'Your Tikers Account Verification Code is: '.$otp.'.';
 					$messages = $client->messages->create($phone, array( 
-						'From' => '+14159939383',
+						'From' => '+19383003902',
 						'Body' => $text
-					));					*/
+					));
 					
 					$error = "OTP Send Successfully";
 					$result=array('message'=> $error, 'result'=>'1','user_id'=>$_REQUEST['user_id'],'otp_code'=>$otp,'is_verified'=>'0');

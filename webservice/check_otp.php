@@ -2,11 +2,11 @@
 	header("Content-type: application/json");
 	include("connect.php");
 	
-	//require_once 'Twilio/autoload.php';
-	//use Twilio\Rest\Client;
+	require_once 'Twilio/autoload.php';
+	use Twilio\Rest\Client;
 
-	//$account_sid = 'ACabd012958cf094f9290513f0e953004b'; 
-	//$auth_token = 'b84c6bae4f6d228973962984a3b199e6';
+	$account_sid = 'AC22804b80866745cf56e1c7cc469da300'; 
+	$auth_token = '40f104749b1268308496dd9065bd3300';
 			 
 	if($_REQUEST['user_id'] != '' && $_REQUEST['otp_code'] != '')
 	{
