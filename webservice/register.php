@@ -48,9 +48,9 @@
 		}	
 	}
 	else if($_REQUEST['type'] != '' && $_REQUEST['type'] == 'phone'){
-		if($_REQUEST['phone_number'] != ""  && $_REQUEST['username'] != "" && $_REQUEST['password'] != "" && $_REQUEST['longitude'] != "" && $_REQUEST['latitude'] != "")
+		if($_REQUEST['phone_number'] != "" && $_REQUEST['country_code'] != '' && $_REQUEST['username'] != "" && $_REQUEST['password'] != "" && $_REQUEST['longitude'] != "" && $_REQUEST['latitude'] != "")
 		{
-			$check_customer_mobile = mysqli_query($db,"select id,email from user where email='".$_REQUEST['phone_number']."' and username = '".$_REQUEST['username']."' ") or die(mysqli_error($db));	
+			$check_customer_mobile = mysqli_query($db,"select id,email from user where email='".$_REQUEST['phone_number']."' and country_code = '".$_REQUEST['country_code']."' and  username = '".$_REQUEST['username']."' ") or die(mysqli_error($db));	
 			if(mysqli_num_rows($check_customer_mobile) > 0)
 			{
 				$message = "User with the specified phone number or username already exists.";
@@ -59,6 +59,7 @@
 			else{
 				$insert_query = "insert into user set 					
 					phone_number='".$_REQUEST['phone_number']."',
+					country_code='".$_REQUEST['country_code']."',
 					username='".$_REQUEST['username']."',
 					password='".$_REQUEST['password']."',
 					user_type = 'User',
@@ -76,6 +77,7 @@
 						'result'=>'1',
 						'user_id'=>$user_id,
 						'phone_number'=>$_REQUEST['phone_number'],
+						'country_code'=>$_REQUEST['country_code'],
 						'username'=>$_REQUEST['username'],
 						'password'=>$_REQUEST['password'],
 						'is_verified'=>'0',

@@ -44,6 +44,7 @@
 				'password' => $row['password'],			
 				'profile_image' => $profile_image,
 				'is_verified' => $row['is_verified'],
+				'country_code' => $row['country_code'],
 				'user_type' => $row['user_type'],
 				'store_id' => $store_id,
 				'register_type' => $row['register_type'],
