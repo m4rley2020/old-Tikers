@@ -34,7 +34,7 @@ $result=$prs_pageing->number_pageing($sel,20000,10,'N','Y','',$db);
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
-    <title><?php echo $pagetitle; ?> | <?php=$SITE_NAME?></title>
+    <title><?php echo $pagetitle; ?> | <?=$SITE_NAME?></title>
     
     <!--[if lt IE 9]> <script src="assets/plugins/common/html5shiv.js" type="text/javascript"></script> <![endif]-->
     <script src="js/modernizr.js" type="text/javascript"></script>
