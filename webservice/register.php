@@ -48,7 +48,7 @@
 		}	
 	}
 	else if($_REQUEST['type'] != '' && $_REQUEST['type'] == 'phone'){
-		if($_REQUEST['phone_number'] != "" && $_REQUEST['country_code'] != '' && $_REQUEST['username'] != "" && $_REQUEST['password'] != "" && $_REQUEST['longitude'] != "" && $_REQUEST['latitude'] != "")
+		if($_REQUEST['phone_number'] != ""  && $_REQUEST['username'] != "" && $_REQUEST['password'] != "" && $_REQUEST['longitude'] != "" && $_REQUEST['latitude'] != "")
 		{
 			$check_customer_mobile = mysqli_query($db,"select id,email from user where email='".$_REQUEST['phone_number']."' and username = '".$_REQUEST['username']."' ") or die(mysqli_error($db));	
 			if(mysqli_num_rows($check_customer_mobile) > 0)
