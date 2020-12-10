@@ -337,7 +337,7 @@ return chosen
                                                    
                                    </div>
                             </div>
-			   			 <?											
+			   			 <?php											
 							}
 							?>	
 											
@@ -358,7 +358,7 @@ return chosen
                                                     
                                    </div>
                             </div>
-			   			<?											
+			   			<?php											
 						}
 						?>		
                         <div class="form-group">
