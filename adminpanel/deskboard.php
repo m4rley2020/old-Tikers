@@ -134,7 +134,6 @@ echo "here";
                                 </a>						
                             </div>
                         </div>
-
                         <div class="col-md-3 col-sm-3 col-xs-3">
                             <div class="dashboard-stat red">
                                 <div class="visual">
