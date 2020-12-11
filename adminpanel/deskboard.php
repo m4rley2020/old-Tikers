@@ -9,6 +9,7 @@ $challenge_type_query = mysqli_query($db,"select * from challenge_type");
 $challenge_query = mysqli_query($db,"select * from store_challenges");
 $store_query = mysqli_query($db,"select * from store");
 $advertise_query = mysqli_query($db,"select * from advertise");
+$promo_query = mysqli_query($db,"select * from promo_section");
 
 echo "here";
 ?>
@@ -141,13 +142,13 @@ echo "here";
                                 </div>
                                 <div class="details">
                                     <div class="number">
-                                        <?php echo mysqli_num_rows($package_query);?>
+                                        <?php echo mysqli_num_rows($promo_query);?>
                                     </div>
                                     <div class="desc">									
                                         Promo
                                     </div>
                                 </div>
-                                <a class="more" href="manage_package.php">
+                                <a class="more" href="manage_promo.php">
                                     View more <i class="fs-arrow-right-2"></i>
                                 </a>						
                             </div>
