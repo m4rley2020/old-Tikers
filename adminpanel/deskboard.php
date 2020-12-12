@@ -152,6 +152,25 @@ echo "here";
                                 </a>						
                             </div>
                         </div>
+
+                        <div class="col-md-3 col-sm-3 col-xs-3">
+                            <div class="dashboard-stat red">
+                                <div class="visual">
+                                    <i class="fa fa-user"></i>
+                                </div>
+                                <div class="details">
+                                    <div class="number">
+                                        <?php echo mysqli_num_rows($promo_query);?>
+                                    </div>
+                                    <div class="desc">									
+                                        App store
+                                    </div>
+                                </div>
+                                <a class="more" href="manage_in_app_store.php">
+                                    View more <i class="fs-arrow-right-2"></i>
+                                </a>						
+                            </div>
+                        </div>
                         
                         <div class="col-md-3 col-sm-3 col-xs-3">
                             <div class="dashboard-stat purple">
