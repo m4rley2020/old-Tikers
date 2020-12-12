@@ -2,7 +2,7 @@
 include("connect.php");
 include("FCKeditor/fckeditor.php") ;
 $LeftLinkSection = 1;
-$pagetitle="promo";
+$pagetitle="promo_section";
 
 /* ---------------------- Declare Fields ---------------------- */
 
@@ -59,10 +59,9 @@ if(isset($_REQUEST['Submit']))
 						return;
 					}
 					
-					$display_order=sam_get_display_order("promo","");
 					
-                    $query = "insert into promo_section 
-                    name='$name',promo_image='$promo_image'"; 
+					$query = "insert into promo_section 
+					set name='$name',promo_image='$promo_image'"; 
 					mysqli_query($db,$query) or die(mysqli_error($db));
 					location("manage_promo.php?msg=1");
 				break;
@@ -74,7 +73,7 @@ if(isset($_REQUEST['Submit']))
 						location("add_promo.php?mode=edit&id=".$_REQUEST['id']."&msg=4");	
 						return;
 					}
-					$query = "update promo set name='$name'";
+					$query = "update promo_section set name='$name',";
 						
 						if($promo_image!="")
 						{
@@ -96,7 +95,7 @@ if(isset($_REQUEST['mode']))
 	{
 		case 'delete' :
 			deletefull1($_REQUEST['id']);
-$query = "delete from promo where id=".$_REQUEST['id'];     
+$query = "delete from promo_section where id=".$_REQUEST['id'];     
 			mysqli_query($db,$query) or die(mysqli_error($db));
 			location("manage_promo.php?msg=3");
 		break;
@@ -105,7 +104,7 @@ $query = "delete from promo where id=".$_REQUEST['id'];
 	
 	function deletefull1($iid)
 	{
-		$dquery = "select promo_image from promo where id=".$iid;
+		$dquery = "select promo_image from promo_section where id=".$iid;
 		$dresult = mysqli_query($db,$dquery);
 		while($drow = mysqli_fetch_array($dresult))
 		{
@@ -218,7 +217,7 @@ return chosen
                             <a href="deskboard.php">Dashboard</a>
                         </li>
                         
-                        <li class="current">Promo Section</li>
+                        <li class="current">Promo</li>
                     </ul>
 
                 </div>  <!-- End : Breadcrumbs -->
@@ -230,13 +229,13 @@ return chosen
                         <?php 
                                         $msg = $_REQUEST['msg'];
                                         if($msg == 1)
-                                                echo "<span style='color:#CC6600;'>promo Added Successfully.</span>";	 
+                                                echo "<span style='color:#CC6600;'>Package Added Successfully.</span>";	 
                                         elseif($msg == 2)
-                                                echo "<span style='color:#CC6600;'>promo Updated Successfully.</span>";	 
+                                                echo "<span style='color:#CC6600;'>Package Updated Successfully.</span>";	 
                                         elseif($msg == 3)
-                                                echo "<span style='color:#CC6600;'>promo Deleted Successfully.</span>";	 
+                                                echo "<span style='color:#CC6600;'>Package Deleted Successfully.</span>";	 
                                         elseif($msg == 4)
-                                                echo "<span style='color:#CC6600;'>promo with this name is already exists.</span>";	 
+                                                echo "<span style='color:#CC6600;'>Package with this name is already exists.</span>";	 
 
                                         if($gmsg == 1)
                                                 echo "Please enter all the information."; 
@@ -285,7 +284,9 @@ return chosen
                             </div>
 			   
                         
-			                    
+                        </div>
+			   
+               			                 
                                     <div class="form-actions">                                        
                                         <input type="hidden" value="<?=$_GET["id"]; ?>" name="id">
                                          <?php if($_REQUEST['mode'] == 'add') { ?>
@@ -339,10 +340,10 @@ return chosen
 <script language="javascript">
 function keshav_check()
 {
-			/* -------------- promo Name Validation --------------------- */
+			/* -------------- Package Name Validation --------------------- */
 			if(document.getElementById("name").value.split(" ").join("") == "" || document.getElementById("name").value.split(" ").join("") == "0")
 			{
-				alert("Please enter promo Name.");
+				alert("Please enter Promo Name.");
 				document.getElementById("name").focus();
 				return false;
 			}
@@ -354,6 +355,8 @@ function keshav_check()
 				document.frm.promo_image.focus();
 				return false
 			}
+			
+			
 			
 			
 }
