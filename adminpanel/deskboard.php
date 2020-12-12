@@ -10,6 +10,7 @@ $challenge_query = mysqli_query($db,"select * from store_challenges");
 $store_query = mysqli_query($db,"select * from store");
 $advertise_query = mysqli_query($db,"select * from advertise");
 $promo_query = mysqli_query($db,"select * from promo_section");
+$app_store_query = mysqli_query($db,"select * from in_app_store");
 
 echo "here";
 ?>
@@ -160,7 +161,7 @@ echo "here";
                                 </div>
                                 <div class="details">
                                     <div class="number">
-                                        <?php echo mysqli_num_rows($promo_query);?>
+                                        <?php echo mysqli_num_rows($app_store_query);?>
                                     </div>
                                     <div class="desc">									
                                         App store
