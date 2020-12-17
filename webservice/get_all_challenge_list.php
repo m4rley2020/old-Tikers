@@ -43,7 +43,7 @@
 							$store_rating = number_format($get_query_data3['rating'],2);
 						}
 					}
-					
+
 					$get_query4 = "select name from challenge_type where id = '".$row['challenge_type_id']."'";		
 					$get_query_res4 =   mysqli_query($db,$get_query4)or die(mysqli_error($db));
 					if(mysqli_num_rows($get_query_res4)>0)
@@ -77,7 +77,8 @@
 							"points" => $row['points'],
 							"description" => $row['description'],
 							"rating" => $store_rating,
-							"counter"=>$row['counter']
+							"counter"=>$row['counter'],
+							"challenge_type"=>$challenge_type
 							);
 			}
 
