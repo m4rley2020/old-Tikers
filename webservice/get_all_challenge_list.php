@@ -43,6 +43,17 @@
 							$store_rating = number_format($get_query_data3['rating'],2);
 						}
 					}
+					
+					$get_query4 = "select name from challenge_type where id = '".$row['challenge_type_id']."'";		
+					$get_query_res4 =   mysqli_query($db,$get_query4)or die(mysqli_error($db));
+					if(mysqli_num_rows($get_query_res4)>0)
+					{							
+						while($get_query_data4 = mysqli_fetch_array($get_query_res4))
+						{
+							$challenge_type = $get_query_data4['name'];
+						}
+					}
+
 
 				if(file_exists("../challenge_image/".$challenge_image) && $challenge_image!="")
 				{
