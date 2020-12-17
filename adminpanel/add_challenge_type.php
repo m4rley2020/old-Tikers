@@ -285,7 +285,7 @@ return chosen
                                                     <br />
                                                     <img alt="Image" src="../include/sample.php?nm=../challenge_image/<?=$challenge_image;?>&mwidth=88&mheight=88" border="0" />
 
-                                                    <?											
+                                                    <?php											
                                             }
                                             ?>		
                                    </div>
