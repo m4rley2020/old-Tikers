@@ -204,7 +204,7 @@ echo "here";
                                         Challenges
                                     </div>
                                 </div>
-                                <a class="more" href="manage_store.php">
+                                <a class="more" href="manage_challenge.php">
                                     View more <i class="fs-arrow-right-2"></i>
                                 </a>						
                             </div>

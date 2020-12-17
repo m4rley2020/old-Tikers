@@ -381,7 +381,7 @@ return chosen
                                                     <br />
                                                     <img alt="Challenge Image" src="../challenge_image/<?=$challenge_image;?>" width="125" border="0" />
 
-                                                    <?											
+                                                    <?php											
                                             }
                                             ?>		
                                    </div>

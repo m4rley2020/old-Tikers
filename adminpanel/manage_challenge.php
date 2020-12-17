@@ -95,7 +95,7 @@ $result=$prs_pageing->number_pageing($sel,20000,10,'N','Y','',$db);
                         <button class="close" data-dismiss="alert"></button>
                         
                           <span style="color:#CC6600;">
-                          <?
+                          <?php
                                     if($_GET["msg"]==1)
                                             echo "Challenge Added Successfully.";
                                     elseif($_GET["msg"]==2)
