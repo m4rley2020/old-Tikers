@@ -271,13 +271,13 @@ return chosen
                               <span class="required">*</span>User
                              </label>     
                              <div class="col-md-9">
-                        <select class="form-control required" name="user_id" id="user_id" ><option value="-" <?php if($user_id == '-'){ ?>selected="selected"<?php } ?>>Please Select</option><?php $tmp_cmb_array1 = explode(",",$user_id); ?><?										
+                        <select class="form-control required" name="user_id" id="user_id" ><option value="-" <?php if($user_id == '-'){ ?>selected="selected"<?php } ?>>Please Select</option><?php $tmp_cmb_array1 = explode(",",$user_id); ?><?php										
 											$add_result1 = mysqli_query($db,"select * from user") or die(mysqli_error($db));			
 											while($add_row1 = mysqli_fetch_array($add_result1))
 											{	
 											?>
 											<option value="<?=$add_row1['id']?>" <?php if($user_id!="" && in_array($add_row1['id'],$tmp_cmb_array1)){ echo 'selected="selected"'; } ?>><?=$add_row1['first_name']." ".$add_row1['last_name']." (".$add_row1['username'].")";?></option>
-											<?
+											<?php
 											}										
 											?> </select>
 								 
@@ -304,7 +304,7 @@ return chosen
                                             {   
                                             ?>
                                             <option value="<?=$add_row1['id']?>" <?php if($store_type!="" && in_array($add_row1['id'],$tmp_cmb_array1)){ echo 'selected="selected"'; } ?>><?=$add_row1['store_type'];?></option>
-                                            <?
+                                            <?php
                                             }                                       
                                             ?> </select>
                      <!-- <input class="form-control required" name="store_type" type="text" id="store_type" value="<?=$store_type; ?>" /> -->
@@ -360,7 +360,7 @@ return chosen
                                                     <br />
                                                     <img alt="image" src="../include/sample.php?nm=../store_image/<?=$store_image;?>&mwidth=88&mheight=88" border="0" />
 
-                                                    <?											
+                                                    <?php											
                                             }
                                             ?>		
                                    </div>
