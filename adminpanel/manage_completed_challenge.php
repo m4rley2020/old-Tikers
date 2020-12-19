@@ -16,7 +16,7 @@ if(isset($_REQUEST['btnDelete']))
 		mysql_query($query);
 		
 	}
-	location("manage_store.php?msg=3");
+    location("manage_store.php?msg=3");
 }
 $LeftLinkSection = 1;
 $pagetitle="Completed Challenge";
