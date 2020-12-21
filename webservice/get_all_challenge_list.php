@@ -78,6 +78,7 @@
 							"description" => $row['description'],
 							"rating" => $store_rating,
 							"counter"=>$row['counter'],
+							"challenge_type_id"=>$row['challenge_type_id'],
 							"challenge_type"=>$challenge_type
 							);
 			}
