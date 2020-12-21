@@ -4,12 +4,11 @@
 			 
 	if($_REQUEST['user_id'] != '')
 	{
-		$id = $_REQUEST["id"];
 		
 		$get_query2 = "select * from in_app_store order by id desc";
 		$get_query_res2 =   mysqli_query($db,$get_query2)or die(mysqli_error($db));
 
-		$get_query1 = "select points from user where id = $id";
+		$get_query1 = "select points from user where id = ".$_REQUEST['user_id']." ";
 		$get_query_res1 =   mysqli_query($db,$get_query1)or die(mysqli_error($db));
 
 		$get_q1 = mysqli_fetch_array($get_query_res1);
