@@ -12,8 +12,8 @@
 		$get_query1 = "select points from user where id = $id";
 		$get_query_res1 =   mysqli_query($db,$get_query1)or die(mysqli_error($db));
 
-		$q1 = mysqli_fetch_array($get_query_res1);
-		$points = $q1['points'];
+		$get_q1 = mysqli_fetch_array($get_query_res1);
+		$points = $get_q1['points'];
 
 		if(mysqli_num_rows($get_query_res2)>0)
 		{
