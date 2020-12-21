@@ -83,7 +83,7 @@ if(isset($_REQUEST['Submit']))
 						return;
 					}
 					
-					$query = "insert into store_challenges set package='$package', challenge_type_id='$challenge_type', name='$challenge_name', challeng_image='$challenge_image', description = '$challenge_description', location='$location', lattitude='$latitude', longitude='$longitude', points = '$challenge_points', challenge_category = 'Free', created_date=now() "; 
+					$query = "insert into store_challenges set package='$package', challenge_type_id='$challenge_type', name='$challenge_name', challeng_image='$challenge_image', description = '$challenge_description', location='$location', lattitude='$latitude', longitude='$longitude', points = '$challenge_points', challenge_category = 'Free'"; 
 					mysqli_query($db,$query) or die(mysqli_error($db));
 					location("manage_challenge.php?msg=1");
 				break;
@@ -397,14 +397,6 @@ return chosen
                      </div>
 											
 						<?php if($_REQUEST['mode'] == 'edit'){?>
-			    			<div class="form-group">
-								<label class="col-md-3 control-label">
-								  <span class="required">*</span>Created Date
-								 </label>     
-								 <div class="col-md-9">
-								 <input class="form-control required" name="add_date" type="text" id="add_date" value="<?=$add_date; ?>" size="35" maxlength="50" readonly="true">
-									</div>
-                            </div>
 						<?php } ?>
 			   
 			 
