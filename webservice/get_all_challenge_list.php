@@ -57,7 +57,7 @@
 
 				if(file_exists("../challenge_image/".$challenge_image) && $challenge_image!="")
 				{
-					$challenge_image1 = $SITE_URL."../challenge_image/".$challenge_image;
+					$challenge_image1 = $SITE_URL."/challenge_image/".$challenge_image;
 				}
 				else
 				{

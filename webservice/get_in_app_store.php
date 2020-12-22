@@ -26,7 +26,7 @@
 				
 				if(file_exists("../app_store_image/".$store_image) && $store_image!="")
 				{
-					$store_image1 = $SITE_URL."../app_store_image/".$store_image;
+					$store_image1 = $SITE_URL."/app_store_image/".$store_image;
 				}
 				else
 				{
