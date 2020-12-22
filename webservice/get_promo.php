@@ -21,7 +21,7 @@
 				
 				if(file_exists("../promo_image/".$promo_image) && $promo_image!="")
 				{
-					$promo_image1 = $SITE_URL."../promo_image/".$promo_image;
+					$promo_image1 = $SITE_URL."/promo_image/".$promo_image;
 				}
 				else
 				{
