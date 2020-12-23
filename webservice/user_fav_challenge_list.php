@@ -10,7 +10,7 @@
 		{
 			while($get_query_date1 = mysqli_fetch_array($get_query_res1))
 			{
-				$get_query2 = "select * from store_challenges where id = '".$get_query_date1['challange_id']."' order by id desc";
+				$get_query2 = "select * from store_challenges where id = '".$get_query_date1['challenge_id']."' order by id desc";
 				$get_query_res2 =   mysqli_query($db,$get_query2)or die(mysqli_error($db));
 				
 				if(mysqli_num_rows($get_query_res2)>0)
