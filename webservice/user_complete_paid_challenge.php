@@ -31,9 +31,14 @@
 			mysqli_query($db,$update_user)or die(mysqli_error($db));
 
 					
-					$error = "Challenge Completed Successfully";
-					$result=array('message'=> $error, 'result'=>'1');
+				$error = "user and point updated Successfully";
+				$result=array('message'=> $error, 'result'=>'1');
 
+			/* ---------------------- check code and get user points ---------------------- */
+			$update_code = "UPDATE store_code SET user_id = '".$_REQUEST['user_id']."', challenge_id ='".$_REQUEST['challenge_id']."', is_used = 'Yes' WHERE code ='".$_REQUEST['code']."'";
+			mysqli_query($db,$update_code)or die(mysqli_error($db));
+				$error = "store_code updated Successfully";
+				$result=array('message'=> $error, 'result'=>'1');
 			/* ---------------------- counter ---------------------- */
 			$counter;
 			$q1 = "select counter from store_challenges where id='".$_REQUEST['challenge_id']."'";
