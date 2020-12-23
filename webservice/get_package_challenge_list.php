@@ -26,14 +26,17 @@
 				$challenge_creatd_by = '';
 				$store_name = '';
 				
-				$rating = number_format(GetValue("store","rating","id",$store_id),2) ;
-				if($store_id > 0){
-					$store_name = GetValue("store","name","id",$store_id) ;
-					$challenge_creatd_by = "Store";
-				}
-				else{
-					$challenge_creatd_by = "Admin";
-				}
+				$get_query3 = "select name,rating from store where id = '".$row['store_id']."'";		
+				$get_query_res3 =   mysqli_query($db,$get_query3)or die(mysqli_error($db));
+					
+					if(mysqli_num_rows($get_query_res3)>0)
+					{							
+						while($get_query_data3 = mysqli_fetch_array($get_query_res3))
+						{
+							$store_name = $get_query_data3['name'];
+							$store_rating = number_format($get_query_data3['rating'],2);
+						}
+					}
 				
 				if(file_exists("../challenge_image/".$challeng_image) && $challeng_image!="")
 				{
@@ -58,7 +61,7 @@
 				"created_by"=>$challenge_creatd_by,
 				"store_id"=>$store_id,
 				"store_name"=>$store_name,
-				"rating"=>$rating				
+				"rating"=>$store_rating
 				);
 				
 			}	
