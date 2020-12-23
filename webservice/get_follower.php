@@ -5,14 +5,14 @@
 	if($_REQUEST['user_id'] != '')
 	{
 		
-		$get_query = "select from_user from friend where to_user = '".$_REQUEST['user_id']."'  ";
+		$get_query = "select to_user from friend where from_user = '".$_REQUEST['user_id']."'";
 		$get_query_res =   mysqli_query($db,$get_query)or die(mysqli_error($db));
 		
 		if(mysqli_num_rows($get_query_res)>0)
 		{
 			while($get_query_date = mysqli_fetch_array($get_query_res))
 			{
-				$user_id = $get_query_date['from_user'];
+				$user_id = $get_query_date['to_user'];
 				
 				$get_user = mysqli_query($db,"select * from user where id = '".$user_id."' ") or die(mysqli_error($db));
 				
