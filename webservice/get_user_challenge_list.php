@@ -3,7 +3,7 @@
 	include("connect.php");
 
 	
-	if($_REQUEST['user_id'] != '' && $_REQUEST['latitude'] != '' && $_REQUEST['longitude'] != '' && $_REQUEST['challenge_type_id'] != '')
+	if($_REQUEST['user_id'] != '' && $_REQUEST['latitude'] != '' && $_REQUEST['longitude'] != '')
 	{
 		
 		$latitude = $_REQUEST['latitude'];
@@ -14,6 +14,11 @@
 		if($_REQUEST['challengename'] != '')
 		{
 			$get_query .= "and name like '%".$_REQUEST['challengename']."%' ";
+		}
+		
+		if($_REQUEST['challenge_type_id'] != '')
+		{
+			$get_query .= " and challenge_type_id = ".$_REQUEST['challenge_type_id']." ";
 		}
 		
 		if($_REQUEST['storename'] != '')
