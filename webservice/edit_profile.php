@@ -117,9 +117,7 @@
 								'store_id' => $store_id,
 								'country_code' => $row['country_code'],
 								'register_type' => $row['register_type'],
-								'is_private' => $row['is_private'],
 								'add_date' => $row['add_date'],
-
 								); 
 					}
 					
