@@ -15,26 +15,24 @@
 		}
 		else
 		{
-		
-		$challenge_id = $_REQUEST['challenge_id'];
-		
-		$get_store_id = "select store_id from store_challenges where challenge_id = '".$_REQUEST['challenge_id']."'";
-				$get_id_res = mysqli_query($db,$get_store_id) or die(mysqli_error($db));
-				$get_id_row = mysqli_fetch_array($get_id_res);
-				
-				$store_id = $get_id_row['store_id'];
 
-		$insert_query = "insert into favourite set 					
-				user_id='".$_REQUEST['user_id']."',
-				challenge_id='".$_REQUEST['challenge_id']."',
-				add_date=NOW(),				
-				store_id = '".$store_id."'";
-				mysqli_query($db,$insert_query)or die(mysqli_error($db));
-				$inserted_id = mysqli_insert_id();
-				$add_date = GetValue("favourite","add_date","id",$inserted_id);				
-					
-				$error = "Post Added Successfully";
-				$result=array('message'=> $error, 'result'=>'1','id'=>$inserted_id,'add_date'=>$add_date);
+			$get_query2 = "select store_id from store_challenges where id = '".$_REQUEST['challenge_id']."'";
+			$get_query_res2 =   mysqli_query($db,$get_query2)or die(mysqli_error($db));
+			$get_q2 = mysqli_fetch_array($get_query_res2);
+
+			$store_id = $get_q2['store_id'];
+
+			$insert_query = "insert into favourite set 					
+					user_id='".$_REQUEST['user_id']."',
+					challenge_id='".$_REQUEST['challenge_id']."',
+					add_date=NOW(),				
+					store_id = '".$store_id."'";
+					mysqli_query($db,$insert_query)or die(mysqli_error($db));
+					$inserted_id = mysqli_insert_id();
+					$add_date = GetValue("favourite","add_date","id",$inserted_id);				
+						
+					$error = "Post Added Successfully";
+					$result=array('message'=> $error, 'result'=>'1','id'=>$inserted_id,'add_date'=>$add_date);
 		}
 	}
 	else
