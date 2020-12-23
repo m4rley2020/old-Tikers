@@ -67,7 +67,7 @@
 					$result=array('message'=> $error, 'result'=>'1');
 
 					$insert_query2 = "update store_code set user_id = '".$_REQUEST['user_id']."' ,
-					challenge_id = '".$_REQUEST['challenge_id']."', is_used = 'Yes' where code = '".$_REQUEST['code']."' ";
+					challenge_id = '".$_REQUEST['challenge_id']."', is_used = 'Yes', date=NOW() where code = '".$_REQUEST['code']."' ";
 					
 					mysqli_query($db,$insert_query2)or die(mysqli_error($db));
 					$post_id = mysqli_insert_id();
