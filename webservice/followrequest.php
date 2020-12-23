@@ -22,21 +22,23 @@
 				$type="Following";
 				
 			$insert_review = mysqli_query($db,"insert into friend set from_user='".$from_user_id."', to_user='".$to_user_id."', status='".$status."', add_date = NOW() ");
+
 			
+			$result=array('message'=> $error, 'result'=>'1');
 		}
 		else
 		{
 			
 			$result["status"]="0";
 			$error = "You alerady following this user.";
-			$result["message"]=$error; 	
+			$result=array('message'=> $error, 'result'=>'0'); 	
 		}
 	}
 	else
 	{
 		$result["status"]="0";
 		$error = "Please enter all required field";
-		$result["message"]=$error;
+		$result=array('message'=> $error, 'result'=>'0');
 	}
 
 $result=json_encode($result);
