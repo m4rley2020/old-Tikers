@@ -21,7 +21,7 @@
 			$challenge_points= $get_code_fetch['points'];
 
 			$points_query="select points from user where id='".$_REQUEST['user_id']."'";
-			$get_points= mysqli_query($db,$code_query)or die(mysqli_error($db));
+			$get_points= mysqli_query($db,$points_query)or die(mysqli_error($db));
 			$get_points_fetch = mysqli_fetch_array($get_code);
 			$user_points= $get_points_fetch['points'];
 
