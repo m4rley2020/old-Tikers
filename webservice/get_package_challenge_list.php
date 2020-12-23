@@ -32,8 +32,10 @@
 				{
 					$challeng_image = "";
 				}	
+
 				
-				$get_query3 = "select name,rating from store where id = '".$row['store_id']."'";		
+			}	
+			$get_query3 = "select name,rating from store where id = '".$row['store_id']."'";		
 				$get_query_res3 =   mysqli_query($db,$get_query3)or die(mysqli_error($db));
 					
 					if(mysqli_num_rows($get_query_res3)>0)
@@ -61,8 +63,6 @@
 				"store_name"=>$store_name,
 				"rating"=>$store_rating
 				);
-				
-			}	
 			$message="Package Challenge found.";
 			$result=array('message'=> $message, 'result'=>'1','responseData'=>$data);		
 		}
