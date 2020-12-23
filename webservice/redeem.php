@@ -32,18 +32,23 @@
                  
         $user_points = $user_points - $cost;
 
+        $data[]=array(
+            "points"=>$user_points
+            );
+
         $insert_query2 = "update user set points ='".$user_points."' where id='".$_REQUEST['user_id']."'";
         mysqli_query($db,$insert_query2)or die(mysqli_error($db));
 
-        $error = "Challenge Completed Successfully";
-				$result=array('message'=> $error, 'result'=>'1');
+            $error = "Challenge Completed Successfully";
+            $result=array('message'=> $error, 'result'=>'1');
 
 
-        }else{
-
+        }
+        else
+        {
         $error = "Not enough points";
         $result=array('message'=> $error,'result' =>'0');
-    }
+        }
     }else
 	{
 		$error = "Please enter all required fields";
