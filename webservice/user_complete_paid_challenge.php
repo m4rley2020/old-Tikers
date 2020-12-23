@@ -17,7 +17,7 @@
 		/* ---------------------- check code and get user points ---------------------- */
 		if(mysqli_num_rows($get_code)>0){
 
-			$get_codes_fetch = mysqli_fetch_array($get_code);
+			$get_code_fetch = mysqli_fetch_array($get_code);
 			$challenge_points= $get_code_fetch['points'];
 
 			$points_query="select points from user where id='".$_REQUEST['user_id']."'";
