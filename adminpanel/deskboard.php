@@ -11,6 +11,7 @@ $store_query = mysqli_query($db,"select * from store");
 $advertise_query = mysqli_query($db,"select * from advertise");
 $promo_query = mysqli_query($db,"select * from promo_section");
 $app_store_query = mysqli_query($db,"select * from in_app_store");
+$store_code = mysqli_query($db,"select * from store_code");
 
 echo "here";
 ?>
@@ -173,6 +174,25 @@ echo "here";
                             </div>
                         </div>
                         
+                        <div class="col-md-3 col-sm-3 col-xs-3">
+                            <div class="dashboard-stat red">
+                                <div class="visual">
+                                    <i class="fa fa-user"></i>
+                                </div>
+                                <div class="details">
+                                    <div class="number">
+                                        <?php echo mysqli_num_rows($store_code);?>
+                                    </div>
+                                    <div class="desc">									
+                                        App store
+                                    </div>
+                                </div>
+                                <a class="more" href="manage_store_code.php">
+                                    View more <i class="fs-arrow-right-2"></i>
+                                </a>						
+                            </div>
+                        </div>
+
                         <div class="col-md-3 col-sm-3 col-xs-3">
                             <div class="dashboard-stat purple">
                                 <div class="visual">
