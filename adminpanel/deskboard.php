@@ -184,7 +184,7 @@ echo "here";
                                         <?php echo mysqli_num_rows($store_code);?>
                                     </div>
                                     <div class="desc">									
-                                        App store
+                                        Store Codes
                                     </div>
                                 </div>
                                 <a class="more" href="manage_store_code.php">
