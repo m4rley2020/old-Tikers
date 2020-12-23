@@ -62,7 +62,8 @@
 						"lattitude"=>$lattitude,
 						"longitude"=>$longitude,
 						"points"=>$points,
-						"rating"=>$rating				
+						"rating"=>$store_rating,
+						"store_name"=>$store_name
 						);
 						
 					}	
