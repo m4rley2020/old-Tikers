@@ -10,9 +10,6 @@
 		
 		if(mysqli_num_rows($get_query_res2)>0)
 		{
-			
-			
-			
 			while($get_query_date2 = mysqli_fetch_array($get_query_res2))
 			{
 				$promo_id = $get_query_date2['id'];
