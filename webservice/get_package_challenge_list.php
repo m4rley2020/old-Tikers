@@ -1,7 +1,7 @@
 <?php
 	header("Content-type: application/json");
 	include("connect.php");
-			 
+
 	if($_REQUEST['packageid'] != '')
 	{
 		$packageid = $_REQUEST['packageid'];
@@ -23,8 +23,15 @@
 				$longitude = $get_query_date2['longitude'];
 				$points = $get_query_date2['points'];
 				$store_id = $get_query_date2['store_id'];
-				$challenge_creatd_by = '';
-				$store_name = '';
+				
+				if(file_exists("../challenge_image/".$challeng_image) && $challeng_image!="")
+				{
+					$challeng_image = $SITE_URL."/challenge_image/".$challeng_image;
+				}
+				else
+				{
+					$challeng_image = "";
+				}	
 				
 				$get_query3 = "select name,rating from store where id = '".$row['store_id']."'";		
 				$get_query_res3 =   mysqli_query($db,$get_query3)or die(mysqli_error($db));
@@ -36,16 +43,7 @@
 							$store_name = $get_query_data3['name'];
 							$store_rating = number_format($get_query_data3['rating'],2);
 						}
-					}
-				
-				if(file_exists("../challenge_image/".$challeng_image) && $challeng_image!="")
-				{
-					$challeng_image = $SITE_URL."/challenge_image/".$challeng_image;
-				}
-				else
-				{
-					$challeng_image = "";
-				}						
+					}					
 				
 				$data[]=array(
 				"challenge_id"=>$id,
