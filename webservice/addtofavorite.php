@@ -19,7 +19,7 @@
 		$challenge_id = $_REQUEST['challenge_id'];
 		
 		$get_store_id = "select store_id from store_challenges where challenge_id = '".$_REQUEST['challenge_id']."'";
-				$get_id_res = mysqli_query($db,$get_user) or die(mysqli_error($db));
+				$get_id_res = mysqli_query($db,$get_store_id) or die(mysqli_error($db));
 				$get_id_row = mysqli_fetch_array($get_id_res);
 				
 				$store_id = $get_id_row['store_id'];
