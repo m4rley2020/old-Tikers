@@ -56,7 +56,6 @@
 				"lattitude"=>$lattitude,
 				"longitude"=>$longitude,
 				"points"=>$points,
-				"created_by"=>$challenge_creatd_by,
 				"store_id"=>$store_id,
 				"store_name"=>$store_name,
 				"rating"=>$store_rating
