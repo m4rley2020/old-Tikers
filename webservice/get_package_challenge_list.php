@@ -5,7 +5,7 @@
 	if($_REQUEST['packageid'] != '')
 	{
 		$packageid = $_REQUEST['packageid'];
-		$get_query2 = "select * from store_challenges where package like '%$packageid%' and is_deleted = 0 and is_approved = 1 order by id desc";
+		$get_query2 = "select * from store_challenges where package like '%$packageid%'";
 		$get_query_res2 = mysqli_query($db,$get_query2)or die(mysqli_error($db));
 		
 		if(mysqli_num_rows($get_query_res2)>0)
