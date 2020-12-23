@@ -40,7 +40,7 @@
         mysqli_query($db,$insert_query2)or die(mysqli_error($db));
 
             $error = "Challenge Completed Successfully";
-            $result=array('message'=> $error, 'result'=>'1');
+            $result=array('message'=> $error, 'result'=>'1','responseData'=>$data);
 
 
         }
