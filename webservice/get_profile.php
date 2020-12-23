@@ -23,9 +23,7 @@
 				$last_name = $get_query_date2['last_name'];
 				$gender = $get_query_date2['gender'];
 				$bio = $get_query_date2['bio'];
-				$email = $get_query_date2['email'];
 				$profile_image = $get_query_date2['profile_image'];
-				$is_private = $get_query_date2['is_private'];
 				$country_code = $get_query_date2['country_code'];
 				$register_type = $get_query_date2['register_type'];
 				
@@ -61,9 +59,7 @@
 				"last_name"=>$last_name,
 				"gender"=>$gender,
 				"bio"=>$bio,
-				"email"=>$email,
 				"profile_image"=>$profile_image1,
-				"is_private"=>$is_private,
 				"challengestot"=>$challengestot,
 				"follow_total"=>$follow_total,
 				"following_total"=>$following_total,
