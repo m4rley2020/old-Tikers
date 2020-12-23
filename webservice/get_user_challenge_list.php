@@ -3,7 +3,7 @@
 	include("connect.php");
 
 	
-	if($_REQUEST['user_id'] != '' && $_REQUEST['latitude'] != '' && $_REQUEST['longitude'] != '')
+	if($_REQUEST['user_id'] != '' && $_REQUEST['latitude'] != '' && $_REQUEST['longitude'] != '' && $_REQUEST['challenge_type_id'] != '')
 	{
 		
 		$latitude = $_REQUEST['latitude'];
