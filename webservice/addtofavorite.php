@@ -18,7 +18,11 @@
 		
 		$challenge_id = $_REQUEST['challenge_id'];
 		
-		$store_id = GetValue("store_challenges","store_id","id",$challenge_id);
+		$get_store_id = "select store_id from store_challenges where challenge_id = '".$_REQUEST['challenge_id']."'";
+				$get_id_res = mysqli_query($db,$get_user) or die(mysqli_error($db));
+				$get_id_row = mysqli_fetch_array($get_id_res);
+				
+				$store_id = $get_id_row['store_id'];
 
 		$insert_query = "insert into favourite set 					
 				user_id='".$_REQUEST['user_id']."',
