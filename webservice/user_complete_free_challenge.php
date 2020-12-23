@@ -13,7 +13,7 @@
 		if($_FILES['challenge_image']['name']!="")
 		{	
 			$challenge_image = str_replace(" ","_",rand(1,999).trim($_FILES['challenge_image']['name']));
-			move_uploaded_file($_FILES["challenge_image"]["tmp_name"],"/complete_challenge_image/".$challenge_image);
+			move_uploaded_file($_FILES["challenge_image"]["tmp_name"],"../complete_challenge_image/".$challenge_image);
 		}
 
 		$counter;
