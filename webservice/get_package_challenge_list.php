@@ -35,17 +35,17 @@
 
 				
 			}	
-			$get_query3 = "select name,rating from store where id = '".$row['store_id']."'";		
+			$get_query3 = "select name,rating from store where id = '".$store_id."'";		
 				$get_query_res3 =   mysqli_query($db,$get_query3)or die(mysqli_error($db));
-					
-					if(mysqli_num_rows($get_query_res3)>0)
-					{							
-						while($get_query_data3 = mysqli_fetch_array($get_query_res3))
-						{
-							$store_name = $get_query_data3['name'];
-							$store_rating = number_format($get_query_data3['rating'],2);
-						}
-					}					
+				
+				if(mysqli_num_rows($get_query_res3)>0)
+				{							
+					while($get_query_data3 = mysqli_fetch_array($get_query_res3))
+					{
+						$store_name = $get_query_data3['name'];
+						$store_rating = number_format($get_query_data3['rating'],2);
+					}
+				}					
 				
 				$data[]=array(
 				"challenge_id"=>$id,
