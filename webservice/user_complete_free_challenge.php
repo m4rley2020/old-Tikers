@@ -43,7 +43,8 @@
 				user_id='".$_REQUEST['user_id']."',
 				challenge_id='".$_REQUEST['challenge_id']."',
 				store_id='".$_REQUEST['store_id']."',
-				challenge_image='".$challenge_image."',				
+				challenge_image='".$challenge_image."',
+				points = '".$challenge_points."',				
 				add_date = NOW()";
 				mysqli_query($db,$insert_query)or die(mysqli_error($db));
 				$post_id = mysqli_insert_id();

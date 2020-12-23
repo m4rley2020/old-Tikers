@@ -11,7 +11,7 @@
 			move_uploaded_file($_FILES["challenge_image"]["tmp_name"],"../complete_challenge_image/".$challenge_image);
 		}
 		
-		$code_query= "select code, points from store_code where code ='".$_REQUEST['code']."' AND is_used = 'No' ";
+		$code_query= "select * from store_code where code ='".$_REQUEST['code']."' AND is_used = 'No' ";
 		$get_code= mysqli_query($db,$code_query)or die(mysqli_error($db));
 
 		/* ---------------------- check code and get user points ---------------------- */
@@ -31,14 +31,9 @@
 			mysqli_query($db,$update_user)or die(mysqli_error($db));
 
 					
-				$error = "user and point updated Successfully";
-				$result=array('message'=> $error, 'result'=>'1');
+					$error = "Challenge Completed Successfully";
+					$result=array('message'=> $error, 'result'=>'1');
 
-			/* ---------------------- check code and get user points ---------------------- */
-			$update_code = "UPDATE store_code SET user_id = '".$_REQUEST['user_id']."', challenge_id ='".$_REQUEST['challenge_id']."', is_used = 'Yes' WHERE code ='".$_REQUEST['code']."'";
-			mysqli_query($db,$update_code)or die(mysqli_error($db));
-				$error = "store_code updated Successfully";
-				$result=array('message'=> $error, 'result'=>'1');
 			/* ---------------------- counter ---------------------- */
 			$counter;
 			$q1 = "select counter from store_challenges where id='".$_REQUEST['challenge_id']."'";
@@ -70,6 +65,13 @@
 					
 					$error = "Challenge Completed Successfully";
 					$result=array('message'=> $error, 'result'=>'1');
+
+					$insert_query2 = "update store_code set user_id = '".$_REQUEST['user_id']."' ,
+					challenge_id = '".$_REQUEST['challenge_id']."', is_used = 'Yes' where code = '".$_REQUEST['code']."' ";
+					
+					mysqli_query($db,$insert_query2)or die(mysqli_error($db));
+					$post_id = mysqli_insert_id();
+
 		}
 		else
 		{
