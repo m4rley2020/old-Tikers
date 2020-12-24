@@ -1,26 +1,39 @@
-<?php									
+<?php								
 include("connect.php");
 
-if(isset($_REQUEST['btnDelete']))
-{
-	$count1 = $_REQUEST['count'];
+if(isset($_REQUEST['store_id']) && isset($_REQUEST['mode']))
+{	
+    $sel_ch = mysqli_query($db,"select * from store where id='".$_REQUEST['store_id']."' ");
+
 	
-	for($i = 1;$i <= $count1;$i++)
-	{
-		$pid = "pid".$i;
-		$chk = "chk".$i;
-		if(isset($_REQUEST[$chk]))
-		{
-			$query = "DELETE FROM  store where id=".$_REQUEST[$pid];
+	if(mysqli_num_rows($sel_ch) > 0){
+		if($_REQUEST['mode'] == 1) {
+			$approve_ch = "update store set pending = 'No' where id='".$_REQUEST['store_id']."' ";
+			
+			if(mysqli_query($approve_ch)){
+				location("manage_store.php?msg=6");
+			}
+			else{
+				echo mysqli_error($db);
+			}
 		}
-		mysqli_query($db,$query);
-		
+		else if($_REQUEST['mode'] == 0){
+			$reject_ch = "delete from store where id='".$_REQUEST['store_id']."' ";
+			
+			if(mysqli_query($db,$reject_ch)){
+				location("manage_store.php?msg=7");
+			}
+			else{
+				echo mysqli_error($db);
+			}
+		}
 	}
-	location("manage_store.php?msg=3");
 }
+
 $LeftLinkSection = 1;
-$pagetitle="Store";
-$sel= "select * from store where name like '".$_GET["order"]."%' order by name" ;$result=$prs_pageing->number_pageing($sel,20000,10,'N','Y','',$db);
+$pagetitle="Pending Store";
+$sel= "select * from store where pending='Yes' " ;
+$result=$prs_pageing->number_pageing($sel,20000,10,'N','Y');
 
 ?>
 <!DOCTYPE html>
@@ -96,19 +109,15 @@ $sel= "select * from store where name like '".$_GET["order"]."%' order by name" 
                           <span style="color:#CC6600;">
                           <?
                                     if($_GET["msg"]==1)
-                                            echo "Store Added Successfully.";
+                                            echo "Challenge Added Successfully.";
                                     elseif($_GET["msg"]==2)
-                                            echo "Store Updated Successfully.";
+                                            echo "Challenge Updated Successfully.";
                                     elseif($_GET["msg"]==3)
-                                            echo "Store Deleted Successfully.";
+                                            echo "Challenge Deleted Successfully.";
                                     elseif($_GET["msg"]==4)
-                                            echo "Store with this name is already Exist.";	
+                                            echo "Challenge with this name is already Exist.";	
                                     elseif($_GET["msg"]==5)
-                                            echo "This Store is in use. You can not delete this Store.";
-									elseif($_GET["msg"]==6)
-                                            echo "Challenge is Approved successfully";
-									elseif($_GET["msg"]==7)
-                                            echo "Challenge is Rejected successfully";
+                                            echo "This Challenge is in use. You can not delete this Challenge.";	
 
                              ?>
                            </span>
@@ -130,11 +139,19 @@ $sel= "select * from store where name like '".$_GET["order"]."%' order by name" 
                                     <table class="table table-bordered table-hover DynamicTable">
                                         <thead>                                            
                                         <tr>
-						<th width="25px"><input type="checkbox" name="chkAll" id="chkAll" value="chkAll" onclick="chkSelectAll();" /></th>
-						<th width="25px">No.</th><th>Store Name</th><th>Location</th><th>Phone Number</th>
-                                                <th>Actions</th>                                               
-                                                </tr>
-                                                </thead>
+											<!--
+											<th width="25px">
+												<input type="checkbox" name="chkAll" id="chkAll" value="chkAll" onclick="chkSelectAll();" />
+											</th>
+											-->
+											<th width="25px">No.</th>
+											<th>Store</th>
+											<th>Location</th>
+											<th>Phone Number</th>										
+											<th>Created Date</th>
+                                             <th>Actions</th>                                               
+                                        </tr>
+                                        </thead>
                                         <tbody>
                                             
 						  <?php $count=0; 
@@ -143,29 +160,30 @@ $sel= "select * from store where name like '".$_GET["order"]."%' order by name" 
 								$count++;
 						 ?>	 
 							 <tr>
-							  <td>
+							  <!--<td>
 							  <input type="hidden" name="pid<?=$count;?>" id="pid<?=$count;?>" value="<?=$get->id;?>" />
-							  <input type="checkbox" name="chk<?=$count;?>" id="chk<?=$count;?>" value="<?=$count;?>" /></td>
+							  <input type="checkbox" name="chk<?=$count;?>" id="chk<?=$count;?>" value="<?=$count;?>" /></td>-->
 							 <td><?=$count;?>.</td>
-						 
-							  <td > <strong> <?php echo stripslashes($get->name); ?></strong></td>
+                             <td > <strong> <?php echo stripslashes($get->name); ?></strong></td>
 							  <td > <strong> <?php echo stripslashes($get->location); ?></strong></td>
-							  <td > <strong> <?php echo stripslashes($get->phone_number); ?></strong></td><td nowrap>				 
-		<a class="btn mini blue" href="#" onClick="window.location.href='add_store.php?id=<?php echo ($get->id); ?>&mode=edit'"><i class="fa fa-pencil"></i></a> 
-                <a class="btn mini red" href="#" onClick="deleteconfirm('Are you sure you want to delete this <?=$pagetitle;?>?. \n','add_store.php?id=<?php echo($get->id); ?>&mode=delete');"><i class="fa fa-trash-o"></i></a>    
-								 
-				<a class="btn mini green" href="#" onClick="window.location.href='store_pending_store.php?id=<?php echo ($get->id); ?>'">Pending Challenge to Approve</a>    
+								<td > <strong> <?php echo stripslashes($get->phone_number); ?></strong></td>
+							
+							<td class="photo"><strong> <?php echo stripslashes($get->add_date); ?></strong></td>
+								 <td nowrap>				 
+		<a class="btn mini green" href="javascript:void(0);" onClick="window.location.href='store_pending_challenge.php?chid=<?php echo ($get->id); ?>&mode=1'"><i class="fa fa-check"></i>Approve</a> 
+                <a class="btn mini red" href="javascript:void(0);" onClick="window.location.href='store_pending_challenge.php?chid=<?php echo ($get->id); ?>&mode=0'"><i class="fa fa-times"></i>Reject</a>                  
 </td>
 			</tr>	  
                 <?php } ?>	
                              </tbody>
                        </table>
 			  
-				
+					<!--
                                  <div class="row"><div class="col-md-6">
 				 <input type="hidden" name="count" id="count" value="<?=$count;?>" />   
 				 <input style="margin-right:7px;" type="submit" name="btnDelete" id="btnDelete" value="Delete"  onclick="return chkDelete();" class="btn red pull-left" />&nbsp;
-				 <input style="margin-right:7px;" type="button" name="button2" id="button2" value="ADD NEW"  onclick="location.href='add_store.php?mode=add'" class="btn green pull-left" />
+				 <input style="margin-right:7px;" type="button" name="button2" id="button2" value="ADD NEW"  onclick="location.href='add_challenge.php?mode=add'" class="btn green pull-left" />
+					-->
                                     &nbsp; 
                                  
                                   <?php // $result[1] ?> 								
@@ -233,7 +251,7 @@ $sel= "select * from store where name like '".$_GET["order"]."%' order by name" 
     }
     function chkDelete()
     {
-            return confirm("Are you sure that you want to delete the selected Store.");
+            return confirm("Are you sure that you want to delete the selected Challenge Type.");
     }
 </script>    
 
