@@ -49,7 +49,7 @@
 					$query2 = "update user set has_store = 'Yes' where id=".$_REQUEST['user_id'];
 					mysqli_query($db,$query2) or die(mysqli_error($db));
 					
-					$store_challenge_query = "insert into store_challenges set store_id='$store_id', name='Visit the Store', points = '10', challenge_category = 'Free', created_date=now() "; 
+					$store_challenge_query = "insert into store_challenges set store_id='$store_id', name='Visit the Store', points = '10', challenge_type_id = '5', created_date=now() "; 
 			
 					mysqli_query($db,$store_challenge_query) or die(mysqli_error($db));
 			
