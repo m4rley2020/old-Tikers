@@ -2,7 +2,7 @@
 	header("Content-type: application/json");
 	include("connect.php");
 			 
-	if($_REQUEST['user_id'] != '' && $_REQUEST['store_name'] != '' && $_REQUEST['store_type_id'] != '' && $_REQUEST['location'] != '' && $_REQUEST['latitude'] != '' && $_REQUEST['longitude'] != '' && $_REQUEST['phone_number'] != '' && $_REQUEST['payment_type'] != '' && $_REQUEST['amount'] != '' && $_REQUEST['payment_token'] != '')
+	if($_REQUEST['user_id'] != '' && $_REQUEST['store_name'] != '' && $_REQUEST['store_type_id'] != '' && $_REQUEST['location'] != '' && $_REQUEST['latitude'] != '' && $_REQUEST['longitude'] != '' && $_REQUEST['phone_number'] != '')
 	{
 		
 		$check_customer_mobile = mysqli_query($db,"select id from store where user_id='".$_REQUEST['user_id']."' ") or die(mysqli_error($db));
@@ -38,9 +38,6 @@
 					latitude='".$_REQUEST['latitude']."',
 					longitude='".$_REQUEST['longitude']."',
 					phone_number='".$_REQUEST['phone_number']."',
-					payment_type = '".$_REQUEST['payment_type']."',
-					amount = '".$_REQUEST['amount']."',
-					payment_token = '".$_REQUEST['payment_token']."',
 					add_date=NOW()";
 					if($profile_image!="")
 					{	
@@ -49,7 +46,7 @@
 					mysqli_query($db,$insert_query)or die(mysqli_error($db));
 					$store_id = mysqli_insert_id();
 					
-					$query2 = "update user set user_type = 'Store', latitude = '".$_REQUEST['latitude']."', longitude = '".$_REQUEST['longitude']."' where id=".$_REQUEST['user_id'];
+					$query2 = "update user set has_store = 'Yes' where id=".$_REQUEST['user_id'];
 					mysqli_query($db,$query2) or die(mysqli_error($db));
 					
 					$store_challenge_query = "insert into store_challenges set store_id='$store_id', name='Visit the Store', points = '10', challenge_category = 'Free', created_date=now() "; 
