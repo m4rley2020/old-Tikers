@@ -24,7 +24,7 @@
 				$points = $get_query_date2['points'];
 				$challenge_type_id = $get_query_date2['challenge_type_id'];		
 				
-				$check_fav = "select id from favourite where challange_id = '".$_REQUEST['challengid']."' and user_id = '".$_REQUEST['user_id']."' ";
+				$check_fav = "select id from favourite where challenge_id = '".$_REQUEST['challengid']."' and user_id = '".$_REQUEST['user_id']."' ";
 				$check_fav_res = mysqli_query($db,$check_fav) or die(mysqli_error($db));
 				$is_fav = 0;
 				if(mysqli_num_rows($check_fav_res)>0)
