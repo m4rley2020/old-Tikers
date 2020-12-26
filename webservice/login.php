@@ -25,7 +25,7 @@
 					$profile_image = "";
 				}
 				
-				if($row['user_type'] == "Store")
+				if($row['has_store'] == "Store")
 				{
 					$store_id = GetValue("store","id","user_id",$row['id']);
 				}
@@ -45,10 +45,9 @@
 				'profile_image' => $profile_image,
 				'is_verified' => $row['is_verified'],
 				'country_code' => $row['country_code'],
-				'user_type' => $row['user_type'],
+				'has_store' => $row['has_store'],
 				'store_id' => $store_id,
 				'register_type' => $row['register_type'],
-				'is_private' => $row['is_private'],
 				'add_date' => $row['add_date'],
 				
 				); 
