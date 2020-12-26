@@ -69,5 +69,4 @@ $px    = (imagesx($img) - 7.5 * strlen($string)) / 2;
 imagestring($img, 3, $px, 9, $string, $orange);
 imagejpeg($img);
 imagedestroy($img);
-imagedestroy($tmp_img); 
-?>
+imagedestroy($tmp_img);

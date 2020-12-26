@@ -25,7 +25,7 @@
 					$profile_image = "";
 				}
 				
-				if($row['has_store'] == "Store")
+				if($row['has_store'] == "Yes")
 				{
 					$store_id = GetValue("store","id","user_id",$row['id']);
 				}
@@ -68,4 +68,3 @@
 	
 	$result=json_encode($result);
 	echo $result;
-?>
