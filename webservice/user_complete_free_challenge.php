@@ -9,6 +9,7 @@ if ($_REQUEST['user_id'] != '' && $_REQUEST['challenge_id'] != '' && $_REQUEST['
 	$user_points = $get_q4['points'];
 
 
+	$challenge_image = $_REQUEST['challenge_image'];
 	if ($_FILES['challenge_image']['name'] != "") {
 		$challenge_image = str_replace(" ", "_", rand(1, 999) . trim($_FILES['challenge_image']['name']));
 		move_uploaded_file($_FILES["challenge_image"]["tmp_name"], "../complete_challenge_image/" . $challenge_image);

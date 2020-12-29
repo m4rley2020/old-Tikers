@@ -7,7 +7,7 @@
 	{
 		$post_start_limit = $_REQUEST['start'];
 		$get_ch_ids = "select challenge_id from store_challenge_complete_by_user where user_id = '".$_REQUEST['user_id']."' ";
-		$get_ch_ids_res = mysqli_query($get_ch_ids) or die(mysqli_error());
+		$get_ch_ids_res = mysqli_query($db,$get_ch_ids) or die(mysqli_error($db,));
 		if(mysqli_num_rows($get_ch_ids_res) > 0)
 		{
 			$completed_che_ids = "";
@@ -23,7 +23,7 @@
 			
 			$get_query = "select * from store_challenges where id in (".$completed_che_ids.") limit $post_start_limit,10";
 			
-			$result = mysqli_query($get_query);
+			$result = mysqli_query($db,$get_query);
 
 			if(mysqli_num_rows($result) > 0)
 			{
@@ -34,7 +34,7 @@
 					$is_completed = 0;				
 
 					$get_query3 = "select name,rating from store where id = '".$row['store_id']."'";		
-						$get_query_res3 =   mysqli_query($get_query3)or die(mysqli_error());
+						$get_query_res3 =   mysqli_query($db,$get_query3)or die(mysqli_error($db,));
 						
 						if(mysqli_num_rows($get_query_res3)>0)
 						{							
@@ -55,7 +55,7 @@
 					}
 					
 					$get_ch_type_query = "select name as challenge_type_name from challenge_type where id = '".$row['challenge_type_id']."'";		
-						$get_ch_type_res3 =   mysqli_query($get_ch_type_query)or die(mysqli_error());
+						$get_ch_type_res3 =   mysqli_query($db,$get_ch_type_query)or die(mysqli_error($db,));
 						
 						if(mysqli_num_rows($get_ch_type_res3)>0)
 						{							
@@ -67,7 +67,7 @@
 						}
 					
 					$get_ch_favourite_query = "select id as favourite_id from favourite where challange_id = '".$row['id']."' and user_id = '".$_REQUEST['user_id']."' ";		
-						$get_ch_favourite_res3 =   mysqli_query($get_ch_favourite_query)or die(mysqli_error());
+						$get_ch_favourite_res3 =   mysqli_query($db,$get_ch_favourite_query)or die(mysqli_error($db,));
 						
 						if(mysqli_num_rows($get_ch_favourite_res3)>0)
 						{							
@@ -75,7 +75,7 @@
 						}
 						
 					$get_ch_completed_query = "select id as completed_chelange_id from store_challenge_complete_by_user where challenge_id = '".$row['id']."' and user_id = '".$_REQUEST['user_id']."' and is_approve = '1' ";		
-						$get_ch_completed_res3 =   mysqli_query($get_ch_completed_query)or die(mysqli_error());
+						$get_ch_completed_res3 =   mysqli_query($db,$get_ch_completed_query)or die(mysqli_error($db,));
 						
 						if(mysqli_num_rows($get_ch_completed_res3)>0)
 						{							
@@ -123,4 +123,3 @@
 	
 	$result=json_encode($result);
 	echo $result;
-?>

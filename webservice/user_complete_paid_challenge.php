@@ -5,6 +5,7 @@
 	if($_REQUEST['user_id'] != '' && $_REQUEST['challenge_id'] != '' && $_REQUEST['store_id'] != '' && $_REQUEST['code'] != '' )
 	{
 		/* ---------------------- add img ---------------------- */
+		$challenge_image = $_REQUEST['challenge_image'];
 		if($_FILES['challenge_image']['name']!="")
 		{	
 			$challenge_image = str_replace(" ","_",rand(1,999).trim($_FILES['challenge_image']['name']));
@@ -61,7 +62,7 @@
 					points='".$challenge_points."',			
 					add_date = NOW()";
 					mysqli_query($db,$insert_query)or die(mysqli_error($db));
-					$post_id = mysqli_insert_id();
+					$post_id = mysqli_insert_id($db);
 					
 					$error = "Challenge Completed Successfully";
 					$result=array('message'=> $error, 'result'=>'1');
@@ -70,7 +71,7 @@
 					challenge_id = '".$_REQUEST['challenge_id']."', is_used = 'Yes', date=NOW() where code = '".$_REQUEST['code']."' ";
 					
 					mysqli_query($db,$insert_query2)or die(mysqli_error($db));
-					$post_id = mysqli_insert_id();
+					$post_id = mysqli_insert_id($db);
 
 		}
 		else
