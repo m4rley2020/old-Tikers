@@ -42,7 +42,6 @@ if ($_REQUEST['user_id'] != '' && $_REQUEST['challenge_id'] != '' && $_REQUEST['
 				points = '" . $challenge_points . "',				
 				add_date = NOW()";
 	mysqli_query($db, $insert_query) or die(mysqli_error($db));
-	$post_id = mysqli_insert_id();
 
 	$error = "Challenge Completed Successfully";
 	$result = array('message' => $error, 'result' => '1');
