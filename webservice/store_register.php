@@ -44,7 +44,7 @@
 						$insert_query.=" , profile_image='$profile_image'";
 					} 
 					mysqli_query($db,$insert_query)or die(mysqli_error($db));
-					$store_id = mysqli_insert_id();
+					$store_id = mysqli_insert_id($db);
 					
 					$query2 = "update user set has_store = 'Yes' where id=".$_REQUEST['user_id'];
 					mysqli_query($db,$query2) or die(mysqli_error($db));
