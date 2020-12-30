@@ -23,7 +23,7 @@
 					latitude = '".$_REQUEST['latitude']."',
 					add_date=NOW()";
 					mysqli_query($db,$insert_query)or die(mysqli_error($db));
-					$user_id = mysqli_insert_id();
+					$user_id = mysqli_insert_id($db);
 					
 					$error = "Account Registered Successfully";
 					$result=array(
@@ -69,7 +69,7 @@
 					latitude = '".$_REQUEST['latitude']."',
 					add_date=NOW()";
 					mysqli_query($db,$insert_query)or die(mysqli_error($db));
-					$user_id = mysqli_insert_id();
+					$user_id = mysqli_insert_id($db);
 					
 					$error = "Account Registered Successfully";
 					$result=array(
