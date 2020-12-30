@@ -19,7 +19,7 @@
 				id='".$_REQUEST['story_id']."' and 
 				store_id='".$_REQUEST['store_id']."' ";
 				mysqli_query($db,$insert_query)or die(mysqli_error($db));
-				$post_id = mysqli_insert_id();
+				$post_id = mysqli_insert_id($db);
 				
 				$error = "Story Status Updated Successfully";
 				$result=array('message'=> $error, 'result'=>'1');
