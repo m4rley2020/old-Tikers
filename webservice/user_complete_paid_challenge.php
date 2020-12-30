@@ -4,8 +4,6 @@
 			 
 	if($_REQUEST['user_id'] != '' && $_REQUEST['challenge_id'] != '' && $_REQUEST['store_id'] != '' && $_REQUEST['code'] != '' )
 	{
-		/* ---------------------- add img ---------------------- */
-		$challenge_image = $_REQUEST['challenge_image'];
 		if($_FILES['challenge_image']['name']!="")
 		{	
 			$challenge_image = str_replace(" ","_",rand(1,999).trim($_FILES['challenge_image']['name']));
