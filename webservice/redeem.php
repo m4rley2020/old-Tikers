@@ -28,7 +28,7 @@
         code = '".$code."'" ;
 
         mysqli_query($db,$insert_query1)or die(mysqli_error($db));
-        $post_id = mysqli_insert_id();
+        $post_id = mysqli_insert_id($db);
                  
         $user_points = $user_points - $cost;
 
