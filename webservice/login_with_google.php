@@ -140,7 +140,7 @@ $username = $_REQUEST['username'];
 								add_date=now()";
 							
 								$insert_result = mysqli_query($db,$insert_query) or die(mysqli_error($db));
-								$last_inserted_id =	mysqli_insert_id();
+								$last_inserted_id =	mysqli_insert_id($DB);
 								if($last_inserted_id > 0)
 								{	
 									// $client = new Client($account_sid, $auth_token); 
