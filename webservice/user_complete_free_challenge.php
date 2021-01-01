@@ -35,7 +35,7 @@ if ($_REQUEST['user_id'] != '' && $_REQUEST['challenge_id'] != '' && $_REQUEST['
 	$error = "Challenge Completed Successfully";
 	$result = array('message' => $error, 'result' => '1');
 
-	$insert_query = "insert into store_challenge_complete_by_user set 					
+	$insert_query = "insert into store_challenge_complete_by_user set
 				user_id='" . $_REQUEST['user_id'] . "',
 				challenge_id='" . $_REQUEST['challenge_id'] . "',
 				store_id='" . $_REQUEST['store_id'] . "',
