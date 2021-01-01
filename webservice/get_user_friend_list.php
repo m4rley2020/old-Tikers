@@ -15,7 +15,7 @@
 			$get_query = "select from_user, to_user, status from friend where (to_user = '".$_REQUEST['user_id']."' OR from_user = '".$_REQUEST['user_id']."') and status = 2  limit $post_start_limit,10 ";	
 		}
 		
-		$get_query_res =   mysqli_query($get_query)or die(mysqli_error());
+		$get_query_res =   mysqli_query($db,$get_query)or die(mysqli_error($db));
 		
 		if(mysqli_num_rows($get_query_res)>0)
 		{
@@ -36,7 +36,7 @@
 				
 				//echo "select * from user where id = '".$user_id."'";
 				
-				$get_user = mysqli_query("select * from user where id = '".$user_id."' ") or die(mysqli_error());
+				$get_user = mysqli_query($db,"select * from user where id = '".$user_id."' ") or die(mysqli_error($db));
 				
 				$get_user_data = mysqli_fetch_array($get_user);
 				
@@ -60,7 +60,7 @@
 				// 2 = following
 				
 				$is_follow = "0";
-				$check_follow = mysqli_query("select status from friend where from_user = '".$_REQUEST['user_id']."' and to_user = '".$user_id."' ") or die(mysqli_error()) ;
+				$check_follow = mysqli_query($db,"select status from friend where from_user = '".$_REQUEST['user_id']."' and to_user = '".$user_id."' ") or die(mysqli_error($db)) ;
 				
 				if(mysqli_num_rows($check_follow)>0)
 				{

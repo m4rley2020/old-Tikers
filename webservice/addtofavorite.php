@@ -28,7 +28,7 @@
 					add_date=NOW(),				
 					store_id = '".$store_id."'";
 					mysqli_query($db,$insert_query)or die(mysqli_error($db));
-					$inserted_id = mysqli_insert_id();
+					$inserted_id = mysqli_insert_id($dp);
 					$add_date = GetValue("favourite","add_date","id",$inserted_id);				
 						
 					$error = "Post Added Successfully";

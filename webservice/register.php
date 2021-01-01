@@ -16,14 +16,13 @@
 					email='".$_REQUEST['email']."',
 					username='".$_REQUEST['username']."',
 					password='".$_REQUEST['password']."',
-					user_type = 'User',
 					is_verified	= '0',
 					register_type = '".$_REQUEST['type']."',
 					longitude = '".$_REQUEST['longitude']."',
 					latitude = '".$_REQUEST['latitude']."',
 					add_date=NOW()";
 					mysqli_query($db,$insert_query)or die(mysqli_error($db));
-					$user_id = mysqli_insert_id();
+					$user_id = mysqli_insert_id($db);
 					
 					$error = "Account Registered Successfully";
 					$result=array(
@@ -34,9 +33,7 @@
 						'username'=>$_REQUEST['username'],
 						'password'=>$_REQUEST['password'],
 						'is_verified'=>'0',
-						'user_type'=>'User',
-						'register_type'=>$_REQUEST['type'],
-						'is_private'=> '0');
+						'register_type'=>$_REQUEST['type']);
 				
 			}
 			
@@ -62,14 +59,13 @@
 					country_code='".$_REQUEST['country_code']."',
 					username='".$_REQUEST['username']."',
 					password='".$_REQUEST['password']."',
-					user_type = 'User',
 					is_verified	= '0',
 					register_type = '".$_REQUEST['type']."',
 					longitude = '".$_REQUEST['longitude']."',
 					latitude = '".$_REQUEST['latitude']."',
 					add_date=NOW()";
 					mysqli_query($db,$insert_query)or die(mysqli_error($db));
-					$user_id = mysqli_insert_id();
+					$user_id = mysqli_insert_id($db);
 					
 					$error = "Account Registered Successfully";
 					$result=array(
@@ -81,9 +77,7 @@
 						'username'=>$_REQUEST['username'],
 						'password'=>$_REQUEST['password'],
 						'is_verified'=>'0',
-						'user_type'=>'User',
-						'register_type'=>$_REQUEST['type'],
-						'is_private'=> '0');
+						'register_type'=>$_REQUEST['type']);
 				
 			}
 			

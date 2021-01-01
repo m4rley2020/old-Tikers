@@ -15,7 +15,7 @@
 				latitude = '".$_REQUEST['latitude']."',
 				longitude = '".$_REQUEST['longitude']."'";
 				mysqli_query($db,$insert_query)or die(mysqli_error($db));
-				$post_id = mysqli_insert_id();
+				$post_id = mysqli_insert_id($db);
 				
 				
 				$image_count = $_REQUEST['image_count'];		

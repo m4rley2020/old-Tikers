@@ -18,7 +18,7 @@
 			
 				if($row['profile_image'] != "")
 				{
-					$profile_image = $SITE_URL."../User_image/".$row['profile_image'];
+					$profile_image = $SITE_URL."/User_image/".$row['profile_image'];
 				}
 				else
 				{

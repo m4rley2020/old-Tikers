@@ -16,7 +16,7 @@
 					add_date=NOW()";
 					
 					mysqli_query($db,$insert_query)or die(mysqli_error($db));
-					$store_id = mysqli_insert_id();
+					$store_id = mysqli_insert_id($db);
 					
 					$get_average = "SELECT AVG(star) 'avg_rating' FROM store_comment where store_id = '".$_REQUEST['store_id']."' ";
 					$get_average_res = mysqli_query($db,$get_average) or die(mysqli_error($db));
