@@ -1,8 +1,6 @@
 <?php
 	header("Content-type: application/json");
 	include("connect.php");
-	include "function_pushnotification.php";
-			 
 	if($_REQUEST['user_id'] != '' && $_REQUEST['challenge_id'] != '' && $_REQUEST['store_id'] !='')
 	{
 		
@@ -20,17 +18,6 @@
 				add_date = NOW()";
 				mysqli_query($db, $insert_query)or die(mysqli_error($db));
 				$post_id = mysqli_insert_id($db);
-				
-				
-				$sender_id = $_REQUEST['user_id'];
-				$reciver_id = GetValue("store","user_id","id",$_REQUEST['store_id']);
-				$sender_user_name =  GetValue('user','username','id',$_REQUEST['user_id']);
-				$challenge_name =  GetValue('store_challenges','name','id',$_REQUEST['challenge_id']);
-				$noti_type = 'challenge_completed';
-				$noti_message = $sender_user_name.' has completed '.$challenge_name.' challenge.';
-				send_notification($sender_id,$reciver_id,$noti_type,$noti_message);
-				android_notification_function($sender_id,$reciver_id,$noti_type,$noti_message);
-				insert_notification($sender_id,$reciver_id,$noti_type,$noti_message);
 				
 				
 				$error = "Challenge Completed Successfully";
