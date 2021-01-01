@@ -30,8 +30,6 @@ if ($_REQUEST['user_id'] != '' && $_REQUEST['challenge_id'] != '' && $_REQUEST['
 	$insert_query1 = "update store_challenges  set counter ='" . $counter . "' where id='" . $_REQUEST['challenge_id'] . "'";
 	mysqli_query($db, $insert_query1) or die(mysqli_error($db));
 
-
-	
 	$insert_query = "insert into store_challenge_complete_by_user set 					
 				user_id='" . $_REQUEST['user_id'] . "',
 				challenge_id='" . $_REQUEST['challenge_id'] . "',

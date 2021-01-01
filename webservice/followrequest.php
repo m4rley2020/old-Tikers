@@ -22,9 +22,14 @@
 				$type="Following";
 				
 			$insert_review = mysqli_query($db,"insert into friend set from_user='".$from_user_id."', to_user='".$to_user_id."', status='".$status."', add_date = NOW() ");
-
+			 $result=array('message'=> $error, 'result'=>'1');
+			 
+			 $noti_type = 'follow_request';
 			
-			$result=array('message'=> $error, 'result'=>'1');
+			send_notification($from_user_id,$to_user_id,$noti_type,$noti_message);
+			android_notification_function($from_user_id,$to_user_id,$noti_type,$noti_message);
+			insert_notification($from_user_id,$to_user_id,$noti_type,$noti_message);
+			
 		}
 		else
 		{
