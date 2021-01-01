@@ -10,14 +10,13 @@
 	include("security.php");
 	include ("../include/config.inc.php");
 	include_once ("../include/sendmail.php");
-	include ("../include/functions.php");
 	
   $ADMIN_MOUSEHOUR_COLOUR="#cccccc";
   $ADMIN_MOUSEOUT_COLOUR="#FFFFFF";
   $ADMIN_TOP_BGCOLOUR="#FFFFFF";
   
-
-  $db=mysql_connect($servername, $username, $password);
-  mysql_select_db($DATABASENAME,$db);  
+  $db=mysqli_connect($DBSERVER, $USERNAME, $PASSWORD);
+  mysqli_select_db($db,$DATABASENAME);  
     
+	include ("../include/functions.php");
 ?>

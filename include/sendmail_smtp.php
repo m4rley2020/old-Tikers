@@ -1,4 +1,4 @@
-<?
+<?php
 	function HtmlMailSend($to,$subject,$mailcontent,$from)
 	{
 		include_once('class.phpmailer.php');

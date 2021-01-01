@@ -10,16 +10,16 @@
                         </a>
                     </li>
 
-                   <? 
+                   <?php 
                      for($i=0;$i<count($HeadLinksArray);$i++)
                             {
                                 ?>
                                <li>
                                <a href="javascript:void(0);">
-                                   <i class="fa fa-desktop"></i><? echo $HeadLinksArray[$i][0]; ?>
+                                   <i class="fa fa-desktop"></i><?php echo $HeadLinksArray[$i][0]; ?>
                                 </a>
                                <ul class="sub-menu">
-                                    <?
+                                    <?php
 
                                             $LeftLinkAry1 = $HeadLinksArray[$i][2];
                                             for($LeftLinkCount=0;$LeftLinkCount<count($LeftLinkAry1);$LeftLinkCount++)
@@ -29,17 +29,17 @@
 
 
                                             <li>
-                                                 <a href="<? echo $LeftLinkAry1[$LeftLinkCount][1] ?>">
-                                                          <i class="fa fa-desktop"></i><? echo $LeftLinkAry1[$LeftLinkCount][0] ?>
+                                                 <a href="<?php echo $LeftLinkAry1[$LeftLinkCount][1] ?>">
+                                                          <i class="fa fa-desktop"></i><?php echo $LeftLinkAry1[$LeftLinkCount][0] ?>
                                                           </a>
                                             </li>  
 
-                                            <?          
+                                            <?php        
                                             }
                                        ?>
                                </ul>
                              </li> 
-                                       <?
+                                       <?php
                             }
                     ?>
 

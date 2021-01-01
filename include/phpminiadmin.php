@@ -24,7 +24,7 @@ $DB=array(
 
 //constants
  $VERSION='1.4.080217';
- $MAX_ROWS_PER_PAGE=100; #max number of rows in select per one page
+ $MAX_ROWS_PER_PAGE=50; #max number of rows in select per one page
  $self=$_SERVER['PHP_SELF'];
 
  ini_set('display_errors',0);

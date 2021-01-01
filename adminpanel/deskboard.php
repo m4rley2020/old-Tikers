@@ -1,14 +1,21 @@
-<? include("connect.php"); 
-	$string="1";
+<?php 
+include("connect.php"); 
+	
+$string="1";
+$user_query = mysqli_query($db,"select * from user");
+$post_query = mysqli_query($db,"select * from post");
+$package_query = mysqli_query($db,"select * from package");
+$challenge_type_query = mysqli_query($db,"select * from challenge_type");
+$challenge_query = mysqli_query($db,"select * from store_challenges");
+$store_query = mysqli_query($db,"select * from store");
+$advertise_query = mysqli_query($db,"select * from advertise");
+$promo_query = mysqli_query($db,"select * from promo_section");
+$app_store_query = mysqli_query($db,"select * from in_app_store");
+$store_code = mysqli_query($db,"select * from store_code");
 
-	$user_query = mysql_query("select * from user");
-	$post_query = mysql_query("select * from post");
-	$package_query = mysql_query("select * from package");
-	$challenge_type_query = mysql_query("select * from challenge_type");
-	$challenge_query = mysql_query("select * from store_challenges");
-	$store_query = mysql_query("select * from store");
-	$advertise_query = mysql_query("select * from advertise");
+echo "here";
 ?>
+
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
@@ -45,11 +52,11 @@
 
 <body style="font-family:Arial, Helvetica, sans-serif;">
 
-    <? include("top.php"); ?>
+    <?php include("top.php"); ?>
 
     <div id="container">    <!-- Start : container -->
 
-        <? include("left.php"); ?>
+        <?php include("left.php"); ?>
 
         <div id="content">  <!-- Start : Inner Page Content -->
 
@@ -80,7 +87,7 @@
                                 </div>
                                 <div class="details">
                                     <div class="number">
-                                        <?php echo mysql_num_rows($user_query);?>
+                                        <?php echo mysqli_num_rows($user_query);?>
                                     </div>
                                     <div class="desc">									
                                         Users
@@ -99,7 +106,7 @@
                                 </div>
                                 <div class="details">
                                     <div class="number">
-                                        <?php echo mysql_num_rows($post_query);?>
+                                        <?php echo mysqli_num_rows($post_query);?>
                                     </div>
                                     <div class="desc">									
                                         Post
@@ -118,7 +125,7 @@
                                 </div>
                                 <div class="details">
                                     <div class="number">
-                                        <?php echo mysql_num_rows($package_query);?>
+                                        <?php echo mysqli_num_rows($package_query);?>
                                     </div>
                                     <div class="desc">									
                                         Package
@@ -129,7 +136,63 @@
                                 </a>						
                             </div>
                         </div>
+                        <div class="col-md-3 col-sm-3 col-xs-3">
+                            <div class="dashboard-stat red">
+                                <div class="visual">
+                                    <i class="fa fa-user"></i>
+                                </div>
+                                <div class="details">
+                                    <div class="number">
+                                        <?php echo mysqli_num_rows($promo_query);?>
+                                    </div>
+                                    <div class="desc">									
+                                        Promo
+                                    </div>
+                                </div>
+                                <a class="more" href="manage_promo.php">
+                                    View more <i class="fs-arrow-right-2"></i>
+                                </a>						
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 col-sm-3 col-xs-3">
+                            <div class="dashboard-stat red">
+                                <div class="visual">
+                                    <i class="fa fa-user"></i>
+                                </div>
+                                <div class="details">
+                                    <div class="number">
+                                        <?php echo mysqli_num_rows($app_store_query);?>
+                                    </div>
+                                    <div class="desc">									
+                                        App store
+                                    </div>
+                                </div>
+                                <a class="more" href="manage_in_app_store.php">
+                                    View more <i class="fs-arrow-right-2"></i>
+                                </a>						
+                            </div>
+                        </div>
                         
+                        <div class="col-md-3 col-sm-3 col-xs-3">
+                            <div class="dashboard-stat red">
+                                <div class="visual">
+                                    <i class="fa fa-user"></i>
+                                </div>
+                                <div class="details">
+                                    <div class="number">
+                                        <?php echo mysqli_num_rows($store_code);?>
+                                    </div>
+                                    <div class="desc">									
+                                        Store Codes
+                                    </div>
+                                </div>
+                                <a class="more" href="manage_store_code.php">
+                                    View more <i class="fs-arrow-right-2"></i>
+                                </a>						
+                            </div>
+                        </div>
+
                         <div class="col-md-3 col-sm-3 col-xs-3">
                             <div class="dashboard-stat purple">
                                 <div class="visual">
@@ -137,7 +200,7 @@
                                 </div>
                                 <div class="details">
                                     <div class="number">
-                                        <?php echo mysql_num_rows($challenge_type_query);?>
+                                        <?php echo mysqli_num_rows($challenge_type_query);?>
                                     </div>
                                     <div class="desc">									
                                         Challange Type
@@ -155,13 +218,13 @@
                                 </div>
                                 <div class="details">
                                     <div class="number">
-                                        <?php echo mysql_num_rows($challenge_query);?>
+                                        <?php echo mysqli_num_rows($challenge_query);?>
                                     </div>
                                     <div class="desc">									
                                         Challenges
                                     </div>
                                 </div>
-                                <a class="more" href="manage_store.php">
+                                <a class="more" href="manage_challenge.php">
                                     View more <i class="fs-arrow-right-2"></i>
                                 </a>						
                             </div>
@@ -174,7 +237,7 @@
                                 </div>
                                 <div class="details">
                                     <div class="number">
-                                        <?php echo mysql_num_rows($store_query);?>
+                                        <?php echo mysqli_num_rows($store_query);?>
                                     </div>
                                     <div class="desc">									
                                         Store
@@ -193,7 +256,7 @@
                                 </div>
                                 <div class="details">
                                     <div class="number">
-                                        <?php echo mysql_num_rows($advertise_query);?>
+                                        <?php echo mysqli_num_rows($advertise_query);?>
                                     </div>
                                     <div class="desc">									
                                         Advertise
@@ -261,3 +324,4 @@
     </script>
 </body>
 </html>
+?>
