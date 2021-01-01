@@ -4,7 +4,7 @@ function send_notification($sender_id,$reciver_id,$type,$message)
 	$apns_query="select devicetoken,user_id from apns_devices where push_notification_status=1";
 	$apns_query.=" and user_id='".$reciver_id."'";
 	
-	$apns_result=mysqli_query($apns_query) or die(mysqli_query($db));
+	$apns_result=mysqli_query($db,$apns_query) or die(mysqli_query($db));
 	$apns_total=mysqli_num_rows($apns_result);
 	
 	if($apns_total>0)
