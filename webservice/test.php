@@ -15,12 +15,23 @@
 	$get_q4 = mysqli_fetch_array($get_query_res4);
 	$user_points = $get_q4['points'];
 
+	$q1 = "select counter,points from store_challenges where id='" . $_REQUEST['challenge_id'] . "'";
+	$get_query_res2 = mysqli_query($db, $q1) or die(mysqli_error($db));
+	if (mysqli_num_rows($get_query_res2) > 0) {
+		$get_query_date2 = mysqli_fetch_array($get_query_res2);
+		$counter = $get_query_date2['counter'];
+		$challenge_points = $get_query_date2['points'];
+
+		$counter++;
+		$user_points = $user_points + $challenge_points;
+	}
+
 		$insert_query = "insert into store_challenge_complete_by_user set 					
 				user_id='".$_REQUEST['user_id']."',
 				challenge_id='".$_REQUEST['challenge_id']."',
 				store_id='".$_REQUEST['store_id']."',
 				challenge_image='".$challenge_image."',	
-				points='".$user_points."',	
+				points='".$challenge_points."',	
 				add_date = NOW()";
 				mysqli_query($db, $insert_query)or die(mysqli_error($db));
 				$post_id = mysqli_insert_id($db);
