@@ -62,7 +62,6 @@
 					country_code='".$_REQUEST['country_code']."',
 					username='".$_REQUEST['username']."',
 					password='".$_REQUEST['password']."',
-					user_type = 'User',
 					is_verified	= '0',
 					register_type = '".$_REQUEST['type']."',
 					longitude = '".$_REQUEST['longitude']."',
