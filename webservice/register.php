@@ -16,7 +16,6 @@
 					email='".$_REQUEST['email']."',
 					username='".$_REQUEST['username']."',
 					password='".$_REQUEST['password']."',
-					user_type = 'User',
 					is_verified	= '0',
 					register_type = '".$_REQUEST['type']."',
 					longitude = '".$_REQUEST['longitude']."',
@@ -34,9 +33,7 @@
 						'username'=>$_REQUEST['username'],
 						'password'=>$_REQUEST['password'],
 						'is_verified'=>'0',
-						'user_type'=>'User',
-						'register_type'=>$_REQUEST['type'],
-						'is_private'=> '0');
+						'register_type'=>$_REQUEST['type']);
 				
 			}
 			
@@ -80,9 +77,7 @@
 						'username'=>$_REQUEST['username'],
 						'password'=>$_REQUEST['password'],
 						'is_verified'=>'0',
-						'user_type'=>'User',
-						'register_type'=>$_REQUEST['type'],
-						'is_private'=> '0');
+						'register_type'=>$_REQUEST['type']);
 				
 			}
 			
