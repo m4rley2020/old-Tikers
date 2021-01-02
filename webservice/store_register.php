@@ -2,7 +2,7 @@
 	header("Content-type: application/json");
 	include("connect.php");
 			 
-	if($_REQUEST['user_id'] != '' && $_REQUEST['store_name'] != '' && $_REQUEST['store_type_id'] != '' && $_REQUEST['location'] != '' && $_REQUEST['latitude'] != '' && $_REQUEST['longitude'] != '' && $_REQUEST['phone_number'] != '')
+	if($_REQUEST['user_id'] != '' && $_REQUEST['store_name'] != '' && $_REQUEST['gender'] != '' && $_REQUEST['location'] != '' && $_REQUEST['latitude'] != '' && $_REQUEST['longitude'] != '' && $_REQUEST['phone_number'] != '')
 	{
 		
 		$check_customer_mobile = mysqli_query($db,"select id from store where user_id='".$_REQUEST['user_id']."' ") or die(mysqli_error($db));
@@ -33,7 +33,7 @@
 			$insert_query = "insert into store set 					
 					user_id='".$_REQUEST['user_id']."',
 					name='".$_REQUEST['store_name']."',
-					store_type_id='".$_REQUEST['store_type_id']."',
+					gender='".$_REQUEST['gender']."',
 					location='".$_REQUEST['location']."',
 					latitude='".$_REQUEST['latitude']."',
 					longitude='".$_REQUEST['longitude']."',
