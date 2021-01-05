@@ -5,7 +5,7 @@
 	if($_REQUEST['store_id'] != '')
 	{
 		
-		$get_query2 = "select * from store_challenges where store_id = '".$_REQUEST['store_id']."' and is_deleted = 0 and is_approved = 1 order by id desc";
+		$get_query2 = "select * from store_challenges where store_id = '".$_REQUEST['store_id']."'";
 		$get_query_res2 =   mysqli_query($db,$get_query2)or die(mysqli_error($db));
 		
 		if(mysqli_num_rows($get_query_res2)>0)
