@@ -5,7 +5,7 @@
 	if($_REQUEST['user_id'] != '')
 	{
 		
-		$get_query2 = "select * from user where user_id = '".$_REQUEST['user_id']."' and has_store = 'Yes'";
+		$get_query2 = "select * from user where id = '".$_REQUEST['user_id']."' and has_store = 'Yes'";
 		$get_query_res2 =   mysqli_query($db,$get_query2)or die(mysqli_error($db));
 		
 		if(mysqli_num_rows($get_query_res2)>0)
