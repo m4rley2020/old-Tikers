@@ -1105,11 +1105,11 @@ function h_get_metakey($id)
 		chmod($root_path."/".$folder."/".$image_path, 0777);
 	}
 
-	function GetFollowCounter($table,$field,$where,$condition)
+	function GetFollowCounter($table,$field,$where,$condition,$db='')
 	{
-		$qry="SELECT count($field) as counter from $table where $where='".mysqli_escape_string($condition)."' and status = 2";
+		$qry="SELECT count($field) as counter from $table where $where='".mysqli_escape_string($db,$condition)."' and status = 2";
 		$res=mysqli_query($db,$qry);
-		if(mysqli_affected_rows()>0)
+		if(mysqli_affected_rows($db)>0)
 		{
 			$row=mysqli_fetch_array($res);
 			return $row['counter'];
@@ -1119,6 +1119,7 @@ function h_get_metakey($id)
 			return "";
 		}
 	}
+	
 
 
 ?>
