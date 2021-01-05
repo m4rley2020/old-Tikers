@@ -27,7 +27,6 @@
 				location='".$_REQUEST['location']."',
 				lattitude='".$_REQUEST['lattitude']."',
 				longitude='".$_REQUEST['longitude']."',
-				challenge_category='Paid',
 				created_date=now()";
 				if($challeng_image!="")
 				{
