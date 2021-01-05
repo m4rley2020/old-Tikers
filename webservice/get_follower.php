@@ -4,18 +4,9 @@
 			 
 	if($_REQUEST['user_id'] != '')
 	{
-		$search_val = $_REQUEST['search_val'];
-		if($search_val != "")
-		{
-			$get_query = "select F.from_user from friend as F left join user as U on F.from_user = U.id  where U.username like '%".$search_val."%' ";
-		}
-		else
-		{
-		
 		
 		$get_query = "select from_user from friend where to_user = '".$_REQUEST['user_id']."'";
 		$get_query_res =   mysqli_query($db,$get_query)or die(mysqli_error($db));
-		}
 		
 		if(mysqli_num_rows($get_query_res)>0)
 		{
