@@ -14,7 +14,7 @@
 			{
 				$id = $get_query_date2['id'];
 				$challenge_type_id = $get_query_date2['challenge_type_id'];
-				$challenge_type_name = GetValue("challenge_type","name","id",$challenge_type_id,$db='ghadxjbzcn');
+				$challenge_type_name = GetValue("challenge_type","name","id",$challenge_type_id,$db);
 				$challenge_name = $get_query_date2['name'];
 				$challeng_image = $get_query_date2['challeng_image'];
 				$description = $get_query_date2['description'];
