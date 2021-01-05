@@ -15,7 +15,7 @@
 			$username = $user_data['username'];
 			$profile_image = $user_data['profile_image'];
 			$total_following = $user_data['following_counter'];
-			$total_follow = GetFollowCounter('friend','to_user','to_user',$user_id,$db);
+			$total_follow = GetFollowCounter('friend','to_user','to_user',$user_id);
 			$user_bio = $user_data['bio'];
 
 			if(file_exists("../User_image/".$profile_image) && $profile_image!="")
