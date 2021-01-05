@@ -7,7 +7,7 @@
 		$search_val = $_REQUEST['search_val'];
 		if($search_val != "")
 		{
-			$get_query = "select F.from_user, F.status from friend as F left join user as U on F.from_user = U.id  where U.username like '%".$search_val."%' and F.to_user = '".$_REQUEST['user_id']."' and F.status = 2  limit $post_start_limit,10 ";
+			$get_query = "select F.from_user from friend as F left join user as U on F.from_user = U.id  where U.username like '%".$search_val."%' ";
 		}
 		else
 		{
