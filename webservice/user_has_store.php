@@ -12,8 +12,8 @@
 		{
 			while($get_query_date2 = mysqli_fetch_array($get_query_res2))
 			{
-				$store_id = $get_query_date2['store_id'];
-				$store_name = GetValue("store","name","id",$$store_id,$db);
+				$store_id = GetValue("store","id","user_id",$_REQUEST['user_id'],$db);
+				$store_name = GetValue("store","name","id",$store_id,$db);
 				
 							
 				
