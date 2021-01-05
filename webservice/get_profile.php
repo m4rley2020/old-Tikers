@@ -30,7 +30,7 @@
 				if($register_type != 'fb' && $register_type != 'google'){
 					if(file_exists("../User_image/".$profile_image) && $profile_image!="")
 					{
-						$profile_image1 = $SITE_URL."../User_image/".$profile_image;
+						$profile_image1 = $SITE_URL."/User_image/".$profile_image;
 					}
 					else
 					{
