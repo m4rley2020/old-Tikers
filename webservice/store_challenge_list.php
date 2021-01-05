@@ -24,7 +24,7 @@
 				$points = $get_query_date2['points'];
 				$store_id = $get_query_date2['store_id'];
 				
-				$rating = number_format(GetValue("store","rating","id",$store_id),2) ;
+				$rating = number_format(GetValue("store","rating","id",$store_id,$db),2) ;
 				
 				if(file_exists("../challenge_image/".$challeng_image) && $challeng_image!="")
 				{
