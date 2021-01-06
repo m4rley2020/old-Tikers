@@ -5,17 +5,17 @@
 	if($_REQUEST['store_id'] != '' && $_REQUEST['challenge_type_id'] != '' && $_REQUEST['name'] != '' && $_REQUEST['description'] != '' && $_REQUEST['location'] != '' && $_REQUEST['lattitude'] != '' && $_REQUEST['longitude'] != '')
 	{
 		
-		$challeng_image="";
-		if(isset($_FILES["challeng_image"]))
+		$challenge_image="";
+		if(isset($_FILES["challenge_image"]))
 		{
-			if ($_FILES["challeng_image"]["error"] > 0)
+			if ($_FILES["challenge_image"]["error"] > 0)
 			{
 				//echo "Error: " . $_FILES["full"]["error"] . "<br />";
 			}
 			else
 			{
-				 $challeng_image = rand(1,999).trim($_FILES["challeng_image"]["name"]); 
-				 move_uploaded_file($_FILES["challeng_image"]["tmp_name"],"../challenge_image/".$challeng_image);
+				 $challenge_image = rand(1,999).trim($_FILES["challenge_image"]["name"]); 
+				 move_uploaded_file($_FILES["challenge_image"]["tmp_name"],"../challenge_image/".$challenge_image);
 			}
 		}
 		
@@ -28,9 +28,9 @@
 				lattitude='".$_REQUEST['lattitude']."',
 				longitude='".$_REQUEST['longitude']."',
 				created_date=now()";
-				if($challeng_image!="")
+				if($challenge_image!="")
 				{
-					$insert_query.=" , challeng_image='$challeng_image'";
+					$insert_query.=" , challeng_image='$challenge_image'";
 				} 
 				mysqli_query($db,$insert_query)or die(mysqli_error($db));
 				$challenge_id = mysqli_insert_id($db);

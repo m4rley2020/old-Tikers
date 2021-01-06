@@ -12,7 +12,7 @@
 		
 		if($sel_challenge_rows>0)
 		{
-			$delete_challenge = mysqli_query($db,"update store_challenges set is_deleted =1 where id='".$challengeid."' and store_id='".$store_id."' ");
+			$delete_challenge = mysqli_query($db,"delete from store_challenges  where id='".$challengeid."' and store_id='".$store_id."' ");
 			$result["status"]="1";
 			$error = "Challenge deleted successfully";
 			$result["message"]=$error;
