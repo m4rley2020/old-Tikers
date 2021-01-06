@@ -23,8 +23,8 @@
 				);
 				
 			}	
-			$message="store found.";
-			$result=array('message'=> $message, 'result'=>'1','responseData'=>$data);		
+			$error="store found.";
+			$result=array('message'=> $error, 'result'=>'1','responseData'=>$data);		
 		}
 		else
 		{
