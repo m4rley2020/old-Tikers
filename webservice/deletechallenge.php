@@ -2,9 +2,9 @@
 	header("Content-type: application/json");
 	include "connect.php";
 	
-	if($_REQUEST['userid']!="" && $_REQUEST['challengeid']!="")
+	if($_REQUEST['storeid']!="" && $_REQUEST['challengeid']!="")
 	{
-		$store_id 	= intval($_REQUEST['userid']);
+		$store_id 	= intval($_REQUEST['storeid']);
 		$challengeid = intval($_REQUEST['challengeid']);
 		
 		$sel_challenge = mysqli_query($db,"select * from store_challenges where id='".$challengeid."' and store_id='".$store_id."'");
