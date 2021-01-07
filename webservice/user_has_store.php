@@ -14,12 +14,14 @@
 			{
 				$store_id = GetValue("store","id","user_id",$_REQUEST['user_id'],$db);
 				$store_name = GetValue("store","name","id",$store_id,$db);
+				$store_type = GetValue("store","store_type_id","id",$store_id,$db);
 				
 							
 				
 				$data[]=array(
 				"store_name"=>$store_name,
-				"store_id"=>$store_id			
+				"store_id"=>$store_id,
+				"store_type_id"=>$store_type			
 				);
 				
 			}	
