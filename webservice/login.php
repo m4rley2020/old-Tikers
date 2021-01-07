@@ -27,7 +27,7 @@
 				
 				if($row['has_store'] == "Yes")
 				{
-					$store_id = GetValue("store","id","user_id",$row['id']);
+					$store_id = GetValue("store","id","user_id",$row['id'],$db);
 				}
 				else
 				{

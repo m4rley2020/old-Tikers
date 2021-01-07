@@ -2,7 +2,7 @@
 	header("Content-type: application/json");
 	include("connect.php");
 			 
-	if($_REQUEST['store_id'] != '' && $_REQUEST['description'] != '' && $_REQUEST['address'] != '')
+	if($_REQUEST['store_id'] != '' && $_REQUEST['description'] != '')
 	{
 		$user_id = GetValue("store","user_id","id",$_REQUEST['store_id']);
 		
@@ -11,7 +11,6 @@
 				store_id='".$_REQUEST['store_id']."',
 				description='".$_REQUEST['description']."',
 				add_date = NOW(),
-				address	= '".$_REQUEST['address']."',
 				latitude = '".$_REQUEST['latitude']."',
 				longitude = '".$_REQUEST['longitude']."'";
 				mysqli_query($db,$insert_query)or die(mysqli_error($db));
