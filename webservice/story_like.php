@@ -29,13 +29,13 @@
 					mysqli_query($db,$insert_query)or die(mysqli_error($db));
 					$inserted_id = mysqli_insert_id($db);
 
-					$insert_query2 = "insert into store_challenge_complete_by_user set 					
-					likes=$likes ";
+					$insert_query2 = "update store_challenge_complete_by_user set 					
+					likes=$likes where id = '".$_REQUEST['challenge_id']."'";
 					mysqli_query($db,$insert_query2)or die(mysqli_error($db));
 					$inserted_id = mysqli_insert_id($db);	
 					
 					$insert_query3 = "insert into user set 					
-					points=$points ";
+					points=$points where id = '".$_REQUEST['user_id']."' ";
 					mysqli_query($db,$insert_query3)or die(mysqli_error($db));
 					$inserted_id = mysqli_insert_id($db);
 						
