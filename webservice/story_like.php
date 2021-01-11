@@ -25,7 +25,7 @@
 					user_id='".$_REQUEST['user_id']."',
 					liked_by='".$_REQUEST['liked_by']."',
 					story_id='".$_REQUEST['challenge_id']."',
-					add_date=NOW(),				
+					date=NOW(),				
 					story_id = '".$story_id."'";
 					mysqli_query($db,$insert_query)or die(mysqli_error($db));
 					$inserted_id = mysqli_insert_id($db);
