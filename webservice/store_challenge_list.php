@@ -40,7 +40,7 @@
 				"challenge_type_id"=>$challenge_type_id,
 				"challenge_type_name"=>$challenge_type_name,
 				"challenge_name"=>$challenge_name, 
-				"challeng_image"=>$challeng_image,
+				"challenge_image"=>$challeng_image,
 				"description"=>$description,
 				"location"=>$location,
 				"lattitude"=>$lattitude,
