@@ -19,7 +19,7 @@
 				$comment = $get_query_date2['comment'];
 				$add_date = $get_query_date2['add_date'];
 				
-				$username = GetValue("user","username","id",$user_id);
+				$username = GetValue("user","username","id",$user_id,$db);
 				
 				$profile_image = GetValue("user","profile_image","id",$user_id);
 				
