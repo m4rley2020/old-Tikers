@@ -34,8 +34,8 @@
 					mysqli_query($db,$insert_query2)or die(mysqli_error($db));
 					$inserted_id = mysqli_insert_id($db);	
 					
-					$insert_query3 = "insert into user set 					
-					points=$points where id = '".$_REQUEST['user_id']."' ";
+					$insert_query3 = "update user set 					
+					points=$points where id = '".$_REQUEST['user_id']."'";
 					mysqli_query($db,$insert_query3)or die(mysqli_error($db));
 					$inserted_id = mysqli_insert_id($db);
 						
