@@ -31,7 +31,7 @@
 			{
 				$challenge_image = $get_query_date1['challenge_image'];
 				$challenge_id = $get_query_date1['id'];
-				$is_liked = mysqli_query($db,"select * from story_like where user_id ='".$_REQUEST['user_id']."' and story_id = $challenge_id") or die(mysqli_error($db));
+				$is_liked = mysqli_query($db,"select * from story_like where liked_by ='".$_REQUEST['user_id']."' and story_id = $challenge_id") or die(mysqli_error($db));
 				
 				if(mysqli_num_rows($is_liked)>0)
 		{
