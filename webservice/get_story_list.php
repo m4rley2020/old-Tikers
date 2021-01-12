@@ -7,7 +7,7 @@
 	
 		$follow_uid = $_REQUEST['user_id'];
 		
-		$get_follow = mysqli_query($db,"select to_user from friend where from_user = '".$_REQUEST['user_id']."' and status = '1' ") or die(mysqli_error($db)) ;
+		$get_follow = mysqli_query($db,"select to_user from friend where from_user = '".$_REQUEST['user_id']."' and status = '2' ") or die(mysqli_error($db)) ;
 				
 		if(mysqli_num_rows($get_follow)>0)
 		{
@@ -20,7 +20,7 @@
 		
 		$follow_uid = trim($follow_uid,",");
 	
-		$get_query1 = "select * from store_challenge_complete_by_user where user_id in (".$follow_uid.") and status = 1 order by add_date desc";
+		$get_query1 = "select * from store_challenge_complete_by_user where user_id in (".$follow_uid.") order by add_date desc";
 		$get_query_res1 =   mysqli_query($db,$get_query1)or die(mysqli_error($db));
 		if(mysqli_num_rows($get_query_res1)>0)
 		{
