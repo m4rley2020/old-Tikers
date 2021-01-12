@@ -16,13 +16,9 @@
 				$follow_uid = $follow_uid.",".$get_follow_data['to_user'];
 			}
 			
-		}$is_liked = mysqli_query($db,"select liked_by from story_like where user_id ='".$_REQUEST['user_id']."'") or die(mysqli_error($db));
-		if(mysqli_num_rows($is_liked)>0)
-		{
-			$is_liked = 'Yes';
-		}else{
-			$is_liked = 'No';
 		}
+
+		
 		
 		
 		$follow_uid = trim($follow_uid,",");
@@ -34,6 +30,15 @@
 			while($get_query_date1 = mysqli_fetch_array($get_query_res1))
 			{
 				$challenge_image = $get_query_date1['challenge_image'];
+				$challenge_id = $get_query_date1['id'];
+				$is_liked = mysqli_query($db,"select * from story_like where user_id ='".$_REQUEST['user_id']."' and story_id = $challenge_id") or die(mysqli_error($db));
+				
+				if(mysqli_num_rows($is_liked)>0)
+		{
+			$is_liked = 'Yes';
+		}		else{
+			$is_liked = 'No';
+		}
 				if(file_exists("../complete_challenge_image/".$challenge_image) && $challenge_image!="")
 				{
 					$challenge_image1 = $SITE_URL."/complete_challenge_image/".$challenge_image;
