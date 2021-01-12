@@ -16,7 +16,14 @@
 				$follow_uid = $follow_uid.",".$get_follow_data['to_user'];
 			}
 			
+		}$is_liked = mysqli_query($db,"select liked_by from story_like where user_id ='".$_REQUEST['user_id']."'") or die(mysqli_error($db));
+		if(mysqli_num_rows($is_liked)>0)
+		{
+			$is_liked = 'Yes';
+		}else{
+			$is_liked = 'No';
 		}
+		
 		
 		$follow_uid = trim($follow_uid,",");
 	
@@ -58,6 +65,7 @@
 						"profile_image"=>$profile_image1,
 						"store_id"=>$get_query_date1['store_id'],
 						"challenge_id"=>$get_query_date1['challenge_id'],
+						"is_liked"=>$is_liked,
 						"add_date"=>$get_query_date1['add_date']
 						);	
 					$message="Favorite Challenge found.";
