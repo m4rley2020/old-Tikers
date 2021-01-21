@@ -6,7 +6,7 @@
 	
 function andriod_push_notification($sender_id,$receiver_id,$type,$message,$sendername,$senderimage)
 {
-	$regId=GetValue("fcm_users","fcm_regid","user_id",$receiver_id);
+	$regId=GetValue("fcm_users","fcm_regid","user_id",$receiver_id,$db);
 	
 	if($regId!="")
 	{
@@ -93,8 +93,8 @@ if($_REQUEST['from_user_id'] != '' && $_REQUEST['from_user_type'] != '' && $_REQ
 		
 		if($from_user_type == "User")
 		{
-			$sender_user_name =  GetValue('user','username','id',$from_user_id);
-			$senderimage =  GetValue('user','profile_image','id',$from_user_id);			
+			$sender_user_name =  GetValue('user','username','id',$from_user_id,$db);
+			$senderimage =  GetValue('user','profile_image','id',$from_user_id,$db);			
 			if(file_exists("../User_image/".$senderimage) && $senderimage!="")
 			{
 				$senderimage = $SITE_URL."/User_image/".$senderimage;
@@ -107,8 +107,8 @@ if($_REQUEST['from_user_id'] != '' && $_REQUEST['from_user_type'] != '' && $_REQ
 		}
 		elseif($from_user_type == "Store")
 		{
-			$sender_user_name =  GetValue('store','name','user_id',$from_user_id);
-			$senderimage =  GetValue('store','store_image','user_id',$from_user_id);
+			$sender_user_name =  GetValue('store','name','user_id',$from_user_id,$db);
+			$senderimage =  GetValue('store','store_image','user_id',$from_user_id,$db);
 			if(file_exists("../store_image/".$senderimage) && $senderimage!="")
 			{
 				$senderimage = $SITE_URL."/store_image/".$senderimage;
