@@ -2,7 +2,7 @@
 define(Site_Name,"Welcome to AME");
 define(Site_Title,"Welcome to AME");
 $SITE_NAME="Welcome to ROL";
-$SITE_URL="http://keshavinfotechdemo.com/KESHAV/KG1/AME/";
+$SITE_URL="https://tikers.tech";
 $DBSERVER = "db530831774.db.1and1.com";
 $DATABASENAME = "db530831774";
 $USERNAME = "dbo530831774";
