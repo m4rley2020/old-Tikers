@@ -252,7 +252,7 @@ function sht(f){
 <input type="hidden" name="p" value="">
 
 <div class="inv">
-<a href="http://phpminiadmin.sourceforge.net/" target="_blank"><b>phpMiniAdmin <?php echo $VERSION?></b></a>
+<a href="https://phpminiadmin.sourceforge.net/" target="_blank"><b>phpMiniAdmin <?php echo $VERSION?></b></a>
 <?php if ($_SESSION['is_logged'] && $dbh){ ?>
  | 
 Database: <select name="db" onChange="frefresh()"><option value='*'> - select/refresh -<?php echo get_db_select($dbn)?></select>
