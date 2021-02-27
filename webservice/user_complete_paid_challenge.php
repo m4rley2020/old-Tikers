@@ -10,7 +10,7 @@
 			move_uploaded_file($_FILES["challenge_image"]["tmp_name"],"../complete_challenge_image/".$challenge_image);
 		}
 		
-		$code_query= "select * from store_code where code ='".$_REQUEST['code']."' AND is_used = 'No' & store_id = '".$_REQUEST['store_id']."'";
+		$code_query= "select * from store_code where code ='".$_REQUEST['code']."' AND is_used = 'No' & store_id ='".$_REQUEST['store_id']."'";
 		$get_code= mysqli_query($db,$code_query)or die(mysqli_error($db));
 
 		/* ---------------------- check code and get user points ---------------------- */
