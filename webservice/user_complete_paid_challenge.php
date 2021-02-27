@@ -30,8 +30,6 @@
 			mysqli_query($db,$update_user)or die(mysqli_error($db));
 
 					
-					$error = "Challenge Completed Successfully";
-					$result=array('message'=> $error, 'result'=>'1');
 
 			/* ---------------------- counter ---------------------- */
 			$counter;
@@ -48,8 +46,6 @@
 			mysqli_query($db,$insert_query1)or die(mysqli_error($db));
 
 					
-					$error = "Challenge Completed Successfully";
-					$result=array('message'=> $error, 'result'=>'1');
 			
 			/* ---------------------- insert Fields ---------------------- */
 			$insert_query = "insert into store_challenge_complete_by_user set 					

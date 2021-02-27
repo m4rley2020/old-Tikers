@@ -2,7 +2,7 @@
 	header("Content-type: application/json");
 	include("connect.php");
 			 
-	if($_REQUEST['user_id'] != '' && $_REQUEST['store_name'] != '' && $_REQUEST['store_type_id'] != '' && $_REQUEST['location'] != '' && $_REQUEST['latitude'] != '' && $_REQUEST['longitude'] != '' && $_REQUEST['phone_number'] != '' && $_REQUEST['gender'] != '')
+	if($_REQUEST['user_id'] != '' && $_REQUEST['store_name'] != '' && $_REQUEST['store_type_id'] != '' && $_REQUEST['location'] != ''&& $_REQUEST['phone_number'] != '' && $_REQUEST['gender'] != '')
 	{
 		
 		$check_customer_mobile = mysqli_query($db,"select id from store where user_id='".$_REQUEST['user_id']."' ") or die(mysqli_error($db));
