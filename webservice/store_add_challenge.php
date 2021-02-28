@@ -2,7 +2,7 @@
 	header("Content-type: application/json");
 	include("connect.php");
 			 
-	if($_REQUEST['store_id'] != '' && $_REQUEST['challenge_type_id'] != '' && $_REQUEST['name'] != '' && $_REQUEST['description'] != '' && $_REQUEST['location'] != '' && $_REQUEST['lattitude'] != '' && $_REQUEST['longitude'] != '')
+	if($_REQUEST['store_id'] != '' && $_REQUEST['challenge_type_id'] != '' && $_REQUEST['name'] != '' && $_REQUEST['description'] != '' )
 	{
 		
 		$challenge_image="";
