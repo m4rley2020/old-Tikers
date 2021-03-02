@@ -66,7 +66,7 @@
 					
 					$data[]=array(
 						"story_id"=>$get_query_date1['id'],
-						"username"=>$get_query_date1['username'],
+						"username"=>GetValue("user","username","user_id","id"),
 						"story_image"=>$challenge_image1,						
 						"user_id"=>$get_query_date1['user_id'],						
 						"profile_image"=>$profile_image1,
