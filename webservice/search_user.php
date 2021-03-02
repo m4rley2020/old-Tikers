@@ -8,7 +8,10 @@
 		$get_query = "select * from user where username like '%".$_REQUEST['searchname']."%' and id != '".$_REQUEST['user_id']."'";
 		$get_query_res =   mysqli_query($db,$get_query)or die(mysqli_error($db));
 		
-		if(mysqli_num_rows($get_query_res)>0)
+		$get_query1 = "select * from store where name like '%".$_REQUEST['searchname']."%' and user_id != '".$_REQUEST['user_id']."'";
+		$get_query_res1 =   mysqli_query($db,$get_query1)or die(mysqli_error($db));
+		
+		if(mysqli_num_rows($get_query_res)>0 || mysqli_num_rows($get_query_res1)>0)
 		{
 			while($get_query_date = mysqli_fetch_array($get_query_res))
 			{
@@ -27,7 +30,20 @@
 				{
 					$profile_imagel = "";
 				}
+				while($get_query_date = mysqli_fetch_array($get_query_res1))
+			{
+				$user_id = $get_query_date['id'];
+				$username = $get_query_date['name'];			
+				$profile_image = $get_query_date['store_image'];
 				
+				if(file_exists("../store_image/".$profile_image) && $profile_image!="")
+				{
+					$profile_imagel = $SITE_URL."/store_image/".$profile_image;
+				}
+				else
+				{
+					$profile_imagel = "";
+				}
 				// 0 = follow
 				// 1 = requested
 				// 2 = following
@@ -61,6 +77,7 @@
 			$error = "User not found.";
 			$result=array('message'=> $error, 'result'=>'0');
 		}
+		
 	}
 	else
 	{
