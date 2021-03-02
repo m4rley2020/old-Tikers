@@ -53,7 +53,7 @@
 				$get_user_row = mysqli_fetch_array($get_user_res);
 				
 				$user_id=$get_query_date1['user_id'];
-				$username = GetValue("user","username","id","$user_id");
+				$username="select username from user where id = $user_id";
 				
 				$profile_image = $get_user_row['profile_image'];
 				if(file_exists("../User_image/".$profile_image) && $profile_image!="")
