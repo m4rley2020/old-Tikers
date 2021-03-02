@@ -53,10 +53,10 @@
 				$get_user_row = mysqli_fetch_array($get_user_res);
 				
 				$user_id=$get_query_date1['user_id'];
-				$get_username= "select username from user where id = $user_id";
-				$get_username_rest = mysqli_query($db,$get_username) or die(mysqli_error($db));
-				$get_username_fetch = mysqli_fetch_array($get_username);
-				$username=$get_username_fetch['username'];
+				$username_query="select username from user where id=$user_id";
+			$get_username= mysqli_query($db,$username_query)or die(mysqli_error($db));
+			$get_username_fetch = mysqli_fetch_array($get_username);
+			$username= $get_username_fetch['username'];
 				
 				$profile_image = $get_user_row['profile_image'];
 				if(file_exists("../User_image/".$profile_image) && $profile_image!="")
