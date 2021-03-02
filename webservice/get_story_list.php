@@ -73,7 +73,7 @@
 						"story_id"=>$get_query_date1['id'],
 						"story_image"=>$challenge_image1,
 						"username"=>$username,						
-						"user_id"=>$get_query_date1['user_id'],						
+						"user_id"=>$user_id,						
 						"profile_image"=>$profile_image1,
 						"store_id"=>$get_query_date1['store_id'],
 						"challenge_id"=>$get_query_date1['challenge_id'],
