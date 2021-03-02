@@ -5,7 +5,7 @@
 	if($_REQUEST['user_id'] != '' && $_REQUEST['searchname'])
 	{
 		
-		$get_query = "select * from user where username like '%".$_REQUEST['searchname']."%' and id != '".$_REQUEST['user_id']."'";
+		$get_query = "select * from user,store where username,name like '%".$_REQUEST['searchname']."%' and id != '".$_REQUEST['user_id']."'";
 		$get_query_res =   mysqli_query($db,$get_query)or die(mysqli_error($db));
 		
 		if(mysqli_num_rows($get_query_res)>0)
