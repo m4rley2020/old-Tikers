@@ -52,6 +52,8 @@
 				$get_user_res = mysqli_query($db,$get_user) or die(mysqli_error($db));
 				$get_user_row = mysqli_fetch_array($get_user_res);
 				
+				$user_id=$get_query_date1['user_id'];
+				$username = GetValue("user","username","id","$user_id");
 				
 				$profile_image = $get_user_row['profile_image'];
 				if(file_exists("../User_image/".$profile_image) && $profile_image!="")
@@ -66,8 +68,8 @@
 					
 					$data[]=array(
 						"story_id"=>$get_query_date1['id'],
-						"username"=>GetValue("user","username","id","user_id"),
-						"story_image"=>$challenge_image1,						
+						"story_image"=>$challenge_image1,
+						"username"=>$username,						
 						"user_id"=>$get_query_date1['user_id'],						
 						"profile_image"=>$profile_image1,
 						"store_id"=>$get_query_date1['store_id'],
