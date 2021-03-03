@@ -57,7 +57,8 @@ if ($_REQUEST['user_id'] != '' && $_REQUEST['searchname']) {
 		while ($get_query_data = mysqli_fetch_array($get_query_res1)) {
 			$user_id = $get_query_data['id'];
 			$username = $get_query_data['name'];
-			$first_name = $get_query_data['store_type_id'];
+			$first_name = $get_query_data['location'];
+			$store_type_id = $get_query_data['store_type_id'];
 			$last_name = $get_query_data['rating'];
 			$profile_image = $get_query_data['store_image'];
 
@@ -84,6 +85,7 @@ if ($_REQUEST['user_id'] != '' && $_REQUEST['searchname']) {
 				"username" => $username,
 				"first_name" => $first_name,
 				"last_name" => $last_name,
+				"store_type_id"=>$store_type_id,
 				"profile_image" => $profile_imagel,
 				"is_follow" => $is_follow,
 			);
