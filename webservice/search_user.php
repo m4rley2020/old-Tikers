@@ -80,7 +80,7 @@ if ($_REQUEST['user_id'] != '' && $_REQUEST['searchname']) {
 
 
 			$data[] = array(
-				"user_id" => $user_id,
+				"store_id" => $user_id,
 				"username" => $username,
 				"first_name" => $first_name,
 				"last_name" => $last_name,
