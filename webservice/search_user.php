@@ -57,7 +57,7 @@ if ($_REQUEST['user_id'] != '' && $_REQUEST['searchname']) {
 		while ($get_query_data = mysqli_fetch_array($get_query_res1)) {
 			$user_id = $get_query_data['id'];
 			$username = $get_query_data['name'];
-			$first_name = $get_query_data['gender'];
+			$first_name = $get_query_data['store_type_id'];
 			$last_name = $get_query_data['rating'];
 			$profile_image = $get_query_data['store_image'];
 
