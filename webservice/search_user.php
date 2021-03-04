@@ -55,10 +55,11 @@ if ($_REQUEST['user_id'] != '' && $_REQUEST['searchname']) {
 					"is_follow" => $is_follow,
 				);
 			}
-		}
+		
 			$message = "User found.";
 			$result = array('message' => $message, 'result' => '1', 'responseData' => $data);
 		}	
+	}
 	
 		
 
