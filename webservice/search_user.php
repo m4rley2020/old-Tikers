@@ -7,7 +7,14 @@ if ($_REQUEST['user_id'] != '' && $_REQUEST['searchname']) {
 	$get_query = "select * from user where username like '%" . $_REQUEST['searchname'] . "%' and id != '" . $_REQUEST['user_id'] . "'";
 	$get_query_res =   mysqli_query($db, $get_query) or die(mysqli_error($db));
 
-	 if (mysqli_num_rows($get_query_res) > 0) {
+	if (mysqli_num_rows($get_query_res) < 0) {
+		if (mysqli_num_rows($get_query_res1) < 1) {
+		
+			$error = "User not found.";
+		$result = array('message' => $error, 'result' => '0');
+	}
+	}
+	 else if (mysqli_num_rows($get_query_res) > 0) {
 		while ($get_query_date = mysqli_fetch_array($get_query_res)) {
 			$user_id = $get_query_date['id'];
 			$username = $get_query_date['username'];
