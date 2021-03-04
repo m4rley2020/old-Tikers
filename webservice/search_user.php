@@ -169,7 +169,6 @@ if ($_REQUEST['user_id'] != '' && $_REQUEST['searchname']) {
 		}
 		$message = "User found.";
 		$result = array('message' => $message, 'result' => '1', 'responseData' => $data);
-		
 	} else {
 		$error = "User not found.";
 		$result = array('message' => $error, 'result' => '0');
