@@ -6,6 +6,9 @@ if ($_REQUEST['user_id'] != '' && $_REQUEST['searchname']) {
 
 	$get_query = "select * from user where username like '%" . $_REQUEST['searchname'] . "%' and id != '" . $_REQUEST['user_id'] . "'";
 	$get_query_res =   mysqli_query($db, $get_query) or die(mysqli_error($db));
+	
+	$get_query1 = "select * from store where name like '%" . $_REQUEST['searchname'] . "%'";
+	$get_query_res1 =   mysqli_query($db, $get_query1) or die(mysqli_error($db));
 
 	if (mysqli_num_rows($get_query_res) < 0) {
 		if (mysqli_num_rows($get_query_res1) < 1) {
@@ -58,9 +61,7 @@ if ($_REQUEST['user_id'] != '' && $_REQUEST['searchname']) {
 	
 	/** --------------------------------------------------------------------- */
 
-	$get_query1 = "select * from store where name like '%" . $_REQUEST['searchname'] . "%'";
-	$get_query_res1 =   mysqli_query($db, $get_query1) or die(mysqli_error($db));
-
+	
 
 	
 	if (mysqli_num_rows($get_query_res1) < 1) {
