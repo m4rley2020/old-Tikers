@@ -10,13 +10,10 @@ if ($_REQUEST['user_id'] != '' && $_REQUEST['searchname']) {
 	$get_query1 = "select * from store where name like '%" . $_REQUEST['searchname'] . "%'";
 	$get_query_res1 =   mysqli_query($db, $get_query1) or die(mysqli_error($db));
 
-	if (mysqli_num_rows($get_query_res) < 0) {
+	if (mysqli_num_rows($get_query_res) < 1) {
 		if (mysqli_num_rows($get_query_res1) < 1) {
 		
 			$error = "User not found.";
-		$result = array('message' => $error, 'result' => '0');
-	}else{
-		$error = "User not found.";
 		$result = array('message' => $error, 'result' => '0');
 	}
 	}
