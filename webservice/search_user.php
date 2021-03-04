@@ -7,6 +7,7 @@ if ($_REQUEST['user_id'] != '' && $_REQUEST['searchname']) {
 	$get_query = "select * from user where username like '%" . $_REQUEST['searchname'] . "%' and id != '" . $_REQUEST['user_id'] . "'";
 	$get_query_res =   mysqli_query($db, $get_query) or die(mysqli_error($db));
 
+<<<<<<< HEAD
 	if (mysqli_num_rows($get_query_res) < 1) {
 
 		$get_query1 = "select * from store where name like '%" . $_REQUEST['searchname'] . "%'";
@@ -64,6 +65,10 @@ if ($_REQUEST['user_id'] != '' && $_REQUEST['searchname']) {
 		
 
 	 if (mysqli_num_rows($get_query_res) > 0) {
+=======
+	
+	if (mysqli_num_rows($get_query_res) > 0) {
+>>>>>>> parent of 979bc8b (Update search_user.php)
 		while ($get_query_date = mysqli_fetch_array($get_query_res)) {
 			$user_id = $get_query_date['id'];
 			$username = $get_query_date['username'];
@@ -107,13 +112,19 @@ if ($_REQUEST['user_id'] != '' && $_REQUEST['searchname']) {
 	
 	/** --------------------------------------------------------------------- */
 
-	
+	$get_query1 = "select * from store where name like '%" . $_REQUEST['searchname'] . "%'";
+	$get_query_res1 =   mysqli_query($db, $get_query1) or die(mysqli_error($db));
+
 
 	
 	if (mysqli_num_rows($get_query_res1) < 1) {
+<<<<<<< HEAD
 		
 		$message = "User found.";
 		$result = array('message' => $message, 'result' => '1', 'responseData' => $data);
+=======
+		$message = "User not found.";
+>>>>>>> parent of 979bc8b (Update search_user.php)
 	}
 
 
@@ -165,6 +176,5 @@ if ($_REQUEST['user_id'] != '' && $_REQUEST['searchname']) {
 	$error = "Please enter all required fields";
 	$result = array('message' => $error, 'result' => '0');
 }
-
 $result = json_encode($result);
 echo $result;
