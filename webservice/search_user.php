@@ -54,13 +54,13 @@ if ($_REQUEST['user_id'] != '' && $_REQUEST['searchname']) {
 	$get_query_res1 =   mysqli_query($db, $get_query1) or die(mysqli_error($db));
 
 	if (mysqli_num_rows($get_query_res1) > 0) {
-		while ($get_query_data = mysqli_fetch_array($get_query_res1)) {
-			$user_id = $get_query_data['id'];
-			$username = $get_query_data['name'];
-			$first_name = $get_query_data['location'];
-			$store_type_id = $get_query_data['store_type_id'];
-			$last_name = $get_query_data['rating'];
-			$profile_image = $get_query_data['store_image'];
+		while ($get_query_data1 = mysqli_fetch_array($get_query_res1)) {
+			$user_id = $get_query_data1['id'];
+			$username = $get_query_data1['name'];
+			$first_name = $get_query_data1['location'];
+			$store_type_id = $get_query_data1['store_type_id'];
+			$last_name = $get_query_data1['rating'];
+			$profile_image = $get_query_data1['store_image'];
 
 			if (file_exists("../store_image/" . $profile_image) && $profile_image != "") {
 				$profile_imagel = $SITE_URL . "/store_image/" . $profile_image;
