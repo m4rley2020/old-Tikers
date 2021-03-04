@@ -62,7 +62,7 @@ if ($_REQUEST['user_id'] != '' && $_REQUEST['searchname']) {
 	
 		
 
-	else if (mysqli_num_rows($get_query_res) > 0) {
+	 if (mysqli_num_rows($get_query_res) > 0) {
 		while ($get_query_date = mysqli_fetch_array($get_query_res)) {
 			$user_id = $get_query_date['id'];
 			$username = $get_query_date['username'];
