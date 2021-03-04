@@ -34,7 +34,7 @@ if ($_REQUEST['user_id'] != '' && $_REQUEST['searchname']) {
 			}
 
 
-			$data1[] = array(
+			$data[] = array(
 				"user_id" => $user_id,
 				"username" => $username,
 				"first_name" => $first_name,
@@ -45,7 +45,7 @@ if ($_REQUEST['user_id'] != '' && $_REQUEST['searchname']) {
 			);
 		}
 		$message = "User found.";
-		$result = array('message' => $message, 'result' => '1', 'responseData' => $data1);
+		$result = array('message' => $message, 'result' => '1', 'responseData' => $data);
 	}
 
 	/** --------------------------------------------------------------------- */
@@ -53,7 +53,15 @@ if ($_REQUEST['user_id'] != '' && $_REQUEST['searchname']) {
 	$get_query1 = "select * from store where name like '%" . $_REQUEST['searchname'] . "%'";
 	$get_query_res1 =   mysqli_query($db, $get_query1) or die(mysqli_error($db));
 
-	if (mysqli_num_rows($get_query_res1) > 0) {
+
+	
+	if (mysqli_num_rows($get_query_res1) < 1) {
+		$message = "User found.";
+	$result = array('message' => $message, 'result' => '1', 'responseData' => $data);
+	}
+
+
+	else if (mysqli_num_rows($get_query_res1) > 0) {
 		while ($get_query_data1 = mysqli_fetch_array($get_query_res1)) {
 			$user_id = $get_query_data1['id'];
 			$username = $get_query_data1['name'];
@@ -91,7 +99,7 @@ if ($_REQUEST['user_id'] != '' && $_REQUEST['searchname']) {
 			);
 		}
 		$message = "User found.";
-		$result = array('message' => $message, 'result' => '1', 'responseData' => $data1);
+		$result = array('message' => $message, 'result' => '1', 'responseData' => $data);
 		
 	} else {
 		$error = "User not found.";
