@@ -167,3 +167,4 @@ if ($_REQUEST['user_id'] != '' && $_REQUEST['searchname']) {
 }
 $result = json_encode($result);
 echo $result;
+?>
