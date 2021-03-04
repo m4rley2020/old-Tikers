@@ -69,8 +69,8 @@ if ($_REQUEST['user_id'] != '' && $_REQUEST['searchname']) {
 	
 	else if (mysqli_num_rows($get_query_res1) < 1) {
 		
-		$message = "User found.";
-		$result = array('message' => $message, 'result' => '1', 'responseData' => $data);
+		$error = "User not found.";
+		$result = array('message' => $error, 'result' => '0');
 	}
 
 
