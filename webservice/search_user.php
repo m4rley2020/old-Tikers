@@ -18,7 +18,7 @@ if ($_REQUEST['user_id'] != '' && $_REQUEST['searchname']) {
 		$result = array('message' => $error, 'result' => '0');
 
 		}
-		else if (mysqli_num_rows($get_query_res1) > 0) {
+		 if (mysqli_num_rows($get_query_res1) > 0) {
 			while ($get_query_data1 = mysqli_fetch_array($get_query_res1)) {
 				$user_id = $get_query_data1['id'];
 				$username = $get_query_data1['name'];
@@ -110,12 +110,13 @@ if ($_REQUEST['user_id'] != '' && $_REQUEST['searchname']) {
 
 	
 	if (mysqli_num_rows($get_query_res1) < 1) {
-		$error = "User not found.";
-		$result = array('message' => $error, 'result' => '0');
+		
+		$message = "User found.";
+		$result = array('message' => $message, 'result' => '1', 'responseData' => $data);
 	}
 
 
-	else if (mysqli_num_rows($get_query_res1) > 0) {
+	 if (mysqli_num_rows($get_query_res1) > 0) {
 		while ($get_query_data1 = mysqli_fetch_array($get_query_res1)) {
 			$user_id = $get_query_data1['id'];
 			$username = $get_query_data1['name'];
