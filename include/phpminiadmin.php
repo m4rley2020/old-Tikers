@@ -24,7 +24,7 @@ $DB=array(
 
 //constants
  $VERSION='1.4.080217';
- $MAX_ROWS_PER_PAGE=100; #max number of rows in select per one page
+ $MAX_ROWS_PER_PAGE=50; #max number of rows in select per one page
  $self=$_SERVER['PHP_SELF'];
 
  ini_set('display_errors',0);
@@ -252,7 +252,7 @@ function sht(f){
 <input type="hidden" name="p" value="">
 
 <div class="inv">
-<a href="http://phpminiadmin.sourceforge.net/" target="_blank"><b>phpMiniAdmin <?php echo $VERSION?></b></a>
+<a href="https://phpminiadmin.sourceforge.net/" target="_blank"><b>phpMiniAdmin <?php echo $VERSION?></b></a>
 <?php if ($_SESSION['is_logged'] && $dbh){ ?>
  | 
 Database: <select name="db" onChange="frefresh()"><option value='*'> - select/refresh -<?php echo get_db_select($dbn)?></select>

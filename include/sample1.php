@@ -1,5 +1,5 @@
 <?php
-//$path = "http://images.templatemonster.com/screenshots/".$_GET["nm"]; //---Sample String for other's site data
+//$path = "https://images.templatemonster.com/screenshots/".$_GET["nm"]; //---Sample String for other's site data
 
 
 $path=$_GET["nm"];

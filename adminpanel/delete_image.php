@@ -1,4 +1,4 @@
-<?
+<?php
 	include("connect.php");
 	
 		if(isset($_REQUEST['id']))
@@ -7,7 +7,7 @@
 					deletefull1($id,$name);
 					$query = "update staticpage set image_path='' where id=".$id;
 					
-					mysql_query($query);
+					mysqli_query($db,$query);
 					location("staticpage.php?id=$id&mode=edit&msg=1");			
 		}	
 		
@@ -15,8 +15,8 @@ function deletefull1($id,$name)
 {
 	$dquery = "select * from staticpage where id=".$id;
 	
-	$dresult = mysql_query($dquery);
-	while($drow = mysql_fetch_array($dresult))
+	$dresult = mysqli_query($db,$dquery);
+	while($drow = mysqli_fetch_array($dresult))
 	{
 		$dfile = $drow[$name];
 		if($dfile != "")
@@ -27,6 +27,6 @@ function deletefull1($id,$name)
 			}
 		}
 	}
-	mysql_free_result($dresult);
+	mysqli_free_result($dresult);
 }	
 ?>

@@ -1,4 +1,4 @@
-<?									
+<?php									
 include("connect.php");
 
 if(isset($_REQUEST['btnDelete']))
@@ -13,14 +13,14 @@ if(isset($_REQUEST['btnDelete']))
 		{
 			$query = "DELETE FROM  store where id=".$_REQUEST[$pid];
 		}
-		mysql_query($query);
+		mysqli_query($db,$query);
 		
 	}
 	location("manage_store.php?msg=3");
 }
 $LeftLinkSection = 1;
 $pagetitle="Store";
-$sel= "select * from store where name like '".$_GET["order"]."%' order by name" ;$result=$prs_pageing->number_pageing($sel,20000,10,'N','Y');
+$sel= "select * from store where name like '".$_GET["order"]."%' order by name" ;$result=$prs_pageing->number_pageing($sel,20000,10,'N','Y','',$db);
 
 ?>
 <!DOCTYPE html>
@@ -30,7 +30,7 @@ $sel= "select * from store where name like '".$_GET["order"]."%' order by name" 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
-    <title><? echo $pagetitle; ?> | <?=$SITE_NAME?></title>
+    <title><?php echo $pagetitle; ?> | <?=$SITE_NAME?></title>
     
     <!--[if lt IE 9]> <script src="assets/plugins/common/html5shiv.js" type="text/javascript"></script> <![endif]-->
     <script src="js/modernizr.js" type="text/javascript"></script>
@@ -61,11 +61,11 @@ $sel= "select * from store where name like '".$_GET["order"]."%' order by name" 
 
 <body>
 
-   <? include("top.php"); ?>
+   <?php include("top.php"); ?>
 
     <div id="container">    <!-- Start : container -->
 
-    <? include("left.php"); ?>
+    <?php include("left.php"); ?>
 
         <div id="content">  <!-- Start : Inner Page Content -->
 
@@ -78,18 +78,18 @@ $sel= "select * from store where name like '".$_GET["order"]."%' order by name" 
                             <a href="deskboard.php">Dashboard</a>
                         </li>
                         
-                        <li class="current"><? echo $pagetitle; ?></li>
+                        <li class="current"><?php echo $pagetitle; ?></li>
                     </ul>
 
                 </div>  <!-- End : Breadcrumbs -->
 
                 <div class="page-header">   <!-- Start : Page Header -->
                     <div class="page-title">
-                        <h3>Manage <? echo $pagetitle; ?></h3>
+                        <h3>Manage <?php echo $pagetitle; ?></h3>
                         
                     </div>
                 </div>  <!-- End : Page Header -->
-                <? if($_GET["msg"]) { ?>
+                <?php if($_GET["msg"]) { ?>
                 <div class="alert alert-danger show">
                         <button class="close" data-dismiss="alert"></button>
                         
@@ -114,13 +114,13 @@ $sel= "select * from store where name like '".$_GET["order"]."%' order by name" 
                            </span>
                          
                  </div>
-                 <? } 					  
+                 <?php } 					  
                         ?> 
                 <div class="row">
                     <div class="col-md-12">
                         <div class="portlet box blue">
                             <div class="portlet-title">
-                                <div class="caption"><i class="fa fa-table"></i><? echo $pagetitle; ?></div>
+                                <div class="caption"><i class="fa fa-table"></i><?php echo $pagetitle; ?></div>
                                                                 
                                 
                             </div>
@@ -137,8 +137,8 @@ $sel= "select * from store where name like '".$_GET["order"]."%' order by name" 
                                                 </thead>
                                         <tbody>
                                             
-						  <? $count=0; 
-							 while($get=mysql_fetch_object($result[0])) 
+						  <?php $count=0; 
+							 while($get=mysqli_fetch_object($result[0])) 
 							 {  
 								$count++;
 						 ?>	 
@@ -148,16 +148,16 @@ $sel= "select * from store where name like '".$_GET["order"]."%' order by name" 
 							  <input type="checkbox" name="chk<?=$count;?>" id="chk<?=$count;?>" value="<?=$count;?>" /></td>
 							 <td><?=$count;?>.</td>
 						 
-							  <td > <strong> <? echo stripslashes($get->name); ?></strong></td>
-							  <td > <strong> <? echo stripslashes($get->location); ?></strong></td>
-							  <td > <strong> <? echo stripslashes($get->phone_number); ?></strong></td><td nowrap>				 
+							  <td > <strong> <?php echo stripslashes($get->name); ?></strong></td>
+							  <td > <strong> <?php echo stripslashes($get->location); ?></strong></td>
+							  <td > <strong> <?php echo stripslashes($get->phone_number); ?></strong></td><td nowrap>				 
 		<a class="btn mini blue" href="#" onClick="window.location.href='add_store.php?id=<?php echo ($get->id); ?>&mode=edit'"><i class="fa fa-pencil"></i></a> 
                 <a class="btn mini red" href="#" onClick="deleteconfirm('Are you sure you want to delete this <?=$pagetitle;?>?. \n','add_store.php?id=<?php echo($get->id); ?>&mode=delete');"><i class="fa fa-trash-o"></i></a>    
 								 
-				<a class="btn mini green" href="#" onClick="window.location.href='store_pending_challenge.php?id=<?php echo ($get->id); ?>'">Pending Challenge to Approve</a>    
+				<a class="btn mini green" href="#" onClick="window.location.href='store_pending_store.php?id=<?php echo ($get->id); ?>'">Pending Challenge to Approve</a>    
 </td>
 			</tr>	  
-                <? } ?>	
+                <?php } ?>	
                              </tbody>
                        </table>
 			  
@@ -168,7 +168,7 @@ $sel= "select * from store where name like '".$_GET["order"]."%' order by name" 
 				 <input style="margin-right:7px;" type="button" name="button2" id="button2" value="ADD NEW"  onclick="location.href='add_store.php?mode=add'" class="btn green pull-left" />
                                     &nbsp; 
                                  
-                                  <? // $result[1] ?> 								
+                                  <?php // $result[1] ?> 								
                                    
                                     </div></div>
                                     </form>   

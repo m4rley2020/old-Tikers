@@ -1,4 +1,4 @@
-<? include("linkvars.php"); ?>
+<?php include("linkvars.php"); ?>
 <header class="header navbar navbar-fixed-top" role="banner">  <!-- Start: Header and Nav Bar -->
 
         <div class="container"> <!-- Start: Nav Bar Container -->
@@ -8,12 +8,12 @@
                     <a href="javascript:void(0);" title="">
                         <i class="fa fa-bars"></i>
                     </a>
-                </li>
+                </li 
             </ul>   <!-- End Mobile Menu toggle -->
 
             <a class="navbar-brand" href="deskboard.php">  <!-- Start: Logo -->
                 <img src="images/logo.png" alt="logo"/>
-                <strong>Welcome</strong>  <? echo $_COOKIE['UsErOfAdMiN']; ?>
+                <strong>Welcome</strong>  <?php echo $_COOKIE['UsErOfAdMiN']; ?>
             </a>    <!-- End Logo -->
 
             <a href="#" class="toggle-sidebar bs-tooltip" data-placement="bottom" data-original-title="Toggle navigation">
@@ -23,17 +23,17 @@
           <ul class="nav navbar-nav navbar-left hidden-xs hidden-sm"> <!-- Start : Top Left Drop down -->
                 <li><a href="deskboard.php">Dashboard</a></li>
                 
-                <? 
+                <?php 
                      for($i=0;$i<count($HeadLinksArray);$i++)
                             {
                                 ?>
                                <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                         <? echo $HeadLinksArray[$i][0]; ?> <i class="fa fa-angle-down"></i>
+                                         <?php echo $HeadLinksArray[$i][0]; ?> <i class="fa fa-angle-down"></i>
                                      </a>
                                
                                     <ul class="dropdown-menu">
-                                         <?
+                                         <?php
 
                                                  $LeftLinkAry1 = $HeadLinksArray[$i][2];
                                                  for($LeftLinkCount=0;$LeftLinkCount<count($LeftLinkAry1);$LeftLinkCount++)
@@ -43,17 +43,17 @@
 
 
                                                  <li>
-                                                      <a href="<? echo $LeftLinkAry1[$LeftLinkCount][1] ?>">
-                                                               <i class="fa fa-tasks"></i><? echo $LeftLinkAry1[$LeftLinkCount][0] ?>
+                                                      <a href="<?php echo $LeftLinkAry1[$LeftLinkCount][1] ?>">
+                                                               <i class="fa fa-tasks"></i><?php echo $LeftLinkAry1[$LeftLinkCount][0] ?>
                                                                </a>
                                                  </li>  
 
-                                                 <?          
+                                                 <?php          
                                                  }
                                             ?>
                                     </ul>
                              </li> 
-                                       <?
+                                       <?php
                             }
                     ?>
                 
@@ -64,7 +64,7 @@
                 <li class="dropdown user">  <!-- Start : User Drop Down -->
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img class="userImg" src="images/avatar-1.png">
-                        <span class="username"><? echo $_COOKIE['UsErOfAdMiN']; ?></span>
+                        <span class="username"><?php echo $_COOKIE['UsErOfAdMiN']; ?></span>
                         <i class="fa fa-angle-down small"></i>
                     </a>
 

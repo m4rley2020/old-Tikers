@@ -1,4 +1,4 @@
-<?									
+<?php									
 include("connect.php");
 include("FCKeditor/fckeditor.php") ;
 $LeftLinkSection = 1;
@@ -20,10 +20,10 @@ if(isset($_REQUEST["id"]) && $_REQUEST["id"] > 0)
 {
 	$id = $_REQUEST["id"];											
 	$fetchquery = "select * from store_challenges where id=".$id;
-	$result = mysql_query($fetchquery);
-	if(mysql_num_rows($result) > 0)
+	$result = mysqli_query($db,$fetchquery);
+	if(mysqli_num_rows($result) > 0)
 	{
-		while($row = mysql_fetch_array($result))
+		while($row = mysqli_fetch_array($result))
 		{
 			$package_arr = explode("@@",$row['package']);
 			$challenge_type= stripslashes($row['challenge_type_id']);
@@ -59,9 +59,18 @@ if(isset($_REQUEST['Submit']))
 			 move_uploaded_file($_FILES["challenge_image"]["tmp_name"],"../challenge_image/".$challenge_image);
 			 
 			 auto_change_file_permition("challenge_image",$challenge_image);
-		}	
-		
-		
+		}
+
+		$myip = get_client_ip();
+		if($myip == 'UNKNOWN'){
+			$json     = file_get_contents("http://ipinfo.io/$myip/geo");
+			$json     = json_decode($json, true);
+			$location = $json['city'];
+			$lat_long = $json['loc'];
+			$lat_long_arr = explode(",",$lat_long);
+			$latitude = $lat_long_arr[0];
+			$longitude = $lat_long_arr[1];
+		}
 		if(isset($_REQUEST['mode']))
 		{
 			switch($_REQUEST['mode'])
@@ -74,19 +83,8 @@ if(isset($_REQUEST['Submit']))
 						return;
 					}
 					
-					$myip = get_client_ip();
-					if($myip != 'UNKNOWN'){
-						$json     = file_get_contents("http://ipinfo.io/$myip/geo");
-						$json     = json_decode($json, true);
-						$location = $json['city'];
-						$lat_long = $json['loc'];
-						$lat_long_arr = explode(",",$lat_long);
-						$latitude = $lat_long_arr[0];
-						$longitude = $lat_long_arr[1];
-					}
-					
-					$query = "insert into store_challenges set package='$package', challenge_type_id='$challenge_type', name='$challenge_name', challeng_image='$challenge_image', description = '$challenge_description', location='$location', lattitude='$latitude', longitude='$longitude', points = '$challenge_points', challenge_category = 'Free', created_date=now() "; 
-					mysql_query($query) or die(mysql_error());
+					$query = "insert into store_challenges set package='$package', challenge_type_id='$challenge_type', name='$challenge_name', challeng_image='$challenge_image', description = '$challenge_description', location='$location', lattitude='$latitude', longitude='$longitude', points = '$challenge_points', challenge_category = 'Free'"; 
+					mysqli_query($db,$query) or die(mysqli_error($db));
 					location("manage_challenge.php?msg=1");
 				break;
 				
@@ -105,7 +103,7 @@ if(isset($_REQUEST['Submit']))
 							$query.=" , challeng_image='$challenge_image'";
 						} 
 					$query.=" where id=".$_REQUEST['id'];
-					mysql_query($query) or die(mysql_error());
+					mysqli_query($db,$query) or die(mysqli_error($db));
 					location("manage_challenge.php?msg=2");
 				break;
 				
@@ -120,7 +118,7 @@ if(isset($_REQUEST['mode']))
 		case 'delete' :
 			deletefull1($_REQUEST['id']);
 $query = "delete from store_challenges where id=".$_REQUEST['id'];     
-			mysql_query($query) or die(mysql_error());
+			mysqli_query($db,$query) or die(mysqli_error($db));
 			location("manage_challenge.php?msg=3");
 		break;
 	}	
@@ -129,8 +127,8 @@ $query = "delete from store_challenges where id=".$_REQUEST['id'];
 	function deletefull1($iid)
 	{
 		$dquery = "select challeng_image from store_challenges where id=".$iid;
-		$dresult = mysql_query($dquery);
-		while($drow = mysql_fetch_array($dresult))
+		$dresult = mysqli_query($db,$dquery);
+		while($drow = mysqli_fetch_array($dresult))
 		{
 			$dfile = $drow['challeng_image'];
 			if($dfile != "")
@@ -141,7 +139,7 @@ $query = "delete from store_challenges where id=".$_REQUEST['id'];
 				}
 			}
 		}
-		mysql_free_result($dresult);
+		mysqli_free_result($dresult);
 	}
 
 function get_client_ip()
@@ -167,10 +165,10 @@ function get_client_ip()
 }
 
 $challenge_type_query = "select * from challenge_type";
-$challenge_type_result = mysql_query($challenge_type_query);
+$challenge_type_result = mysqli_query($db,$challenge_type_query);
 
 $package_query = "select * from package";
-$package_result = mysql_query($package_query);
+$package_result = mysqli_query($db,$package_query);
 
 ?>
 <!DOCTYPE html>
@@ -180,7 +178,7 @@ $package_result = mysql_query($package_query);
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
-    <title><? echo $pagetitle; ?> | <?=$SITE_NAME?></title>
+    <title><?php echo $pagetitle; ?> | <?=$SITE_NAME?></title>
     
     <!--[if lt IE 9]> <script src="assets/plugins/common/html5shiv.js" type="text/javascript"></script> <![endif]-->
     <script src="js/modernizr.js" type="text/javascript"></script>
@@ -255,11 +253,11 @@ return chosen
 
     <div id="container">    <!-- Start : container -->
 
-       <? include("top.php"); ?>
+       <?php include("top.php"); ?>
 
         <div id="content">  <!-- Start : Inner Page Content -->
 
-            <? include("left.php"); ?>
+            <?php include("left.php"); ?>
 
             <div class="container"> <!-- Start : Inner Page container -->
 
@@ -277,7 +275,7 @@ return chosen
 
                 <div class="page-header">   <!-- Start : Page Header -->
                     <div class="page-title">
-                        <h3><? echo ($_GET["id"]>0)?"Edit ":"Add "; ?><?=$pagetitle?></h3>
+                        <h3><?php echo ($_GET["id"]>0)?"Edit ":"Add "; ?><?=$pagetitle?></h3>
                         <span style="color:#CC6600;">
                         <?php 
                                         $msg = $_REQUEST['msg'];
@@ -301,23 +299,27 @@ return chosen
                     <div class="col-md-6 col-sm-6">
                         <div class="portlet box blue">
                             <div class="portlet-title">
-                                <div class="caption"><i class="fa fa-bars"></i><? echo ($_GET["id"]>0)?"Edit ":"Add "; ?><?=$pagetitle?></div>
+                                <div class="caption"><i class="fa fa-bars"></i><?php echo ($_GET["id"]>0)?"Edit ":"Add "; ?><?=$pagetitle?></div>
                                 
                             </div>
                             <div class="portlet-body">
                                         <form action="add_challenge.php" method="post" name="frm" enctype="multipart/form-data" onSubmit="javascript:return keshav_check();" class="form-horizontal row-border" id="validate-1"  novalidate="novalidate">
                                         <input type="hidden" name="mode" id="mode" value="<?= $_REQUEST['mode']; ?>" >
+											<?php
 											
+
+
+											?>
                             <div class="form-group">
                             <label class="col-md-3 control-label">
                               <span class="required">*</span>Package
                              </label>     
                              <div class="col-md-9">
                              <select class="form-control required" name="package[]" id="package" multiple size="10">
-                             	<option value="" <? if($package_arr == ''){ ?>selected="selected"<? } ?>>Please Select</option>
+                             	<option value="" <?php if($package_arr == ''){ ?>selected="selected"<?php } ?>>Please Select</option>
 								<?php
-								 	if(mysql_num_rows($package_result) > 0){
-										while($package_data = mysql_fetch_array($package_result)){?>
+								 	if(mysqli_num_rows($package_result) > 0){
+										while($package_data = mysqli_fetch_array($package_result)){?>
 								 			<option value="<?php echo $package_data['id']; ?>" <?php if(in_array($package_data['id'],$package_arr)) {?> selected <?php } ?> ><?php echo $package_data['name']; ?></option>
 								 		<?php
 										}
@@ -334,10 +336,10 @@ return chosen
                              </label>     
                              <div class="col-md-9">
                              <select class="form-control required" name="challenge_type" id="challenge_type">
-                             	<option value="" <? if($challenge_type == ''){ ?>selected="selected"<? } ?>>Please Select</option>
+                             	<option value="" <?php if($challenge_type == ''){ ?>selected="selected"<?php } ?>>Please Select</option>
 								<?php
-								 	if(mysql_num_rows($challenge_type_result) > 0){
-										while($challenge_type_data = mysql_fetch_array($challenge_type_result)){?>
+								 	if(mysqli_num_rows($challenge_type_result) > 0){
+										while($challenge_type_data = mysqli_fetch_array($challenge_type_result)){?>
 								 			<option value="<?php echo $challenge_type_data['id']; ?>" <?php if($challenge_type == $challenge_type_data['id']) {?> selected <?php } ?> ><?php echo $challenge_type_data['name']; ?></option>
 								 		<?php
 										}
@@ -365,21 +367,21 @@ return chosen
                      <input class="form-control required" name="challenge_points" type="text" id="challenge_points" value="<?=$challenge_points; ?>" />
                      </div>
                      </div>
-											
+				
                      <div class="form-group">
                             <label class="col-md-3 control-label">
                               <span class="required">*</span>Challenge Image
                              </label>     
                              <div class="col-md-9">
                             <input class="form-control <?php if($_REQUEST['mode'] == 'add'){?> required <?php } ?>" type="file" name="challenge_image" id="challenge_image" />
-                                                            <? 
+                                                            <?php 
                                             if($challenge_image!="" && file_exists("../challenge_image/".$challenge_image))
                                             {
                                                     ?>
                                                     <br />
                                                     <img alt="Challenge Image" src="../challenge_image/<?=$challenge_image;?>" width="125" border="0" />
 
-                                                    <?											
+                                                    <?php											
                                             }
                                             ?>		
                                    </div>
@@ -395,20 +397,14 @@ return chosen
                      </div>
 											
 						<?php if($_REQUEST['mode'] == 'edit'){?>
-			    			<div class="form-group">
-								<label class="col-md-3 control-label">
-								  <span class="required">*</span>Created Date
-								 </label>     
-								 <div class="col-md-9">
-								 <input class="form-control required" name="add_date" type="text" id="add_date" value="<?=$add_date; ?>" size="35" maxlength="50" readonly="true">
-									</div>
-                            </div>
 						<?php } ?>
 			   
 			 
                                  
                                     <div class="form-actions">                                        
                                         <input type="hidden" value="<?=$_GET["id"]; ?>" name="id">
+										<input type="hidden" name="latitude" id="latitude" value="" />
+										<input type="hidden" name="longitude" id="longitude" value="" />
                                          <?php if($_REQUEST['mode'] == 'add') { ?>
                                             <input name="Submit" type="submit" value="Add" class="btn green pull-right"  />
                                             <?php } else { ?>
@@ -456,6 +452,7 @@ return chosen
             App.init();
             FormValidation.init();
         });        
+		
     </script>
 <script language="javascript">
 function keshav_check()
@@ -492,6 +489,8 @@ function keshav_check()
 				document.frm.challenge_image.focus();
 				return false
 			}	
+	
+	
 }
 </script>                             
 </body>
